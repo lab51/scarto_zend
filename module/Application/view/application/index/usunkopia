@@ -1,0 +1,368 @@
+<script language="javascript" type="text/javascript" src="/js/getmodels-homepage.js"></script>
+<script language="javascript" type="text/javascript" src="/js/get_number_of_ads.js"></script>
+<script language="javascript" type="text/javascript">
+function pobierzDane(value) {
+getModels(value);
+getNr();
+}
+</script>
+
+ 
+
+<div style='margin-left:0px;padding-left:0px;margin-top:0px;'>
+    <!--- pod wyszukiwaniem -->
+<div id='main_home' style="margin-left:0px;">
+	    <div style="width:100%;float:left;">
+	    	
+	    	<div style="margin-bottom:10px;font-weight:bold;width:100%;">
+         <legend><i class="icon-road" style="margin-top:7px;margin-left:10px;"></i><small> auto dnia:</small></legend>
+	    	<p><a href="<?php echo '/ap/index/'.$main_ad->brand_url.'/'.$main_ad->model_url.'/'.$main_ad->ad_id; ?>" style='color:#363636;font-size:16px;'><?php echo $main_ad->ad_title; ?></a></p>
+		 </div>
+			<div style='float:left;'>
+
+                <a href="<?php echo '/ap/index/'.$main_ad->brand_url.'/'.$main_ad->model_url.'/'.$main_ad->ad_id; ?>"><img src="/img_cars/<?php echo $main_ad->ad_main_img; ?>" style="width:390px;" class="img-thumbnail" /></a>
+    	    </div>
+			<div style='float:left;margin-left:20px;width:555px;'>
+			<table class="table table-condensed table-striped" style="font-size:11px;">
+			  <tr>
+                  <td class="gray-td">rok produkcji:</td>
+                  <td><?php echo $main_ad->ad_production_year; ?></td>
+               <td class="gray-td">przebieg (km):</td> 
+                  <td><?php echo $main_ad->ad_km; ?></td>
+               </tr>    
+               <tr>
+                  <td class="gray-td">moc silnika (KM):</td> 
+                  <td><?php echo $main_ad->ad_engine_power; ?></td>
+                  <td class="gray-td">pojemnoœæ:</td>
+                  <td><?php echo $main_ad->ad_engine_size; ?></td>
+               </tr>
+               <tr>
+                  <td class="gray-td">kolor</td>  
+                  <td><?php echo $main_ad->ad_car_color; ?></td>
+                  <td class="gray-td">skrzynia biegów:</td>    
+                  <td><?php echo $main_ad->ad_gearbox; ?></td>
+            <tr>
+                  <td class="gray-td">rodzaj paliwa:</td>   
+                  <td><?php echo $main_ad->ad_fuel; ?></td>
+               <td class="gray-td">typ:</td>    
+               <td>sedan</td>
+               </tr>
+               <tr>
+                  <td class="gray-td">Liczba drzwi:</td>    
+                  <td><?php echo $main_ad->ad_doors_nr; ?></td>
+                  <td class="gray-td">cena:</td>   
+                  <td><?php echo $main_ad->ad_price; ?></td>
+                  
+               </tr>
+		    </table>
+			
+			<p><strong></strong> <font style="font-size:26px;font-weight:bold;color:#B30B13;">
+			<?php echo number_format($main_ad->ad_price,0, "", " "); ?></font> pln</p>
+   
+			</div>
+    	
+	</div>
+    
+    
+    	<div style="width:640px;float:left;margin-left:0px;">
+    	   <div style="margin-bottom:10px;margin-left:10px;font-weight:bold;">
+         <legend><i class="icon-tags" style="margin-top:8px;margin-left:5px;"></i><small> warto sprawdziæ:</small></legend> 
+        <!---<img src="/img/title_warto_sprawdzic.png" style='height:25px;margin-left:15px;' />-->
+        </div>
+<table style="width:100%;font-size:11px;margin-left:10px;" class="table table-condensed table-striped" >
+<?php 
+$another_counter = 0;
+foreach($ogloszenia as $ad){
+    if($another_counter==0 or $another_counter==3 or $another_counter ==6){
+        echo '<tr>';
+    }
+        ?>	
+		<td style="width:340px;height:400px;">
+			<div class="imgLiquidFill imgLiquid">		
+	<a href="<?php echo '/ap/index/'.$ad->brand_url.'/'.$ad->model_url.'/'.$ad->ad_id; ?>">
+                        <img class='thumbnail' src="/img_cars/<?php echo $ad->ad_main_img; ?>" style="width:330px;height:200px;float:left;margin-right:5px;" />
+            </a>
+			<p><strong><a href="<?php echo '/ap/index/'.$ad->brand_url.'/'.$ad->model_url.'/'.$ad->ad_id; ?>" style='color:#363636;'><?php echo $ad->ad_title; ?></a></strong></p>			
+      <strong>cena:</strong> <?php echo $ad->ad_price; ?><br />
+			<strong>paliwo:</strong> <?php echo $ad->ad_fuel; ?> <br />
+			<strong>pojemnoœæ:</strong> <?php echo $ad->ad_engine_size; ?> <br />
+			<strong>rok prod.:</strong> <?php echo $ad->ad_production_year; ?> <br />
+			</div>                
+</td>
+<?php 
+
+$another_counter++;
+        if($another_counter==3 or $another_counter==6 or $another_counter==8){
+        echo '</tr>';
+    }
+    } ?>
+		
+</table>
+
+    	</div>
+    	
+    		
+</div>	
+<!--- KONIEC - pod wyszukiwaniem -->
+
+
+	<div style="width:1055px;float:left;margin-left:0px;">
+
+<ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+        <li class="active"><a href="#ostronie" data-toggle="tab">o stronie</a></li>
+        <li><a href="#modele" data-toggle="tab">na skróty</a></li>
+        <li><a href="#segmenty" data-toggle="tab">samochody u¿ywane wg segmentów</a></li>
+        <li><a href="#popularne" data-toggle="tab">popularne modele</a></li>
+        <li><a href="#poradnik" data-toggle="tab">poradnik kupuj¹cego</a></li>
+        </ul>
+    <div id="my-tab-content" class="tab-content">
+        <div class="tab-pane active" id="ostronie">
+            <div style='font-size:11px;text-align:justify;'>
+			
+			<p>
+            <h1 style='font-size:14px;'>Samochody u¿ywane na scarto.pl</h1>
+
+<img src='/img/garaz.jpg' alt='garaz' style='width:455px;float:right;margin-left:10px;' class='img-polaroid' />Rynek samochodów u¿ywanych w Polsce ca³y czas roœnie. Mamy sporo aut w ofercie na rynku krajowym jak i aut sprowadzonych z Niemiec, Belgii czy Holandii. Wybór jest spory, ale gdzie najlepiej szukaæ og³oszeñ? Wybór na lokalnych gie³dach mo¿e nie byæ satysfakcjonuj¹cy, warto wiêc sprawdziæ og³oszenia motoryzacyjne w internecie. Najpopularniejsze obecnie serwisy jak otomoto.pl czy moto.allegro.pl oferuj¹ spory wybór og³oszeñ, ale s¹ to og³oszenia p³atne. Tu le¿y idea powstania scarto.pl, by bezp³atne og³oszenia motoryzacyjne dawa³y mo¿liwoœæ szybkiej i wygodnej sprzeda¿y samochodu.
+</p>
+<p>
+Du¿y nacisk po³o¿ony jest na wygodê u¿ytkowania. Rejestracja nie jest konieczna, bo konto jest zak³adane automatycznie podczas dodawania og³oszenia. Potrzebujesz jedynie zdjêcie swojego auta (minimum jedno) oraz adres poczty elektronicznej, na który dostaniesz szczegó³y odnoœnie swojego og³oszenia. 
+Samo darmowe og³oszenie sprzeda¿y samochodu dodasz ju¿ w kilka minut w trzech prostych krokach.
+</p>
+<p>
+<h2 style='font-size:12px;'>
+Samochody z Polski, Niemiec a mo¿e innych krajów?  
+</h2>
+Na naszym rynku jest sporo og³oszeñ nie tylko z Polski. Sprzedawane s¹ auta z Niemiec, Belgii, Francji i innych krajów. Na scarto.pl w jednym miejscu mo¿esz ogl¹daæ je wszystkie.
+Ca³y czas du¿¹ popularnoœci¹ ciesz¹ siê marki niemieckie jak Volkswagen, Audi czy BMW. Widaæ to po rankingu najpopularniejszych modeli, gdzie ca³y czas pojawiaj¹ siê Volkswagen Golf, Volkswagen Passat, Audi A3, Audi A4 czy BMW 3. </p>
+			
+			
+			
+			
+		
+		
+</p>	</div>
+        </div>
+        <div class="tab-pane" id="modele">
+            <div style='font-size:11px;'>
+			<p>Modele ciesz¹ce siê najwiêksz¹ popularnoœci¹:</p>
+			<ul>
+				<li><a href="http://www.scarto.pl/osobowe/lista/volkswagen/golf">Volkswagen Golf</a> </li>
+			<li><a href="http://www.scarto.pl/osobowe/lista/volkswagen/passat">Volkswagen Passat</a> </li>
+			<li><a href="http://www.scarto.pl/osobowe/lista/audi/a3">Audi A3</a> </li>
+			<li><a href="http://www.scarto.pl/osobowe/lista/audi/a4">Audi A4</a> </li>
+			<li><a href="http://www.scarto.pl/osobowe/lista/skoda/octavia">Skoda Octavia</a> </li>
+			<li><a href="http://www.scarto.pl/osobowe/lista/bmw/320">BMW 320</a> </li>
+			<li><a href="http://www.scarto.pl/osobowe/lista/audi/a6">Audi A6</a> </li>
+			<li><a href="http://www.scarto.pl/osobowe/lista/ford/focus">Ford Focus</a> </li>
+			<li><a href="http://www.scarto.pl/osobowe/lista/ford/mondeo">Ford Mondeo</a> </li>
+			<li><a href="http://www.scarto.pl/osobowe/lista/opel/vectra">Opel Vectra</a> </li>
+			</ul>
+			</div>
+        </div>
+        
+        <div class="tab-pane" id="segmenty">
+         <div style="float:left;width:750px;font-size:12px;text-align:justify;">
+<h2>Samochody u¿ywane - ciekawy wybór z poszczególnych segmentów</h2>
+<p>Rynek u¿ywanych aut w Polsce jest naprawdê bogaty i nie ka¿dy musi jeŸdziæ Volkswagenem Passatem lub Oplem Astr¹. Niektóre auta zdoby³y wy¿sze uznanie wœród kupuj¹cych, przez co ich ceny zosta³y wywindowane do abstrakcyjnych wartoœci. Najlepszym dowodem jest <b>Fiat 500</b>. To ma³e miejskie autko oparto na prostych i stosunkowo tanich w produkcji rozwi¹zaniach jednak jego cena zarówno w salonie jak i na rynku wtórnym jest wyj¹tkowo wysoka. G³ównie wp³yw na to maj¹ emocje jakie wzbudza. Fiat 500 odwo³uje siê swoim wygl¹dem do legendarnego modelu 500 z 1957 roku i trzeba przyznaæ, ¿e sylwetka oraz detale wnêtrza s¹ mi³e dla oka. Ten maluch naprawdê pozytywnie wyró¿nia siê spoœród konkurencji. BliŸniaczy Ford Ka II generacji mimo, ¿e korzysta z tej samej techniki oraz ma nieco lepiej zestrojone zawieszenie, nie zyska³ takiej przychylnoœci. Jeœli porównamy Ka  i 500 z tych samych roczników, tym samym przebiegiem, podobnym wyposa¿eniem i identycznym silnikiem to Ford praktycznie zawsze bêdzie tañszy.</p>
+<p>Ten przyk³ad mo¿na daæ sporo do myœlenia przy zakupie kolejnego auta. Poni¿ej znajduje siê lista kilku modeli, których cena jest atrakcyjna i nie odznaczaj¹ siê podwy¿szon¹ awaryjnoœci¹.</p>
+<h3>Segment A</h3>
+<p>Poszukuj¹c prostego auta maj¹cego poruszaæ siê wy³¹cznie po centrum du¿ego miasta warto zwróciæ uwagê na tzw.: trojaczki z Kolina. To trzy auta <b>Citroen C1</b>, <b>Peugeot 107</b> oraz <b>Toyota Aygo</b>, które produkowane s¹ w tej samej czeskiej fabryce. Ca³a trójka mierzy ok. 3,4 m. d³ugoœci, mo¿e byæ wyposa¿ona w benzynowy silnik 1.0 o mocy 68KM produkcji Toyoty z ³añcuchem rozrz¹du (polecam) lub francuskiego diesla 1.4 o mocy 54KM. Wersje nadwoziowe 3 lub 5-drzwiowe. Dostêpne s¹ dwie skrzynie: klasyczna 5-biegowa manualna oraz zautomatyzowana – niestety powolna i awaryjna. Co do wyposa¿enia – mo¿liwe by³o zamówienie podstawowych udogodnieñ jak np. klimatyzacja manualna. </p>
+<h3>Segment B </h3>
+<p>Segment w którym najlepiej na naszym rynku radzi sobie <b>Skoda Fabia</b>. Niestety wiara w wysok¹ jakoœæ produktów spod skrzyde³ grupy volkswagena sprawia, ¿e i ten samochód osi¹ga ceny nieadekwatne do wartoœci. Zdecydowanie ciekawszym autem jest <b>Opel Corsa</b>. Modele produkowane od 2000 roku to dojrza³e, udane konstrukcje. Nie trudno o egzemplarz z dobrym wyposa¿eniem. Paleta silników jest bogata. Z jednostek wysokoprê¿nych polecam diesla o pojemnoœci 1.7. Wersje bez wtrysku common rail (di oraz dti) spal¹ nawet najgorsz¹ ropê bez zaj¹kniêcia a ewentualne naprawy bêd¹ œmiesznie tanie w porównaniu z nowoczesnymi konstrukcjami. PóŸniejsze wersje CDTi charakteryzuj¹ siê bardzo dobrymi osi¹gami i niskim spalaniem. Z gamy benzyniaków mo¿na poleciæ ka¿dy motor, poza 1.0, który jest zwyczajnie za s³aby. W Corsie D produkowanej od 2006 roku lepiej pomin¹æ te¿ osiemdziesiêciu konny silnik 1.2.</p>
+<h3>Segment C </h3>
+<p>Z tym segmentem kojarzy siê g³ównie <b>Volkswagen Golf</b> oraz jego pochodne m.in. <b>Seat Leon</b> oraz <b>Skoda Octavia</b>. W przypadku tej ostatniej ceny u¿ywanych potrafi¹ byæ wy¿sze ni¿ bliŸniaczych konstrukcji Seata i VW. To zas³uga obszerniejszego wnêtrza, baga¿nika i tañszego serwisu.  W tym zestawieniu szukamy jednak aut stosunkowo tanich i nieprzysparzaj¹cych wiêkszych problemów w czasie eksploatacji. Sposobem na zakup taniego i bezawaryjnego kompaktu móg³by byæ Ford Focus II. Niestety podstawowym problemem jest ogromna iloœæ wyeksploatowanych egzemplarzy przez co znalezienie pere³ki graniczy z cudem.</p>
+<p>Za te same pieni¹dze ³atwiej kupiæ zadbanego <b>Fiata Bravo II.</b> Jeœli zdecydujemy siê na podstawowego benzyniaka 1.4 mo¿emy liczyæ na spokojn¹ eksploatacjê licz¹c siê ze spalaniem ok 7l/100km. Jeœli ktoœ liczy na lepsze osi¹gi i ni¿sze spalanie to polecam znalezienie Fiata z dieslem 1.9 (prostsz¹ wersjê z oœmiozaworow¹ g³owic¹ – moc 120KM). To sprawdzona i dobrze znana mechanikom jednostka. Identyczne silniki mo¿na znaleŸæ pod maskami nie tylko innych w³oskich aut ale i wielu modeli Opla, Saaba, Suzuki a nawet w Cadillacu BLS. To chyba dobra rekomendacja. </p>
+<p>Bravo by³o dla Fiata ogromnym skokiem ku lepszemu. Zarówno pod wzglêdem stylistycznym jak i  jakoœciowym. Samochód prowadzi siê nieco mniej dynamicznie od Focusa, za to zawieszenie jest trwalsze. Wiêkszoœæ egzemplarzy na naszym rynku jest dobrze wyposa¿ona a do tego ³atwo o zadbany egzemplarz z polskiego salonu z udokumentowanym przebiegiem. </p>
+<h3>Segment D   </h3>
+<p>Opinia o poprzedniku mo¿e zrujnowaæ karierê nastêpcy. Najlepszym przyk³adem jest <b>Renault Laguna III</b>. Poprzedniczka nie zapisa³a siê najlepiej w pamiêci kierowców, mimo wielu zalet takich jak: wysoki poziom bezpieczeñstwa, komfort, bogate wyposa¿enie i nietuzinkowy wygl¹d. Powodem by³y liczne awarie. Psu³o siê wszystko – w szczególnoœci osprzêt silnika i rozbudowana elektronika. Laguna produkowana od 2007 roku zachowa³a wszystkie pozytywne cechy i pozby³a siê wiêkszoœci negatywnych. To poprawny samochód, który poziomem awaryjnoœci nie odbiega od œredniej wœród konkurencji a dodatkowo kusi atrakcyjnymi cenami zarówno w salonie (du¿e rabaty) jak i na rynku wtórnym. Gwarancj¹ bezproblemowego u¿ytkowania francuskiego auta jest wybór mo¿liwie prostej wersji wyposa¿eniowej oraz podstawowego silnika 1.6. Niestety jak to zwykle bywa w przypadku najmniejszych dostêpnych motorów – jest powolny. Jeœli pogodzimy siê z typowymi usterkami jakie nêkaj¹ nowoczesne diesle to bez zastanawiania siê nale¿y wybraæ wersjê 2.0 dCi (1.5 i 3.0 to z regu³y skarbonki). </p>
+<h3>Segment E</h3>
+<p>Wœród aut klasy wy¿szej ciê¿ko znaleŸæ pojazd tani, a z powodu nagromadzenia nowoczesnych rozwi¹zañ – równie¿ bezawaryjny. Praktycznie ka¿da konstrukcja skazana jest na kosztowne remonty po przejechaniu okreœlonej iloœci kilometrów. Jeœli jednak nieco zmienimy kryteria na: niedrogi i stosunkowo bezawaryjny to mo¿na skusiæ siê na jedn¹ z dwóch poni¿szych propozycji.</p>
+<p><b>Audi A6 (C6)</b> – to samochód który oferowa³ mnóstwo nowinek (czytaj: rzeczy które siê zepsuj¹) na szczêœcie zwykle za dop³at¹. Nie wyeksploatowany do granic egzemplarz z jednostk¹ V6 o pojemnoœci 2.4 to bêdzie najlepszym wyborem. To starszy konstrukcyjnie silnik benzynowy o mocy 177, który w porównaniu z pozosta³ymi jednostkami z palety nie powinien zrujnowaæ w³aœciciela. Silnik w trasie spala nawet 7l/100km. W ruchu miejskim – bez problemu 2 razy tyle. Dla zainteresowanych ??? motor dzielnie znosi zasilanie gazem LPG. </p>
+<p><b>Saab 9-5</b> – produkowany przez 13 lat szwedzki czo³g wzbudza skrajne emocje. To jeden z tych samochodów, które mo¿na pokochaæ lub znienawidziæ. Jeœli ktoœ poczuje to pierwsze powinien siê zdecydowaæ na jednostkê 1.9 TiD – to motor wspomniany ju¿ przy okazji opisu Fiata Bravo. Mo¿e nie pasuje do charakteru auta tak dobrze jak turbo do³adowane benzynowe 2.3, ale przynajmniej eksploatacja nie bêdzie przesadnie droga. Na plus – wysoki poziom bezpieczeñstwa. Minus – samochód zaprojektowano w po³owie lat 90. Na szczêœcie konstrukcjê ci¹gle modernizowano. </p>
+
+			
+			</div>
+<div id="samochody_uzywane_images" style="float:right;width:265px;margin-top:30px;">
+			<img src='/img/front/Toyota-Aygo.jpg' alt='samochody u¿ywane - toyota aygo' style='width:255px;float:right;margin-left:10px;margin-bottom:30px;' class='img-polaroid' />
+			<img src='/img/front/opel-corsa.jpeg' alt='samochody u¿ywane - opel corsa' style='width:255px;float:right;margin-left:10px;margin-bottom:30px;' class='img-polaroid' />
+			<img src='/img/front/seat-leon.jpg' alt='samochody u¿ywane - seat leon' style='width:255px;float:right;margin-left:10px;margin-bottom:30px;' class='img-polaroid' />
+			<img src='/img/front/renault-laguna.JPG' alt='samochody u¿ywane - renault laguna' style='width:255px;float:right;margin-left:10px;margin-bottom:30px;' class='img-polaroid' />
+			<img src='/img/front/audi-a6.jpg' alt='samochody u¿ywane - audi a6' style='width:255px;float:right;margin-left:10px;margin-bottom:30px;' class='img-polaroid' />
+			
+			</div>
+			
+        </div>
+        
+<div class="tab-pane" id="popularne">
+<div style='font-size:12px;text-align:justify;'>
+<h2>U¿ywane Audi A3 (2003-2012)</h2>
+<p>Audi A3 II generacji dla jednych jest skutecznym narzêdziem do pokonywania kilometrów dla innych pozostaje tylko obiektem westchnieñ. Jedni i drudzy wiedz¹, ¿e to jeden z najlepszych samochodów kompaktowych na rynku, którego charakter zale¿y tylko od silnika znajduj¹cego siê pod mask¹…</p>
+
+<h3>Silniki</h3>
+
+<p><img src='http://www.scarto.pl/pub/img/front/audi-a3.jpg' alt='garaz' style='width:455px;float:right;margin-left:10px;' class='img-polaroid' />Od nich wypada zacz¹æ. To przede wszystkim dziêki szerokiej palecie jednostek napêdowych A3 zawdziêcza swój sukces. Kupuj¹cy mieli ogromny wybór: od prostego 1.6 8v, przez 1.6 i 2.0 FSI z wtryskiem bezpoœrednim, do³adowanych 1.4 TFSI, 1.8 TFSI oraz 2.0 TFSI (w topowej odmianie S3) po monstrualne 3.2 V6. Oferta diesli sk³ada³a siê z trzech motorów: s??ynnego 1.9TDI, nowoczeœniejszego 1.6TDI oraz 2.0 TDI, którego warto rozwa¿aæ tylko w wersji 170KM.  </p>
+
+<p>Ka¿dy z tych motorów ma swoje wady i zalety. Godne polecenia s¹ jednostki: 
+<ul>
+<li> 1.6 8V ze wzglêdu na prost¹ konstrukcjê oraz mo¿liwoœæ za³o¿enia taniej instalacji gazowej, </li>
+<li> 1.9 TDI – zalet chyba nie trzeba przedstawiaæ. Ma³e spalanie, niska awaryjnoœæ i niez³e osi¹gi. </li>
+</ul>
+Pozosta³e motory mog¹ byæ problematyczne. FSI s³yn¹ z odk³adaj¹cego siê nagaru na zaworach, co powoduje ubytki mocy (w skrajnych wypadkach doprowadzi do pêkniêcia g³owicy) oraz brakiem mo¿liwoœci zamontowania sensownej instalacji LPG. TFSI potrafi¹ po³¹czyæ umiarkowane spalanie z niesamowitymi osi¹gami. Niestety ich eksploatacja to loteria. Nieszczelnoœci w okolicach turbiny, rozci¹gaj¹ce siê ³añcuchy rozrz¹du, pêkaj¹ce g³owice. Kupuj¹c samochód z którymœ z wymienionych silników nie warto kierowaæ siê cen¹.</p> 
+
+<h3>Wnêtrze</h3>
+
+<p>Wnêtrze – to kolejny element za, który Audi jest tak wysoko cenione. „Intuicyjne i ergonomiczne. Bezsprzecznie najlepsze materia³y w klasie.” Takie s³owa najczêœciej padaj¹ przy opisie miejsca pracy kierowcy. Jest elegancko i przejrzyœcie. Jakoœæ materia³ów u¿ytych do wykoñczenia A3 jest najlepsza w segmencie. Poniewa¿ mamy do czynienia z klas¹ Premium wyposa¿enie powinno byæ bogate. Niestety jest to regu³¹. Klienci wybieraj¹c Audi z podstawowymi silnikami, rzadko dokupowali ciekawe gad¿ety. Podstawowe opcje jednak znalaz³y siê w standardzie – elektrycznie regulowane szyby  i lusterka czy klimatyzacja.</p>
+
+<h3>Podwozie</h3>
+
+<p>Na zakoñczenie podwozie. Zawieszenie auta sk³ada siê z kolumn McPhersona z przodu oraz wielowahaczowe z ty³u (dwa wahacze poprzeczne, jeden wzd³u¿ny). Mimo skomplikowania, dobrze znosi nasze drogi i jest œwietnym kompromisem miêdzy komfortem a sztywnoœci¹. </p><p>
+Sworznie wahaczy przednich s¹ przykrêcane – w przypadku uszkodzenia, nie trzeba wymieniaæ ca³ego elementu. Szukaj¹c czêœci warto poœwiêciæ trochê czasu na znalezienie tañszej oferty. Oryginalne elementy bywaj¹ drogie – szczególnie w ASO Audi. Wystarczy jednak poszukaæ odpowiednika wœród bogatej oferty zamienników. </p>
+ 
+<h3>Zakup Audi A3 - na co zwracaæ uwagê</h3>
+<p>
+<ul>
+<li> zmor¹ s¹ tanie egzemplarze z ogromnymi przebiegami lub po powa¿nych wypadkach na szybko przygotowane do sprzeda¿y, </li>
+<li> w stosunku do poprzednika jest mniej problemów z korozj¹ podwozia, mimo tego warto sprawdziæ jak trzymaj¹ siê elementy metalowe,</li>
+<li> uwaga na 2.0 TDI z pompowtryskiwaczami, które delikatnie mówi¹c nie maj¹ najlepszych opinii (awarie ww. wtrysków, pêkaj¹ce g³owice, awarie pomp olejowych, zatarcia)</li>
+<li> co do zasady elektronika jest trwa³a mimo tego nale¿y sprawdziæ czy ka¿de urz¹dzenie pok³adowe jest sprawne i czy nie wyœwietlaj¹ siê ¿adne b³êdy.</li>  </p>
+</ul>
+<h3>Podsumowanie</h3>
+
+<p>Jeœli  potrzebujesz samochodu pokroju VW Golfa i staæ Ciê na to ¿eby  kupiæ b¹dŸ co b¹dŸ dro¿sze Audi to zrób to. Nie po¿a³ujesz ani jednej z³otówki. </p>
+
+<h2>U¿ywane Skody</h2>
+<p>Nowe reklamy Skody zaczynaj¹ siê od chwalenia rekordowych wyników sprzeda¿y samochodów tej marki w Polsce na przestrzeni ostatnich lat. Czy faktycznie Polacy kochaj¹ czeskie auta? Skoda nie jest raczej producentem samochodów na widok, których serce bije szybciej. Jeœli rodzina kupi sobie Octaviê czy Fabiê nie wzbudzi zazdroœci wœród s¹siadów. Politykowi, który jedzie rz¹dow¹ Skod¹ Superb, nikt nie wytknie poruszania siê w zbyt drogim aucie – mimo, ¿e najdro¿sze odmiany kosztuj¹ prawie tyle co podstawowe Audi A6. Na czym wiêc polega sekret marki, która do niedawna produkowa³a niezbyt udane pojazdy?</p>
+Skoda to marka, która przesz³a w ostatnich dwudziestu latach ogromne zmiany, obecnie produkuj¹ca samochody umiarkowanie ³adne, ale za to praktyczne. Zgodnie z has³em reklamowym Simply clever. Sloganem jednak mog³o by byæ „Wiêcej za mniej”. Np. Skoda Octavia III i Volkswagen Golf VII to dwa zbudowane z tych samych podzespo³ów auta oferowane za nieco mniej ni¿ 60 tys. z³. W zestawieniu Octavia jest liderem sprzeda¿y – prawie o klasê wiêksza, zbli¿aj¹ca siê gabarytami do Passata ma obszerniejsze wnêtrze oraz wiêkszy baga¿nik. Do tego ceny dodatkowych elementów wyposa¿enia s¹ ni¿sze. Wiêcej samochodu za mniejsze pieni¹dze.    </p>
+<p>W kategorii nowych samochodów Skoda wygrywa. Jednak nie ka¿dy chce lub mo¿e wejœæ do salonu i kupiæ nowe auto za cenê z katalogu. ¯eby staæ siê posiadaczem takiego auta za mniejsze pieni¹dze trzeba rozejrzeæ siê na rynku u¿ywanych. Poni¿ej zostan¹ opisane trzy najciekawsze, z punktu widzenia kupuj¹cego, u¿ywane Skody.   </p>
+<h3>Fabia II</h3>
+<p><img src='http://www.scarto.pl/pub/img/front/skoda-fabia2.jpg' alt='samochody u¿ywane skoda fabia2' style='width:455px;float:right;margin-left:10px;' class='img-polaroid' />Decyduj¹c siê dziœ na jeden z najmniejszych modeli mo¿na odrzuciæ Fabiê I generacji. By³a mizernie wykonana, a w³aœciciele po zakoñczeniu gwarnacji najczêœciej mocno oszczêdzali na eksploatacji, co szybko odbi³o siê na stanie technicznym. Pod ka¿dym wzglêdem lepszym wyborem bêdzie Volkswagen Polo IV. </p>
+<p>Druga generacja Fabii to dojrza³a konstrukcja. Wnêtrze jest lepiej spasowane i wykonane z o niebo lepszych materia³ów. Deska rozdzielcza i zegary w wersjach po liftingu wygl¹daj¹ naprawdê dobrze. Dominuje czerñ i odcienie szaroœci, ale zdarzaj¹ siê egzemplarze z kolorow¹ tapicerk¹ i jasnymi plastikami. Zawieszenie jest komfortowe i znacznie trwalsze ni¿ w poprzedniczce. Ma³a Skoda dobrze siê prowadzi – wra¿enia s¹ podobne do tych z jazdy Volkswagenem Polo, z t¹ ró¿nic¹, ¿e wspomaganie w Czeszce jest nieco mocniejsze (uk³ad kierowniczy jest wyczuwalnie mniej bezpoœredni).  </p>
+<p>Wybór silników jest tradycyjnie bogaty. Zakres mocy: od 70 po imponuj¹ce w miejskim aucie 180 KM. Najs³absza jednostka 1.2 12V ma 3 cylindry – pracuje g³oœno i wcale nie jest ekonomiczna. W jej wypadku nie ma sensu mówiæ o przyspieszeniu do setki, bo ciê¿ko bêdzie znaleŸæ odpowiednio d³ugi odcinek drogi, ¿eby uda³o siê na nim t¹ prêdkoœæ osi¹gn¹æ. Jednostki 1.4 16V i 1.6 8V to stare sprawdzone konstrukcje. Nie pal¹ ma³o, nie maj¹ osza³amiaj¹cych osi¹gów ale ich eksploatacja bêdzie spokojna i przewidywalna. Jednostka 1.2 TSi wydaje siê idea³em -  cicha, ekonomiczna i elastyczna. Niestety potrafi nadszarpn¹æ bud¿et nieplanowan¹ napraw¹ – warto j¹ rozwa¿yæ jeœli kupujemy pewny samochód z ma³ym przebiegiem.</p> 
+<p>Diesle to specjalnoœæ grupy VW. Ka¿da z trzech dostêpnych jednostek ma swoje ma³e wady i ogromne zalety. 1.4 TDI - tani 3 cylindrowy maluch o prostej konstrukcji, 1.9 TDI w najlepszym wydaniu – 105KM oraz jego nastêpca 1.6 TDI o tej samej mocy, którego najwiêksz¹ wad¹ s¹ jeszcze wysokie ceny. Zaleta – œrednie spalanie 4,2l/100km. </p>
+<h3>Octavia II      </h3>
+<p><img src='http://www.scarto.pl/pub/img/front/skoda-octavia2.jpg' alt='samochody u¿ywane skoda octavia2' style='width:455px;float:right;margin-left:10px;' class='img-polaroid' />Zatrzymaj siê przy ulicy w centrum wiêkszego miasta i rozejrzyj dooko³a. Na 100% zobaczysz Volkswagena Passata i Skodê Octaviê. 
+Kiedyœ mo¿na by³o obserwowaæ boom na Fordy Mondeo. Przedstawiciele handlowi oraz w³aœciciele firm zaczêli je masowo kupowaæ poniewa¿ by³y tañsze i lepiej wyposa¿one od Passatów. Obecnie trend zmierzy³ ku Czeskiej firmie. Skoda Octavia II po liftingu to jeden z najchêtniej wybieranych pojazdów w Polsce. Wizerunek producenta tanich nieciekawych aut odszed³ w niepamiêæ. Starannie wykonane wnêtrze, du¿a iloœæ opcji dodatkowego wyposa¿enia, sprawdzone rozwi¹zania oraz wisienka na tym smakowitym torcie – wielowahaczowe zawieszenie, sprawiaj¹ce, ¿e Skoda prowadzi siê równie dobrze jak okryte s³aw¹ Fordy. Dope³nieniem by³a ni¿sza cena oraz atrakcyjne finansowanie przez VW Bank Polska.      </p>
+<p>Na naszym rynku naj³atwiej o 3 wersje – 1.6 8V, 1.9 TDI oraz 2.0 TDI. Najbezpieczniejszy zakup to podstawowe wersje silnikowe od prywatnego pierwszego w³aœciciela. TDI s¹ obarczone ryzykiem uszkodzenia wtrysków, sprê¿arek czy problemów z filtrem DPF. Podwy¿szone ryzyko zwi¹zane jest równie¿ ze skrzyni¹ DSG. Ten dwusprzêg³owy automat sprawia, ¿e jazda staje siê przyjemnoœci¹ a spalanie spada. Mi³o jest do czasu awarii z któr¹ poradz¹ sobie tylko wykwalifikowane serwisy.
+Trwa³oœæ auta i prostota jego konstrukcji jest gwarancj¹ taniej eksploatacji. Zawieszenie mimo, ¿e rozbudowane, dobrze radzi sobie z naszymi drogami. Nie ma te¿ doniesieñ o nagminnych problemach z elektryk¹ lub elektronik¹.  </p>
+<p>Tak jak w przypadku Fabii warto zainteresowaæ siê wersjami po liftingu. Jakoœæ wykonania wnêtrza oraz dba³oœæ o detale pozwala poczuæ siê w Octavii jak w porz¹dnej, drogiej limuzynie.   </p>
+
+<h3>Superb II</h3>
+<p><img src='http://www.scarto.pl/pub/img/front/skoda-superb.jpg' alt='samochody u¿ywane skoda superb' style='width:455px;float:right;margin-left:10px;' class='img-polaroid' />Superb I generacji nie zdoby³ uznania polskiego klienta, za to by³ cenn¹ lekcj¹ dla Skody. Samochód pretendowa³ do klasy w, której nie by³o miejsca dla producenta tanich pojazdów. Wysokoœæ sprzeda¿y mog³a by poprawiæ pojemna wersja kombi, jednak w obawie przed odebraniem klientów Passatowi lub Audi A4 projekt porzucono. 
+W 2008 roku na rynek wesz³a druga generacja, bêd¹ca owocem wniosków wyci¹gniêtych na podstawie poprzednika. Tañszy podstawowy motor o ma³ej pojemnoœci (1.4 TSi), system twindoor (dla przypomnienia klapa baga¿nika unosi siê sama jak w sedanie lub z szyb¹, jak w liftbacku) oraz cena na poziomie œrednio wyposa¿onego VW Golfa. Sukces by³ kwesti¹ czasu.        </p>
+<p>Superb to samochód o dwóch twarzach. Patrz¹c na niego widzisz du¿¹ dostojn¹ limuzynê z eleganckim pe³nym chromów wnêtrzem i bogatym wyposa¿eniem. Kiedy poznasz go bli¿ej zauwa¿asz, ¿e w rzeczywistoœci to po prostu du¿y hatchback, którego mo¿na utrzymaæ za podobne pieni¹dze jakie bêd¹ potrzebne na wspomnianego Golfa.     </p>
+Do wyboru praktycznie same do³adowane jednostki TSI lub TDI. Jedyny wolnoss¹cy silnik to V6 o pojemnoœci 3.6 po³¹czona seryjnie z napêdem 4x4 i skrzyni¹ DSG. Jeœli nawet ktoœ wybaczy wysokie spalanie, to nie sposób zrozumieæ czemu pojemnoœæ baku jest tak ma³a, ¿e zasiêg auta na jednym tankowaniu nie przekracza 400km. Najlepszym wyborem bêdzie 1.8 TSi (dobry stosunek mocy do osi¹gów – do tego jest najmniej awaryjny spoœród do³adowanych benzyniaków). Diesle 1.6, 1.9 i 2.0 TDI o mocach 105-170KM. Eksploatacja przebiega wg zasady: im starszy i mniejszy – tym tañszy w obs³udze. Trwa³oœæ ca³oœci nie budzi wiêkszych zastrze¿eñ. Oczywiœcie z racji na wiêksz¹ iloœæ elektroniki, coœ mo¿e zawieœæ. Problemy jednak dotycz¹ zwykle elementów wyposa¿enia np. czujniki parkowania, elektryczne si³owniki klapy baga¿nika (dotyczy kombi) itp.
+ </p>
+<p>Nie ma w ofercie Skody samochodu, który sprzedaje siê Ÿle. Nawet umiarkowana sprzeda¿ Roomstera nie spowodowa³a rezygnacji firmy z produkcji tego modelu – poniewa¿ i tak przynosi konkretne zyski. Ciekawostk¹ w gamie jest Yeti. Pierwszy SUV producenta ca³kiem dobrze radzi sobie w tabeli sprzeda¿y. A najmniejsze Citigo? Razem z bliŸniaczym VW up! deklasuje faworyta segmentu czyli Fiata Pandê. </p>
+
+
+<h2>BMW Serii 3 [e36] 1990-2000</h2>
+<p>BMW serii 3 da³o przyk³ad innym firmom z bran¿y motoryzacyjnej, ¿e sportowe emocje mo¿na po³¹czyæ z funkcjonalnym nadwoziem. Trójka o nazwie kodowej e36 wystêpowa³a jako klasyczny sedan, kombi, coupe, cabrio oraz compact. Zadaniem tej ostatniej wersji by³o wywalczenie dla BMW kawa³ka rynku samochodów kompaktowych. </p>
+Pierwsze auta zjecha³y z taœm monta¿owych 24 lata temu. Znalezienie dziœ egzemplarza z pocz¹tku produkcji, bezwypadkowego i niewymagaj¹cego inwestycji graniczy z cudem. Oczywiœcie zdarzaj¹ siê pere³ki z opisami „dla kolekcjonera”, ale najczêœciej ich ceny wywo³awcze osi¹gaj¹ kosmiczne wartoœci – szukaj¹cy dobrze utrzymanego klasyka chêtniej poszukuj¹ poprzednika - e30.  </p>
+<p><img src='http://www.scarto.pl/pub/img/front/bmw-e36.jpg' alt='samochody u¿ywane bmw e-36' style='width:455px;float:right;margin-left:10px;' class='img-polaroid' />G³ównym problemem wiêkszoœci egzemplarzy s¹ ich w³aœciciele, których staæ by³o tylko na zakup stosunkowo taniego auta, ale nie jego eksploatacjê. BMW to marka Premium i ma to odbicie w cenach czêœci. S¹ oczywiœcie liczne zamienniki, ale w wiêkszoœci na rynku znajdziemy marnej jakoœci chiñskie wyroby, których jakoœæ pozostawia wiele do ¿yczenia. Druga kwestia to sposób eksploatacji. E36 s³ynie z wytrzyma³oœci na brutalne traktowanie. Nie mniej jednak nie jest niezniszczalne. Wciskanie gazu do pod³ogi kiedy silnik jest zimny to podstawowy problem (temperatura cieczy na poziomie 90st.C nie oznacza, ¿e olej w silniku jest ju¿ wystarczaj¹co rozgrzany).    </p>
+<p>Jakiego e36 szukaæ? To zale¿y od oczekiwañ. BMW mo¿e byæ doskona³ym samochodem na co dzieñ lub weekendow¹ zabawk¹. Najwa¿niejsze jest pewne Ÿród³o zakupu oraz mo¿liwie najlepszy stan techniczny. Wybór silnika najlepiej ograniczyæ do jednostek benzynowych o mocy od 115KM – s³absze jednostki nie radz¹ sobie ze sprawnym napêdzaniem auta. Ciekawy jest 1.8is 140KM zapewnia niez³e osi¹gi a spalanie nie przekracza 10l. Jednostki R6 niezale¿nie od pojemnoœci spalaj¹ podobne iloœci paliwa, wiêc maj¹c do wyboru wiêkszy motor nie nale¿y siê obawiaæ wiru w baku. </p>
+<p>Zadbane diesle (TDS) praktycznie na rynku wtórnym nie istniej¹.  Na szczególn¹ uwagê zas³uguje wersja M3 przygotowana przez oddzia³ BMW Motorsport GmbH. Oferowane by³y dwa benzynowe silniki szeœciocylindrowe. Najpierw 3.0 (286KM), potem 3.2(321KM) wyposa¿ony w system zmiennych faz rozrz¹du Vanos. Ka¿dy z nich sprawia, ¿e nawet dziœ M3 jest na drodze jednym z szybszych aut. </p>
+<p>Maj¹c na uwadze wiek trzeba pamiêtaæ, ¿e ka¿dy dodatkowy element wyposa¿enia bêdzie miejscem ewentualnej awarii. Na co zwróciæ uwagê przy zakupie: </p>
+<p>
+<ul>
+<li>	Rdza – nawet bezwypadkowe egzemplarze z pocz¹tków produkcji mog¹ mieæ wykwity korozji. Jeœli auto d³u¿szy czas jeŸdzi po naszych drogach, zim¹ posypywanych sol¹, wizyta na podnoœniku i dok³adne sprawdzenie podwozia jest nieodzowne.  </li>
+<li>	Elektryka – sprawdŸ czy dzia³aj¹ wszystkie szyby, centralny zamek itp. Naprawa nie jest droga, ale niesprawny element jest dobrym argumentem do obni¿enia ceny. </li>
+<li>	Uk³ad kierowniczy – jeœli do wymiany s¹ tylko koñcówki dr¹¿ków to naprawa wyniesie kilkadziesi¹t z³otych, jeœli niesprawna jest przek³adnia koszty mog¹ przekroczyæ nawet tysi¹c PLN  </li>
+<li>	Dyferencja³ – wycieków oleju trzeba szukaæ nie tylko na silniku i skrzyni, ale równie¿ na dyferencjale. Usterki przeniesienia napêdu s¹ kosztowne w naprawie.</li> 
+<li>	Wa³ napêdowy – Du¿a moc i szybkie ruszanie wp³ywa negatywnie na przeguby wa³u napêdowego. Przy wiêkszych przebiegach ha³asowaæ bêdzie ³o¿ysko w jego podporze.</li>
+<li>	Skrzynie automatyczne – nie s¹ tak trwa³e jak przek³adnie Mercedesa z tamtych lat. Jeœli poprzedni w³aœciciel nie wymienia³ regularnie oleju z pewnoœci¹ dojdzie do awarii.</li>
+</ul>
+   </p>
+
+			</div>
+        </div>
+        
+                
+<div class="tab-pane" id="poradnik">
+<div style='font-size:12px;text-align:justify;'>
+<h2>Poradnik dla kupuj¹cych samochody u¿ywane</h2>
+<p>   
+   Zakup auta u¿ywanego w dzisiejszych czasach nie jest ³atwym zadaniem. Obecnie klient ma do wyboru wiele marek samochodowych, które chc¹c zyskaæ jego sympatiê oferuj¹c szereg ró¿nych wersji silnikowych oraz wersji wyposa¿enia wnêtrza pojazdu – wszystko po to, aby u¿ytkowanie pojazdu by³o zadowalaj¹ce. Co prawda, jako koncern samochodowy, wiêksza uwaga skupiana jest na nowych modelach, które dopiero co wychodz¹ na rynek. Pamiêæ klientów jest dobra i potrafi¹ oni pamiêtaæ usterki w ich poprzednich pojazdach dlatego rynek aut u¿ywanych jest poniek¹d odzwierciedleniem rozwoju marki, czy uczy siê ona na w³asnych b³êdach i czy rozwija samochody. Przyk³adem jest koncern VW, który na prze³omie lat 80tych udowodni³ jak niezawodne auta potrafi produkowaæ, co prze³o¿y³o siê na jego niezmiennie wysok¹ popularnoœæ na rynku wtórnym. 
+</p>   
+<p>Chc¹c kupiæ auto u¿ywane musimy zastanowiæ siê przez chwilê na kilkoma istotnymi kwestiami:</p>
+<h3>1) w jakim celu i w jaki sposób bêdziemy wykorzystywaæ nowy samochód?</h3> 
+<p>Czy samochód bêdzie nam s³u¿y³ jedynie do dojazdów do pracy, która oddalona jest od naszego miejsca zamieszkania o 10km. Je¿eli tak to w tym przypadku mo¿emy œmia³o przekreœliæ samochody z silnikiem diesla, który jest rozwi¹zaniem dla tych, którzy maj¹ zamiar pokonywaæ d³u¿sze trasy. </p>
+<h3>2) czy bêdziemy jeŸdziæ tym samochodem sami, czy mo¿e z rodzin¹ lub bêdziemy kogoœ przewozili?</h3>
+<p><img src='http://www.scarto.pl/pub/img/front/samochod-uzywany-kombi.jpg' alt='samochody u¿ywane typu kombi' style='width:255px;float:right;margin-left:10px;' class='img-polaroid' />Proste pytanie jednak wiele osób nie zdaje sobie sprawy, ¿e komfort pasa¿erów jest tak¿e wa¿ny. Szukaj¹c auta dla siebie mo¿emy zawêziæ nasze poszukiwania do samochodów 2-drzwiowych, np. hatchback. Chc¹c nabyæ auto dla rodziny powinniœmy uwzglêdniæ takie aspekty pojazdu jak wielkoœæ baga¿nika, iloœæ miejsca na tylnej kanapie zarówno na nogi jak i nad g³ow¹, w razie gdybyœmy przewozili wysokich pasa¿erów. Daje to nam wskazówkê, aby ukierunkowaæ nasze poszukiwania na modele o typie nadwozia kombi lub sedan. </p>
+<h3>3) rodzaj paliwa: benzyna czy diesel</h3>
+<p>Wracamy tutaj do punktu pierwszego, gdzie musimy oceniæ czy bêdziemy pokonywaæ samochodem d³u¿sze trasy czy krótsze. Je¿eli bêdziemy podró¿owali czêsto wybór powinien paœæ na silnik diesla, który bêd¹c oszczêdnym, zapewnia lepsz¹ dynamikê na wysokich biegach, a w dodatku ma znacznie wiêksz¹ ¿ywotnoœæ ni¿ jednostki benzynowe. Innym aspektem jest nasze upodobanie co do rodzaju silnika. S¹ tacy, którzy po prostu nie lubi¹ tego lub drugiego rodzaju. Ile ludzi tyle opinii jednak je¿eli lubimy benzyny to na pró¿no szukaæ nam silnika diesla.</p> 
+<h3>4) suma jako mo¿emy przeznaczyæ na zakup pojazdu</h3> 
+<p>Punkt ostatnim jest chyba najwa¿niejszym ze wszystkich bowiem tutaj nie mo¿emy bujaæ w ob³okach, a musimy st¹paj¹c twardo po ziemi okreœliæ na co nasz staæ. Poni¿ej przedstawione zosta³y typy pojazdów na jakie warto zwróciæ uwagê w zale¿noœci od progu cenowego. Zanim jednak zaczniecie je zg³êbiaæ pamiêtajcie o bardzo wa¿nym aspekcie. Chc¹c okreœliæ sumê jako przeznaczacie na zakup auta powinniœcie dodaæ do niej œrednio od 2 do 3 tys. z³. (suma ta mo¿e byæ zarówno ni¿sza jak i wy¿sza) Dlaczego tak? Otó¿ po zakupie spotkacie siê z szeregiem op³at jakie nale¿y zrobiæ zanim auto bêdzie ca³kowicie wasze. Podatek od kupna auta, op³ata za nowy dowód z tablicami, a do tego dochodz¹ jeszcze naprawy. Po zakupie auta u¿ywanego obowi¹zkowo nale¿y wymieniæ olej samochodowy, wszystkie filtry, pasek rozrz¹du. Bardzo czêsto siê zdarza, ¿e w³aœciciel umyœlnie nie wymienia³ pewnych czêœci bo mia³ w planach sprzeda¿ auta. St¹d zdarzyæ siê mo¿e potrzeba wymiany klocków hamulcowych, a nierzadko tarcz hamulcowych. Kupuj¹c starszego diesla op³aty rosn¹ bowiem niedopatrzenia poprzedniego w³aœciciela wychodz¹ na przegl¹dzie. Nie ma co wierzyæ w bajki opowiadane przez sprzedaj¹ce „wszystko zosta³o wymienione, rozrz¹d, klocki, olej, nic tylko wsiadaæ i jechaæ”. Nikt nie poœwiêca pieniêdzy na takie czynnoœci przed zakupem bo wie, ¿e w³o¿one fundusze nie zostan¹ odzyskane.</p> 
+
+<p>Poni¿ej prezentujemy przyk³ady aut jakie mo¿na zakupiæ w zale¿noœci od przedzia³u cenowego. Powiemy wam, na co zwróciæ uwagê przy ich zakupie, jakich silników siê wystrzegaæ.</p> 
+<p>Wspomniane powy¿ej w punkty i czynnoœci powinniœmy przeprowadziæ na spokojnie w domu, nie œpiesz¹c siê, aby podj¹æ najlepsz¹ z mo¿liwych decyzji. Kiedy ju¿ takowa zapadnie mo¿emy rozpocz¹æ szukanie auta, które nas interesuje. Wiêkszoœæ ludzi pope³nia kilka podstawowych b³êdów, które mog¹ zawa¿yæ na przysz³oœci naszego zakupu. Pierwszym z nich jest kierowanie siê emocjami, a nie rozumem. D³ugo oszczêdzone pieni¹dze pozwalaj¹ nam w koñcu na realizacjê naszych marzeñ lub planów jakimi jest nowy samochód w gara¿u. Dlatego jak tylko zobaczymy ³adnie wygl¹daj¹ce auto podœwiadomie chcemy je jak najszybciej nabyæ, „przecie¿ wygl¹da tak ³adnie, co mo¿e byæ popsute w tak œlicznym samochodziku?” Niestety, jak pokazuj¹ realia, awarii mo¿e byæ wiele, nierzadko naprawa wszystkich mo¿e przekroczyæ sumê ca³ego samochodu. Je¿eli nie wierzycie porozmawiajcie z w³aœcicielami VW Passatów B6 2.0 TDI z pocz¹tku produkcji, niejeden po zakupie auta u¿ywanego, kt??re reklamowane by³o przez w³aœciciela jako „ig³a” musia³ zainwestowaæ nawet 10 tys. z³otych, aby naprawiæ ukryte wady. Ka¿d¹ ofertê przegl¹dajmy powoli z maksymalnym skupieniem. Nie zra¿ajmy siê jeœli sprzedaj¹cy umieœci³ wyczerpuj¹cy opis, przeczytajmy go od deski do deski, bardzo czêsto zajdziemy tam przebieg u¿ytkowania pojazdu, jego historie, tak¿e t¹ wypadkow¹. Nie przekreœlajmy tak¿e samochodów, które mia³y ma³e takie jak obtarcia, niewielkie wgniecenia. Jeœli zosta³y one dobrze naprawione nie wp³yn¹ one na stan karoserii w przysz³oœci. Zwróæmy tak¿e uwagê jak w³aœciciel o tym opowiada, czy mówi ze szczegó³ami, czy mo¿e siê œpieszy jak by chcia³ pomin¹æ ten temat. Uwa¿ajmy na og³oszenia powypadkowych pojazdów. Nawet jeœli s¹ tañsze ni¿ inne ich stan oraz naprawa pozostawiaj¹ wiele do ¿yczenia.</p> 
+<p>Upewnijmy siê czy dane og³oszenie spe³nia nasze wymagania. Na pozór wydaje siê to b³aha rada, ale przegl¹daj¹c 30ste, albo 50te og³oszenie zmêczenie mo¿e daæ siê we znaki i spowodowaæ, ¿e przegapimy prosty fakt, np. silnik diesla, gdy interesuj¹ nas tylko benzyny. </p>
+<p>Nie wierzmy tak¿e we wszystko, co mówi w³aœciciel. Pamiêtajcie – jego celem jest sprzeda¿ auta, czy póŸniej bêdziecie z niego zadowoleni nie jest jego zmartwieniem. Okreœlenia „nic nie stuka, nic nie puka” mo¿na w³o¿yæ miêdzy bajki. Uczciwy sprzedawca powie wam szczerze jak na spowiedzi, co siê dzia³o z samochodem, czy nie by³o ¿adnych przykrych niespodzianek, co wed³ug niego mo¿e wymagaæ naprawy, albo wymiany. Niestety taki uczciwych sprzedawców jest jak na lekarstwo.</p> 
+<p>To samo tyczy siê przebiegu samochodu. Plag¹ na dzisiejszym rynku aut u¿ywanych jest cofanie licznika km przejechanych przez pojazd. Nie wierzmy w zapewnienia producentów, ¿e nie da siê tego zmieniæ, nawet skomplikowane mechanizmy mercedesa czy bmw nie stanowi¹ problemu dla odpowiedniego informatyka, lub elektryka samochodowego. To samo tyczy siê aut sprowadzonych zza naszej zachodniej granicy. Gdyby VW Passat mia³ przebieg 180 tys. km to by by³ u¿ytkowany przez niemieckiego obywatela jeszcze d³ugo bo ten wie z pewnoœci¹, ¿e tego typu silnik pozwoli mu jeszcze na bezawaryjn¹ jazdê przez ponad 150 tys. km. Owszem zdarzaj¹ siê prawdziwe przebiegi jednak s¹ to pojedyncze aukcje. </p>
+<h2>Jak wizualnie ustaliæ czy samochód ma przebieg taki, jaki podaje w³aœciciel? </h2>
+<p>1) <b>praca silnika</b> – czy nie dochodz¹ jakieœ niepokoj¹ce dŸwiêki podczas jego pracy</p>
+<p>2) <b>ufajmy jedynie brudnym silnikom</b> – mo¿e to dziwiæ, ale sprzedawcy chc¹c upiêkszyæ pojazd myj¹ jego silnik, co mo¿e i wygl¹da estetyczniej, ale równie dobrze, mo¿e zakrywaæ wycieki oleju, co œwiadczy o potrzebie naprawy usterki lub znacznie wyeksploatowaniu silnika</p>
+<p>3) <b>wygl¹d wnêtrza</b>: otarcia na kierownicy, otarcia na lewarku zmiany biegów, stan foteli, czy nie s¹ wytarte, z dziurami co sugeruje wysokie przebiegi, stan klamek bocznych we wnêtrzu pojazdu, czy te wszystkie elementy s¹ tak samo zu¿yte, czêsto siê zdarza, ¿e sprzedawca wymieni lewarek zmiany biegów i obszyje kierownice bo uwidacznia³y one wysoki przebieg, jednak nie wymieni ju¿ takich elementów jak: plastiki we wnêtrzu, wewnêtrzne klamki w drzwiach, pokrêt³a od nawiewów, stan tapicerki. Je¿eli s¹ one zu¿yte bardziej nie inne czêœci mo¿emy podejrzewaæ, ¿e sprzedawca móg³ oszukaæ nas w kwestii rzeczywistego przebiegu auta.  </p>
+<p>Czego warto szukaæ w poszczególnym przedziale cenowym? Czego warto szukaæ, a co nale¿y omijaæ szerokim ³ukiem? Poni¿szy poradnik powinien rozwiaæ niektóre z waszych w¹tpliwoœci, a tak¿e pomóc w wyborze szukanego pojazdu. </p>
+
+<h2>Auta do 5 tys z³otych</h2>
+<p>Wbrew pozorom za niewielkie pieni¹dze mo¿emy znaleŸæ ca³kiem dobre auto. Oczywiœcie jeœli pogodzimy siê z faktem, ¿e nie bêdzie ono ca³kowicie nowe, jak z salonu. Niestety, cena robi swoje. Jednak wiele osób pochopnie decyduje siê na zakup dro¿szego pojazdu ³udz¹c siê, jego niskimi kosztami utrzymania. Pomijane ma³o spotykane modele mog¹ okazaæ siê trafem w 10tke. Niektóre z podanych ni¿ej samochodów nie maj¹ dobrej opinie, niestety nies³usznie. Ich ma³a popularnoœæ œwiadczy o naszych uprzedzeniach do danej marki lub wszechobecnych w narodzie polskim – stereotypach.  </p>
+
+<h3>Daewoo Lanos</h3>
+<p><img src='http://www.scarto.pl/pub/img/front/samochod-uzywany-lanos.jpg' alt='samochody u¿ywane daewoo lanos' style='width:255px;float:right;margin-left:10px;' class='img-polaroid' />Wbrew wszelkim pozorom Lanos nie jest z³ym samochodem. Wielu jego w³aœcicieli kupi³o go w polskim salonie i jeŸdzi nim do dzisiaj, nie rzadko pokonuj¹c przebieg ponad 250 tys. km. Jakie wady trapi¹koreañczyka: pojawiaj¹ca siê korozja, wycieki oleju silnikowego, szwankuj¹ca elektryka. Jednak ka¿da naprawa nie jest kar¹ dla portfela – mechanicy znaj¹ dobrze budowê Lanosa, czêœci zamienne s¹ tanie, nie wydamy wiêc za wiele. Ma³o kto wie, ¿e silniki montowane w Daewoo, w szczególnoœci 1.5 i 1.6 s¹ naprawdê niezawodne. Œwiadcz¹ o tym du¿e przebiegi jakie nieraz te auta pokonuj¹. Je¿eli potrzebujecie czegoœ taniego, np. do dojazdów do miasta, pracy, jest to auto na pewno godne uwagi </p>
+<h3>Daewoo Nubira</h3>
+<p>Przy Nubirze, mo¿emy powiedzieæ podobne s³owa jak o Lanosie, w tym przypadku dostêpne s¹ dwie wersje silnikowe 1.6 i 2.0. Silnik o wiêkszej pojemnoœci mo¿e pochwaliæ siê przyœpieszeniem od 0-100km/h w 9 sek. Polecamy jednak s³abszy silnik. Przy ogl¹daniu pojazdu warto zwróciæ uwagê na amortyzatory, niekiedy ulegaj¹ one szybszemu zu¿yciu na naszych drogach. Wbrew pozorom to bardzo trwa³e samochody, ca³kiem du¿y apetyt na paliwo, siêgaj¹cy czasem i 12 litrów mo¿e zostaæ ograniczonyzmaontowaniem instalacji LPG, która idealnie wspó³pracuj¹ ze wszystkimi silnikami benzynowymi Daewoo. </p>
+<h3>Fiat Seicento</h3> 
+<p>M³odszy brat Cinquecento, który to swój pocz¹tek wzi¹³ od znanego polskiego fiata 126p. Seicento wygl¹da m³odziej, a tak¿e ma silniki, które nie „kaszl¹”, tak jak jego potomek. Do wyboru mamy dwie jednostki: 0,9 i 1,1. Polecamy mocniejsz¹ wersjê, zapewnia lepsz¹ dynamikê. Je¿eli jednak nie zale¿y wam na szybkoœci wybraæ mo¿ecie s³abszy silnik. Wbrew pozorom ¿aden z nich nie sprawia wiêkszych problemów. S¹ to proste konstrukcje, które w dodatku ³atwo i tanio mo¿na naprawiæ. Wady? Zdarzaj¹ siê wypadaj¹ce bêbenki zamków, szczególnie w baga¿niku, odpadaj¹ce emblematy oraz przepalaj¹ce siê czêœci t³umika. Delikatne s¹ te¿ reflektory przednie, w których uszkodziæ mo¿na plastyki i zatrzaski. B¹dŸcie ostro¿ni podczas wymiany ¿arówki, a nic siê nie stanie.</p> 
+
+<h3>Fiat Sienna</h3>
+<p>Kolejny fiat na naszej liœcie, Dlaczego warto wybraæ Sienne? Byæ mo¿e nie przykuwa uwagê sylwetk¹, ale ma silnik benzynowy o pojemnoœci 1.6, który nale¿y do bardzo udanych. W dodatku wszelkie usterki mo¿na szybko naprawiæ za niewielkie pieni¹dze. Zamienników jest wiele, a ich ceny nie obci¹¿¹ naszego bud¿etu. Sienna to naprawdê dobre auto, które mo¿e odstraszaæ s³abym wykoñczeniem wnêtrza, S³u¿y jednak ono dobrze swoim w³aœcicielom. Ma³a popularnoœæ tego auta sprawi³a, ¿e ceny na rynku aut u¿ywanych s¹ naprawdê niskie. Ju¿ za 3,5 tys. z³ mo¿emy kupiæ zadbany egzemplarz. </p>
+<h3>Opel Astra</h3>
+<p><img src='http://www.scarto.pl/pub/img/front/samochod-uzywany-opel-astra.jpg' alt='samochody u¿ywane opel astra' style='width:255px;float:right;margin-left:10px;' class='img-polaroid' />Przeœwiadczenie o awaryjnoœci Opli i rdzewiej¹cych zawieszeniach spowodowa³y, ¿e Ople z lat 90tych s¹ bardzo tanie, a iloœæ ofert wrêcz zaskakuje. Polecanym silnikiem jest 1.4 benzyna – najtrwalszy oraz najmniej awaryjny. Fakt, model ten trapi¹ pojawiaj¹ce siê ogniska korozji jednak na rynku aut u¿ywanych wci¹¿ mo¿na znaleŸæ egzemplarze utrzymane w bardzo dobrym stanie. Auto polecane dla studenta.</p>
+<h3>Nissan Micra mk2</h3> 
+<p>Druga generacja mikry byæ mo¿e nie przykuwa sw¹ sylwetk¹ jednak zapewniamy was, w œrodku jest niesamowicie przestronne i podró¿ w czwórkê z niewielkimi baga¿ami nie bêdzie stanowiæ problemu. Oczywiœcie baga¿nik nie nale¿y do przestronnych, jednak samochód ten jest przeznaczony do miasta i krótkich tras. Wœród silników mamy do wyboru 1.0 60 KM, 1.0 16V 54KM, 1.3 16V 75KM, 1.4 82KM, 1.5 diesel 57KM. Nie stwarzaj¹ one problemów, jednak najbardziej godnym polecenia jest 1.4, zapewnia najlepsz¹ dynamikê wœród benzyn. Warto szukaæ Nissana Micry kupionego w polskim salonie.</p> 
+<h3>Suzuki Swift</h3> 
+<p>Niepozorny, kanciasty, byæ mo¿e odstrasza na pocz¹tku swoim wygl¹dem, ale odwdziêcza siê bezawaryjn¹ eksploatacj¹. Silniki dostêpne to: 1.0 i (56KM), 1.0  (53KM), 1.3 (68KM), 1.3 GTi (101KM), 1.3 i (71KM), 1.6 i (92KM), 1.6 (95KM), 1.6 i (75KM). Najmocniejsza wersja GTi mia³a napêd na 4 ko³a jednak znalezienie wersji w dobrym stanie i przystêpnej cenie jest prawie niemo¿liwe. Ka¿dy silnik jest godny polecenia, s¹ to proste konstrukcje, które cechuj¹ siê bezproblemow¹ eksploatacj¹. Je¿eli znajdziecie mocniejszy silnik, nie wahajcie siê, parê koni mechanicznych wiêcej nie zabraknie. </p>
+
+<p>To s¹ tylko niektóre propozycje jakie warto kupiæ za niewielkie pieni¹dze. Na rynku aut u¿ywanych mo¿na znaleŸæ o wiele wiêcej ciekawych modeli. Je¿eli szukacie czegoœ dro¿szego i macie kapita³ na taki zakup oto kilka ciekawych propozycji.</p>
+
+<h3>Skoda Octavia mk1 </h3>
+<p><img src='http://www.scarto.pl/pub/img/front/samochod-uzywany-skoda-octavia.jpg' alt='samochody u¿ywane skoda octavia mk1' style='width:255px;float:right;margin-left:10px;' class='img-polaroid' />Pierwsza generacja modelu Octavia jest tak popularna na polskich drogach niczym Golf. Mo¿na by napisaæ ca³¹ recenzjê na temat tego samochodu, jednak skrócimy to: Skoda Octaviamk 1 to naprawdê dobre auto, œwiadczyæ mo¿e o tym fakt, ¿e produkowana by³a od 1996 roku do 2010. Pomimo wprowadzenia modelu Octavia 2 jej poprzedniczka by³a oferowana w jednej wersji o nazwie Tour. Sprzeda¿ sz³a tak dobrze, ¿e wprowadzenie trzeciej generacji nie uœmierci³o pierwowzoru i by³a ona dalej sprzedawana. Dlaczego jest godna uwagi? Ogromny baga¿nik, nieco mniej miejsca z ty³u jest to przestronne auto, dobre zabezpieczenie antykorozyjne, konstrukcja oparta na volkswagenowskiej technologii co wi¹¿e siê z ³atwoœci¹ ewentualnych napraw. Jakie silniki warto wybraæ? Wœród benzyn warto szukaæ 1.6 lub 2.0, s?? one bardzo prostymi konstrukcjami, plus œwietnie znosz¹ instalacjê LPG. 1.8 te¿ nie przysparza wielu problemów jednak nieco odstaje od pozosta³ych dwóch silników. Wœród diesli jedynym trafnym wyborem jest nieœmiertelne 1.9 TDI, je¿eli tylko auto bêdzie mia³o udokumentowany przebieg. Producent zapewnia, ¿e ten silnik przejedzie 300 tys. km bez ¿adnej awarii, aczkolwiek nie jest niczym szczególnym przejechanie tym autem nawet i 600 tys. km. </p>
+<h3>Subaru Outback</h3>
+<p>Cena subaru mo¿e odstraszaæ, ale je¿eli macie jakieœ w¹tpliwoœci zapytajcie siê w³aœcicieli, co myœl¹ o swoich samochodach. Wiêkszoœæ odpowie: „tylko subaru”. Je¿eli ten model lub jakikolwiek inny jest dobrze traktowany (regularna wymiana oleju na dobry, markowy, wymiana filtrów) odwdziêcza siê d³ug¹ i bezproblemow¹ eksploatacj¹. Wœród silników warto szukaæ benzynowych. Mi³ym zaskoczeniem s¹ mo¿liwoœci terenowe jakimi mo¿e pochwaliæ siê subaru. Potrafi zapuœciæ siê w teren, gdzie inne auta pseudo- terenowe typu audi a4 allroad nie jest w stanie pojechaæ. Dlaczego wiêc jest to wci¹¿ ma³o popularne auto na naszych drogach? Cena samego pojazdu i czêœci zamiennych odstrasza potencjalnych klientów. W dodatku ma³a popularnoœæ powoduje, ¿e czêœæ mechaników zacznie wyrywaæ sobie w³osy z g³owy chc¹c usun¹æ jak¹œ usterkê. Je¿eli jednak wam to nie przeszkadza, polecamy.</p> 
+<h3>Honda HRV </h3>
+<p>Produkowana od 1999 roku do 2006 roku, bardzo ciekawy model i mi³y dla oka. Je¿eli szukacie SUVA jest to propozycja dla was. Dostêpne dwa silniki 1.6 o mocy 105 KM i 120 KM nie sprawiaj¹ wiêkszych problemów, pod warunkiem, ¿e ich poprzedni w³aœciciele dobrze o nie dbali. Nawet je¿eli nie to jednostki napêdowe hondy s¹ wrêcz „idioto odporne”. Minusy HRV to: baga¿nik, który nie jest tak du¿y jak mo¿na by siê tego spodziewaæ, pojawiaj¹ca siê korozja na progach (weŸcie to pod uwagê podczas oglêdzin auta), wysokie spalanie.</p> 
+<h3>VW Passat B5</h3>
+<p><img src='http://www.scarto.pl/pub/img/front/samochod-uzywany-vw-passat-b5.jpg' alt='samochody u¿ywane vw passat b5' style='width:255px;float:right;margin-left:10px;' class='img-polaroid' />Dlaczego B5, a nie nowy model B6? Wbrew pozorom nowy model produkowany w latach 2005 – 2010 podwa¿y³ teoriê o bezawaryjnoœci volkswagena. Okaza³ siê bardzo awaryjny, a jego naprawy niesamowicie drogie, czasami siêgaj¹ce 12 tys. z³otych. Klienci nie byli zadowoleni bo wszystkie usterki pojawia³y siê w zbli¿onych przebiegach, akurat tu¿ po utracie gwarancji, co œwiadczy o celów zaprojektowaniu auta, tak, aby by³o maszynk¹ do zarabiana pieniêdzy. Je¿eli jednak chcecie wersje B6 szukajcie modeli z ostatnich dwóch lat produkcji z silnikami 1.9 TDI, jednak wci¹¿ jest to ryzykowny zakup. Godnymi polecenia s¹ starsze Passaty B5, które by³y produkowane od 1996 do 2005 roku. W wiêkszoœci przypadków bêd¹ one mia³y naprawdê wysokie przebiegi jednak wci¹¿ mo¿na znaleŸæ zadbane egzemplarze. Je??eli nie chcecie wspomnianego B6 to co powiecie na wczeœniejszy model z ostatnich lat produkcji, np. 2004 albo 2005? Jest to bezpieczny wybór. Diesle 1.9 TDI s¹ w stanie przejechaæ nawet 600 tys. km.</p> 
+<h3>Fiat Bravo II </h3>
+<p>Fiat godny polecenia? Tak, albowiem jest to ju¿ trzeci fiat w naszym zestawieniu. Wbrew wszelkim pozorom Bravo drugiej generacji mo¿e konkurowaæ z golfem lub audi a3, a jego dodatkowym atutem jest cena, która jest znacznie ni¿sza ni¿ u konkurentów. Je¿eli chcecie bezproblemowej eksploatacji wybierzcie wersje benzynow¹ 1.4 przy niewielkim spalaniu oko³o 7 litrów na 100 km. Wœród diesli szukajcie 1.9 JTD, ale s³abszej wersji 120KM. Dostêpna jest jeszcze wersja mocniejsza, 150 KM, która zapewnia naprawdê dobre osi¹gi jednak jej s³abszy odpowiednik to sprawdzona konstrukcja, która znana jest ka¿demu polskiemu mechanikowi. Identyczne silniki mo¿na znaleŸæ pod maskami nie tylko innych w³oskich aut, ale i wœród modeli Opla, Saaba, Suzuki a nawet w Cadillacu BLS. Je¿eli zastanawiacie siê na alternatyw¹ dla golfa to jest strza³ w 10tkê, nawet je¿eli wasz s¹siad, kolega z pracy, szwagier myœli inaczej. £atwiej znaleŸæ zadbany egzemplarz Bravo II ni¿ Golfa, trafiaj¹ siê oferty aut kupionych w polskim salonie z bardzo dobrym wyposa¿eniem. To naprawdê ciekawe i bardzo dobre auto. </p>
+<h3>VW Golf </h3>
+<p>Mo¿e i model Bravo II przedstawi³ Golfa w z³ym œwietle jednak jest to tak¿e dobre auto, je¿eli staæ nas na kupno u¿ywanego egzemplarza. Dlaczego zak³adamy, ¿e bêdziemy musieli wydaæ wiêcej? Na rynku jest mnóstwo ofert jednak wiêkszoœæ z nich to sprowadzone golfy, które maj¹ wrêcz kosmiczne przebiegi. Nie wa¿ne która generacja Golfa bêdzie was interesowa³a, dobrze zadbany model bêdzie s³u¿y³ wam przez kolejne lata. Naszym zdaniem nie warto szukaæ modeli mk3 z lat 1993 – 1998, poniewa¿ wiêkszoœæ z nich swoje lata ma ju¿ dawno za sob¹. Owszem zdarzaj¹ siê zadbane jednostki jednak ich ceny nie czyni¹ zakupu op³acalnym. Golf mk3 jest dobrym pomys³em dla studenta lub dla osoby szukaj¹cej pojazdu s³u¿¹cego do dojazdu do pracy lub poruszania siê po mieœcie. Czwarta generacja to propozycja dla tych, którzy nie dysponuj¹ gotówk¹, aby kupiæ nowszy model. Czy warto szukaæ modelu z lat 1998- 2004. Naszym zdaniem tak, unikajcie jedynie jednostek benzynowych 1.4, s¹ Ÿle zaprojektowane i zu¿ywaj¹ du¿o oleju. Dobrym rozwi¹zaniem s¹ silniki jakie przytoczyliœmy apropo Skody Octavi: benzyna 1.6 lub 2.0, co do diesla nieœmiertelny 1.9 TDI je¿eli mamy potwierdzony przebieg, a stan auta nie œwiadczy o tym, ¿e licznik by³ „przekrêcany”. Co wiêc mo¿na powiedzieæ o kolejnych generacjach? Interesuj¹ wygl¹dem, a w dodatku s¹ dobrze wykonane. Wœród diesli unikajmy jednostki 2.0 TDI jest ona niesamowicie awaryjna. Nowsze diesle niestety nie grzesz¹ wytrzyma³oœci¹, szukajmy benzyn. </p>
+<h2>Podsumowanie</h2>
+<p>Mamy nadziejê, ¿e pomogliœmy trochê w poszukiwaniu nowego auta. Powy¿sze propozycje s¹ nie tyle co rozwi¹zaniami, ale tak¿e przyk³adem na co zwracaæ uwagê podczas zakupu. Pamiêtajmy, aby podejœæ do kwestii zakupu ze stoickim spokojem oraz, aby „mierzyæ si³y na zamiary”, nikt przecie¿ nie kupuje auta po to, aby sta³o w gara¿u ca³y czas. Kupujemy je, aby cieszy³o nas swoim u¿ytkowaniem i pokonywa³o wraz z nami tysi¹ce kolejnych kilometrów daj¹c radoœæ oraz pozytywne emocje.</p> 
+ 
+ 
+</div>      
+      
+      
+        </div>
+        
+                                  
+    </div>
+
+	
+	</div>
+
+
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        $('#tabs').tab();
+    });
+</script>    
+		
+			
+</div> <!-- koniec main-page-sewarch -->
+
+	
+
+
+

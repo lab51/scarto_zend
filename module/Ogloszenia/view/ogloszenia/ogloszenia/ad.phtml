@@ -1,0 +1,449 @@
+
+<div style='margin-bottom:0px;color:#B8B8B8;'>
+<ul class="breadcrumb" style="width:1130px;padding:4px;font-size:14px;margin-bottom:5px;">
+	<span class="glyphicon glyphicon-retweet" style='margin-left:10px;margin-right:10px;font-size:14px;color:#B8B8B8;'></span>
+    <li><a href="/">scarto.pl</a></li>
+    <?php
+	if(!empty($ogloszenia->model_name) && !empty($ogloszenia->brand_name)){
+		echo "<span class='divider'> / </span><li class='active'><a href='/".$ogloszenia->brand_name."'>".$ogloszenia->brand_name."</a> </li>";    
+		echo "<span class='divider'> / </span><li class='active'>
+		<a href='/".$ogloszenia->brand_name."/".$ogloszenia->model_name."'>".$ogloszenia->model_name."</a> </li>";    
+		}
+	
+	
+    ?>
+
+    </ul>
+</div>
+
+<div style="float:left;padding:10px;margin-bottom: 45px;background-color:#fff;">
+
+   
+          
+  
+		<div class="one-offer-list-img">
+		
+		
+	
+		
+			<div>
+			<div id="image" style="width:630px;float:left;">
+ 			
+			<div class='imgLiquidFill imgLiquid' style='width:630px;height:410px;float:left;border:1px solid #B3B3B3;'>
+		   <?php
+			if(!empty($ogloszenia->ad_main_img)){
+				//echo "<div class='imgLiquidFill imgLiquid' style='width:630px;height:410px;float:left;border:1px solid #B3B3B3;'>";		
+				echo "<img src='/images/data/".$ogloszenia->ad_main_img."' style='width:620px;float:left;border:1px solid #B3B3B3;' /><br />"; 
+				//echo '</div>';
+			} ?>
+		    </div>
+			</div>
+			<div id="image" style="width:630px;height:40px;float:left;padding-left:0px;background-color:#ccc;">
+			<?php
+			if(!empty($ogloszenia->ad_main_img))
+				{
+					echo "<div class='imgLiquidFill imgLiquid' style='width:70px;height:40px;float:left;border:1px solid #B3B3B3;'>";		
+					echo "<a href='#' rel='/images/data/".$ogloszenia->ad_main_img."' class='image'>";
+					echo "<img src='/images/data/".$ogloszenia->ad_main_img."' style='width:135px;height:100px;float:left;margin-right:4px;margin-bottom:4px;' />";
+					echo '</a></div>';
+				}
+				
+			if(!empty($images)){
+				foreach($images as $img){
+				
+				if(!empty($img->image_2))
+				{
+					echo "<div class='imgLiquidFill imgLiquid' style='width:70px;height:40px;float:left;border:1px solid #B3B3B3;'>";		
+					echo "<a href='#' rel='/images/data/".$img->image_2."' class='image'>";
+					echo "<img src='/images/data/".$img->image_2."' style='width:135px;height:100px;float:left;margin-right:4px;margin-bottom:4px;' />";
+					echo '</a></div>';
+				}
+					
+				if(!empty($img->image_3))
+				{
+					echo "<div class='imgLiquidFill imgLiquid' style='width:70px;height:40px;float:left;border:1px solid #B3B3B3;'>";		
+					echo "<a href='#' rel='/images/data/".$img->image_3."' class='image'>";
+					echo "<img src='/images/data/".$img->image_3."' style='width:135px;height:100px;float:left;margin-right:4px;margin-bottom:4px;' />";
+					echo '</a></div>';
+				}
+				
+				if(!empty($img->image_4))
+				{
+					echo "<div class='imgLiquidFill imgLiquid' style='width:70px;height:40px;float:left;border:1px solid #B3B3B3;'>";		
+					echo "<a href='#' rel='/images/data/".$img->image_4."' class='image'>";
+					echo "<img src='/images/data/".$img->image_4."' style='width:135px;height:100px;float:left;margin-right:4px;margin-bottom:4px;' />";
+					echo '</a></div>';
+				}
+				
+				if(!empty($img->image_5))
+				{
+					echo "<div class='imgLiquidFill imgLiquid' style='width:70px;height:40px;float:left;border:1px solid #B3B3B3;'>";		
+					echo "<a href='#' rel='/images/data/".$img->image_5."' class='image'>";
+					echo "<img src='/images/data/".$img->image_5."' style='width:135px;height:100px;float:left;margin-right:4px;margin-bottom:4px;' />";
+					echo '</a></div>';
+				}
+				
+				if(!empty($img->image_6))
+				{
+					echo "<div class='imgLiquidFill imgLiquid' style='width:70px;height:40px;float:left;border:1px solid #B3B3B3;'>";		
+					echo "<a href='#' rel='/images/data/".$img->image_6."' class='image'>";
+					echo "<img src='/images/data/".$img->image_6."' style='width:135px;height:100px;float:left;margin-right:4px;margin-bottom:4px;' />";
+					echo '</a></div>';
+				}
+				
+				if(!empty($img->image_7))
+				{
+					echo "<div class='imgLiquidFill imgLiquid' style='width:70px;height:40px;float:left;border:1px solid #B3B3B3;'>";		
+					echo "<a href='#' rel='/images/data/".$img->image_7."' class='image'>";
+					echo "<img src='/images/data/".$img->image_7."' style='width:135px;height:100px;float:left;margin-right:4px;margin-bottom:4px;' />";
+					echo '</a></div>';
+				}
+				
+				if(!empty($img->image_8))
+				{
+					echo "<div class='imgLiquidFill imgLiquid' style='width:70px;height:40px;float:left;border:1px solid #B3B3B3;'>";		
+					echo "<a href='#' rel='/images/data/".$img->image_8."' class='image'>";
+					echo "<img src='/images/data/".$img->image_8."' style='width:135px;height:100px;float:left;margin-right:4px;margin-bottom:4px;' />";
+					echo '</a></div>';
+				}
+				
+				if(!empty($img->image_9))
+				{
+					echo "<div class='imgLiquidFill imgLiquid' style='width:70px;height:40px;float:left;border:1px solid #B3B3B3;'>";		
+					echo "<a href='#' rel='/images/data/".$img->image_9."' class='image'>";
+					echo "<img src='/images/data/".$img->image_9."' style='width:135px;height:100px;float:left;margin-right:4px;margin-bottom:4px;' />";
+					echo '</a></div>';
+				}
+				
+				
+				
+				}
+				
+//				print_r($images);
+			}
+			?>		
+			</div>
+		  </div>
+ 		  
+                       
+                                <div style="margin-top:10px;width:630px;float:left;">
+	
+                                <legend class='legends'>
+								<span class="glyphicon glyphicon-file" style='font-size:14px;color:#B8B8B8;'></span>
+ szczegółowy opis:</legend>
+                                <p>
+                                            <?php 
+											if(isset($ogloszenia->description_content) and !empty($ogloszenia->description_content)){
+												echo nl2br($ogloszenia->description_content); 
+											}
+											?>
+								</p>
+                                </div>
+                    
+     
+                    
+		</div>
+
+	 	
+	<div class="one-offer-list-tech">                
+        
+<div>
+      <p><h1 style="font-size:24px;padding:0px;margin:0px;"><legend><?php echo $ogloszenia->ad_title; ?></legend></h1>
+ 
+    </p> 			
+
+</div>  		
+<div style="padding-top:00px;margin-bottom:40px;float:left;width:450px;font-weight:bold;font-size:25px;color:#B30B13;">
+              
+      <span class="glyphicon glyphicon-tag" style='font-size:14px;color:#B8B8B8;'></span>
+	  <?php echo number_format($ogloszenia->ad_price, 0, "", " "); ?> pln</font>
+            </div>
+         <div style="width:450px;">
+                        
+                        <p>
+                            <legend class='legends'>
+							<span class="glyphicon glyphicon-wrench" style='font-size:14px;color:#B8B8B8;'></span>
+							dane techniczne:
+							</legend>
+	         </p>
+
+	 		
+            <table class="table table-striped table-condensed" style="font-size:12px;">
+                	
+            <tr>
+                		<td class="gray-td">Marka:</td>
+			              <td>
+                    <?php 
+                        if(isset($ogloszenia->brand_name)){
+                         echo $ogloszenia->brand_name; 
+                        } else {
+                         echo '-';
+                        }
+                    ?> 
+                    </td>
+                                               
+                    <td class="gray-td">Model:</td>
+                    <td>
+                    <?php 
+                    if(isset($ogloszenia->model_name)){
+                      echo $ogloszenia->model_name; 
+                    } else {
+                      echo '-';
+                    }
+                    ?>
+                    </td>
+                            </tr>
+	
+                            <tr>
+                   <td class="gray-td">Rocznik:</td>
+                    <td>
+                    <?php 
+                        if(isset($ogloszenia->ad_production_year)){
+                         echo $ogloszenia->ad_production_year; 
+                        } else {
+                         echo '-';
+                        }
+                    ?> 
+                    </td>
+                            
+                    <td class="gray-td">Przebieg:</td>
+                    <td>
+                    <?php 
+                        if(isset($ogloszenia->ad_km)){
+                         echo $ogloszenia->ad_km; 
+                        } else {
+                         echo '-';
+                        }
+                    ?> 
+                    </td>
+                            </tr>
+                	          <tr>
+                    <td class="gray-td">Rodzaj paliwa:</td>
+                    <td>
+                    <?php 
+                        if(isset($ogloszenia->ad_fuel)){
+                         echo $ogloszenia->ad_fuel; 
+                        } else {
+                         echo '-';
+                        }
+                    ?> 
+                    
+                    </td>
+                              
+                    <td class="gray-td">Pojemność:</td>
+                    <td>
+                    <?php 
+                        if(isset($ogloszenia->ad_engine_size)){
+                         echo $ogloszenia->ad_engine_size; 
+                        } else {
+                         echo '-';
+                        }
+                    ?> 
+                    </td>
+                    </tr>
+                            <tr>
+                    <td class="gray-td">Moc (KM):</td>
+                    <td> 
+                    <?php 
+                        if(isset($ogloszenia->ad_engine_power) and ($ogloszenia->ad_engine_power>0)){
+                         echo $ogloszenia->ad_engine_power; 
+                        } else {
+                         echo '-';
+                        }
+                    ?> 
+                    </td>
+                           
+                    <td class="gray-td">Skrzynia biegów:</td>
+                    <td>
+                    <?php 
+                        if(isset($ogloszenia->ad_gearbox)){
+                         echo $ogloszenia->ad_gearbox; 
+                        } else {
+                         echo '-';
+                        }
+                    ?> 
+                    </td>
+                            </tr>
+                	          <tr>
+                    <td class="gray-td">Kolor:</td>
+                    <td>
+                    <?php 
+                        if(isset($ogloszenia->ad_car_color)){
+                         echo $ogloszenia->ad_car_color; 
+                        } else {
+                         echo '-';
+                        }
+                    ?> 
+                    </td>
+                          
+                    <td class="gray-td">Liczba drzwi:</td>
+                    <td>
+                    <?php 
+                        if(isset($ogloszenia->ad_doors_nr)){
+                         echo $ogloszenia->ad_doors_nr; 
+                        } else {
+                         echo '-';
+                        }
+                    ?> 
+                    </td>
+                            </tr>
+                            <tr>
+                    <td class="gray-td">Stan:</td>
+                     <td>
+                     <?php 
+                        if(isset($ogloszenia->ad_condition)){
+                         if($ogloszenia->ad_condition==1){
+	                        echo 'bezwypadkowy';
+                          } elseif($ogloszenia->ad_condition==0){
+	                      	echo 'uszkodzony';    
+                         } 
+                        } else {
+                         echo '-';
+                        }
+                    ?> 
+                    </td>
+                            
+                    <td class="gray-td">Typ:</td>
+                    <td>
+                    <?php 
+                        if(isset($ogloszenia->ad_exterior_type)){
+                         echo $ogloszenia->ad_exterior_type; 
+                        } else {
+                         echo '-';
+                        }
+                    ?>
+                    </td>
+                    </tr>
+                    </table>
+
+                                </div>
+						
+                            
+            <div style="padding-top: 10px;float:left;max-width:410px;">
+            	                    
+	<p><br/>
+		<legend class='legends'>
+		<span class="glyphicon glyphicon-cog" style='font-size:14px;color:#B8B8B8;'></span>
+ dodatkowe wyposażenie:</legend>
+	 			</p>
+
+                <p>
+<?php 
+    $extra_dodatkowe = array('extra_gas_instalation', 'extra_xenons',  'extra_radio',  'extra_gps_nav',  'extra_wheel_helper', 'extra_4x4');
+	
+    echo "<p><strong>bezpieczeństwo: </strong>";
+    echo (isset($ogloszenia->extra_abs) && ($ogloszenia->extra_abs == 1)) ? 'abs, ' : null;
+    echo (isset($ogloszenia->extra_asr) && ($ogloszenia->extra_asr == 1)) ? 'asr, ' : null;
+    echo (isset($ogloszenia->extra_esp) && ($ogloszenia->extra_esp == 1)) ? 'esp, ' : null;
+    echo (isset($ogloszenia->extra_fog_lights) && ($ogloszenia->extra_fog_lights == 1)) ? 'światła przeciwmgielne, ' : null;
+ 
+     echo '</p>';
+     
+     
+    echo "<p><strong>komfort: </strong>";
+    echo (isset($ogloszenia->extra_clima) && ($ogloszenia->extra_clima == 1)) ? 'klimatyzacja, ' : null;
+    echo (isset($ogloszenia->extra_rain_ind) && ($ogloszenia->extra_rain_ind == 1)) ? 'czujnik deszczu, ' : null;
+    echo (isset($ogloszenia->extra_tempomat) && ($ogloszenia->extra_tempomat == 1)) ? 'tempomat, ' : null;
+    echo (isset($ogloszenia->extra_leather_seats) && ($ogloszenia->extra_leather_seats == 1)) ? 'skórzane siedzenia, ' : null;
+    echo (isset($ogloszenia->extra_heat_seats) && ($ogloszenia->extra_heat_seats == 1)) ? 'podgrzewane siedzenia, ' : null;    
+    echo (isset($ogloszenia->extra_electric_mirrors) && ($ogloszenia->extra_electric_mirrors == 1)) ? 'elektryczne lusterka, ' : null;
+    echo (isset($ogloszenia->extra_electric_windows) && ($ogloszenia->extra_electric_windows == 1)) ? 'elektryczne szyby, ' : null;
+	echo (isset($ogloszenia->extra_wheel_helper) && ($ogloszenia->extra_wheel_helper == 1)) ? 'wspomaganie kierownicy, ' : null;
+    echo '</p>';
+     
+    
+    echo "<p><strong>zabezpieczenia: </strong>";
+    echo (isset($ogloszenia->extra_autoalarm) && ($ogloszenia->extra_autoalarm == 1)) ? 'autoalarm, ' : null;    
+    echo (isset($ogloszenia->extra_central_lock) && ($ogloszenia->extra_central_lock == 1)) ? 'centralny zamek, ' : null;    
+    echo (isset($ogloszenia->extra_gearbox_block) && ($ogloszenia->extra_gearbox_block == 1)) ? 'blokada skrzyni biegów, ' : null;
+    echo '</p>'; 
+     
+    
+    echo "<p><strong>pozostałe: </strong>";
+    echo (isset($ogloszenia->extra_alufelgi) && ($ogloszenia->extra_alufelgi == 1)) ? 'alufelgi, ' : null;
+    echo (isset($ogloszenia->extra_park_asist) && ($ogloszenia->extra_park_asist == 1)) ? 'asystent parkowania, ' : null;
+    echo (isset($ogloszenia->extra_diff) && ($ogloszenia->extra_diff == 1)) ? 'blokada dyferencjału, ' : null;
+    echo (isset($ogloszenia->extra_hook) && ($ogloszenia->extra_hook == 1)) ? 'hak, ' : null;
+    echo (isset($ogloszenia->extra_immobiliser) && ($ogloszenia->extra_immobiliser == 1)) ? 'immobiliser, ' : null;
+    echo (isset($ogloszenia->extra_gas_instalation) && ($ogloszenia->extra_gas_instalation == 1)) ? 'instalacja gazowa, ' : null;
+    echo (isset($ogloszenia->extra_xenons) && ($ogloszenia->extra_xenons == 1)) ? 'xenony, ' : null;
+    echo (isset($ogloszenia->extra_radio) && ($ogloszenia->extra_radio == 1)) ? 'radio, ' : null;
+    echo (isset($ogloszenia->extra_gps_nav) && ($ogloszenia->extra_gps_nav == 1)) ? 'nawigacja gps, ' : null;
+    echo (isset($ogloszenia->extra_4x4) && ($ogloszenia->extra_4x4 == 1)) ? 'napęd 4x4, ' : null;
+     echo '</p>';                        
+                                     ?>		
+                                         
+                                           </p>
+                    </div>
+                           
+            <div style="padding-top: 10px;float:left;width:410px;">         
+
+	
+
+  <div class="tabbable">
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#kontakt" data-toggle="tab"> kontakt</a></li>
+    <!---<li><a href="#pytanie" data-toggle="tab"> wyślij pytanie</a></li>
+     -->
+  </ul>
+  <div class="tab-content">
+    <div id="kontakt" class="tab-pane active">
+     
+	 			
+
+<p>osoba do kontaktu: <?php echo $ogloszenia->ad_first_name; ?><br/> 
+telefon: <?php echo $ogloszenia->ad_phone_nr; ?>	
+
+    </div>
+      
+      <!---<div id="pytanie" class="tab-pane">
+   
+<p>Masz pytania? Napisz do właściciela. Pamiętaj, że nie każdy sprawdza/odpowiada na wiadomości email.</p>
+<form action="">
+        <p>imię: <input type="text" id="nameq" name="nameq" style="width:100px;" />
+        email: <input type="text" id="emailq" name="emailq" style="width:100px;" /></p>
+        <p><textarea rows='5' style='width:390px;' name='question'>wpisz pytanie</textarea></p>
+        <p><input type="submit" name="wyslij" value="wyślij" /></p> 
+</form>
+      
+    </div> --->
+  </div><!-- /.tab-content -->
+</div><!-- /.tabbable -->
+
+
+	
+	
+
+
+
+<legend class='legends'>
+<span class="glyphicon glyphicon-play-circle" style='font-size:14px;color:#B8B8B8;'></span>
+sprawdź też:</legend>
+
+<?php 
+//pokazuje dwa losowe ogloszenia powiazane
+if(!empty($db_like)){
+    foreach($db_like as $dbl){
+        foreach($dbl as $d){
+            if(isset($d->ad_main_img)){ //sprawdzamy czy przeslany jest obrazek
+                echo "<a href='osobowe/id/".$d->ad_id."'><img src='pub/img_cars/".$d->ad_main_img."' alt='".$d->ad_title."' class='img-polaroid' style='height:110px;max-width:190px;margin:5px;' /></a>";
+            }
+        }
+        
+    }
+} ?>
+
+
+     </div>
+                    
+                    
+                    
+                    
+                                                                               
+                                           
+                                           
+	</div>
+	
+</div>	
+
+

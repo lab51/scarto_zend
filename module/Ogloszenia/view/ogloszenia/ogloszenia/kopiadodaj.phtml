@@ -1,0 +1,115 @@
+<script language="javascript" type="text/javascript" src="/js/getmodels-homepage.js"></script>
+
+<!--- START OF OFFER LIST -->
+<div class="adds-style">
+    <p>
+	<legend>dodaj ogłoszenie</legend>
+    </p>
+    
+<!--- breadcrumb -->
+    <ul class="breadcrumb">
+    <li>krok 1 - wprowadź dane <span class="divider">/</span></li>
+    <li class="active">krok 2 - dodaj zdjęcia <span class="divider">/</span></li>
+    <li class="active">krok 3 - podgląd</li>
+    </ul>
+    
+<!--- form start -->
+  <div class="form-on-left">
+    <p><legend><small>a) dane samochodu</small></legend></p>
+
+    <p><span class="label label-info">pola wymagane:</span></p>
+
+	<form action="/ogloszenia/sprawdz" method="post" enctype="multipart/form-data">
+
+	<p><label style='font-size:13px;'><strong>tytuł ogłoszenia*:</strong></label>
+    <input type='text' style='width:600px;height:2.5em;line-height:25px;font-size:14px;padding:2px 2px;margin-bottom:0px;' name='ad_title' value='' />
+    </p>
+
+	<table style='width:700px;'>
+        <tr>
+			
+			<!--- MARKA -->
+			<td><label style='font-size:13px;'><strong>wybierz markę*:</strong></label>
+				<select name='brand' class='input-add' onchange='getModels(this.value)'>
+					<option value=''>wybierz markę</option>
+					<?php
+					foreach ($brands as $brand){
+						echo "<option value='".$brand->brand_name."'>".$brand->brand_name."</option>";
+            		}
+	              
+				  ?>
+                </select>
+			</td>
+            
+			<!--- MODEL -->
+			<td>
+				<label style='font-size:13px;'><strong>model*:</strong></label>
+                <select name='model' id='model' class='input-add'>
+					<option value=''></option>
+				</select>
+			</td>
+		</tr>
+	</table>
+	
+	<input type="submit" name="dodaj_ogloszenie" value="krok 2 - dodaj zdjęcia" class="btn btn-large btn-primary" style="margin-bottom: 40px;float:left;margin-left:0px;margin-top:50px;" />
+	</form>
+  </div>
+  <section class="register">
+<h2>Register</h2>
+<?php if ($this->error): ?>
+<p class="error">
+There were one or more issues with your submission.
+Please correct them as
+indicated below.
+</p>
+<?php endif ?>
+
+<?php
+$form = $this->form;
+$form->prepare();
+$form->setAttribute('action', $this->url(NULL,array('controller'=>'Register', 'action' => 'process')));
+$form->setAttribute('method', 'post');
+echo $this->form()->openTag($form);
+?>
+
+<dl class="zend_form">
+<dt><?php echo $this->formLabel($form->get('name')); ?></dt>
+<dd><?php
+echo $this->formElement($form->get('name'));
+echo $this->formElementErrors($form->get('name'));
+?></dd>
+<dt><?php echo $this->formLabel($form->get('email')); ?></
+dt>
+<dd><?php
+echo $this->formElement($form->get('email'));
+echo $this->formElementErrors($form->get('email'));
+?></dd>
+<dt><?php echo $this->formLabel($form->get('password_value'));
+?></dt>
+<dd><?php
+echo $this->formElement($form->get('password_value'));
+echo $this->formElementErrors($form->get('password_value'));
+?></dd>
+<dt><?php echo $this->formLabel($form->get('confirm_password')); ?></dt>
+<dd><?php
+echo $this->formElement($form->get('confirm_password'));
+echo $this->formElementErrors($form->get('confirm_password'));
+?></dd>
+<dd><?php
+echo $this->formElement($form->get('role'));
+echo $this->formElementErrors($form->get('role'));
+?></dd>
+<dd><?php
+echo $this->formElement($form->get('submit'));
+echo $this->formElementErrors($form->get('submit'));
+?></dd>
+</dl>
+
+<?php echo $this->form()->closeTag() ?>
+</section>
+
+
+<!--- form end -->	
+	
+<!-- end div: adds-style-->	
+</div>

@@ -1,0 +1,117 @@
+<!--- START OF OFFER LIST -->
+<script language="javascript" type="text/javascript" src="/js/change_view_to_icons.js"></script>
+<script language="javascript" type="text/javascript" src="/js/change_view_to_default.js"></script>
+
+ 	<div class="right-part" id="right-part">
+            <script>
+                $('#fixed').capty({
+                 animation: 'fixed'
+                });
+            </script>
+
+			 <?php
+			 $how_many_ads = count($ogloszenia);
+       ?>
+       
+<div id='ads_listing'>
+                <?php
+     if(!empty($ogloszenia)){
+                //foreach($ogloszenia as $o){
+        while($o = mysqli_fetch_array($ogloszenia)){      
+                	?>
+
+ <!--- 1 ogloszenie -->
+
+<div class='classic_offer_list_one'>
+<div class='offer-list-img'>
+ 
+        <div class="imgLiquidFill imgLiquid" style='width:328px;height:210px;float:left;border:1px solid #B3B3B3;'>		
+
+         <a style="transition: all 0.2s ease-in-out 0s;" href="<?php echo '/ogloszenia/index/'.$o['ad_id']; ?>">
+         <img src="/images/data/<?php
+            $var_to_check = $o['ad_main_img'];
+         	
+			$img = "/images/data/$var_to_check";
+            //$image = new Imagick($img);
+            //$image_after_crop = $image->cropImage( 100,100, 0,0 );
+
+
+            $dir = "/images/data";
+              if(!is_null($var_to_check))
+              {
+              	//echo $image_after_crop;
+              	echo $o['ad_main_img']; 
+			  } else {
+			 echo 'no_image_classic.jpg';
+			  }
+			?>"  /></a>
+		</div>
+
+      <div class="offer-list-desc">
+      
+      <p  style="color:#657796;font-weight:bold;font-size:17px;text-decoration:none;padding-top:5px;">
+      
+<a href="<?php echo '/ogloszenia/index/'.$o['ad_id']; ?>" style='color:#657796;'><?php echo $o['ad_title']; ?></a></p>
+
+      
+
+   
+
+            <table class="table table-hover table-condensed" style="font-size:12px;">
+               <tr>
+                  <td class="gray-td">rok produkcji:</td>
+                  <td class="value-td"><?php echo $o['ad_production_year']; ?></td>
+               <td class="gray-td">przebieg (km):</td>
+                  <td class="value-td"><?php echo $o['ad_km']; ?></td> 
+<td class="gray-td">typ:</td>    
+               <td class="value-td"><?php echo $o['ad_exterior_type']; ?></td>
+           
+               </tr>    
+               <tr>
+                  <td class="gray-td">rodzaj paliwa:</td>   
+                  <td class="value-td"><?php echo $o['ad_fuel']; ?></td>
+                  <td class="gray-td">moc silnika (KM):</td> 
+                  <td class="value-td"><?php echo $o['ad_engine_power']; ?></td>
+                  <td class="gray-td">pojemność:</td>
+                  <td class="value-td"><?php echo $o['ad_engine_size']; ?></td>
+               </tr>
+                  
+                </table>
+
+   
+   <br />
+   <div style="float:left;font-size:12px;width:100%;">
+   <div style='width:140px;float:left;'>
+   <p><strong></strong> <font style="font-size:26px;font-weight:bold;color:#B30B13;">
+      <span class="glyphicon glyphicon-tag" style='font-size:14px;color:#B8B8B8;'></span>
+	  <?php echo number_format($o['ad_price'],0, "", " "); ?></font> pln</p>
+   </div>
+
+	</div>  
+    </div>
+      
+
+   
+
+<!--- koniec 1 ogloszenia -->     
+      
+        </div> 
+
+        </div>      
+<?php
+ }
+     }
+?>      
+
+</div>
+ <legend></legend> <br />
+ 
+<ul class="pagination">
+  <li class="disabled"><a href="#">&laquo;</a></li>
+  <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+  <li class="disabled"><a href="#">&raquo;</a></li>
+</ul>
+
+ 
+      
+</div>

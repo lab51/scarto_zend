@@ -1,0 +1,606 @@
+<script language="javascript" type="text/javascript" src="/js/getmodels-homepage.js"></script>
+<script language="javascript" type="text/javascript" src="/js/getmodels2.js"></script>
+
+<!--- START OF OFFER LIST -->
+<div class="adds-style">
+    <p>
+	<legend>edytuj ogłoszenie</legend> 
+    </p>
+    
+<!--- form start -->
+  <div class="form-on-left">
+    <p><legend><small>dane samochodu</small></legend></p>
+
+	<section class="dodaj">
+<?php if ($this->error): ?>
+<p class="error">
+Formularz nie został prawidłowo wypełniony. Proszę poprawić błędy.
+</p>
+<?php endif ?>
+
+<?php
+$form = $this->form;
+$form->prepare();
+$form->setAttribute('action', $this->url(NULL,array('controller'=>'Ogloszenia', 'action' => 'update')));
+$form->setAttribute('method', 'post');
+$form->setAttribute('enctype', 'multipart/form-data');
+echo $this->form()->openTag($form);
+?>
+<div id='main'>
+<div style='width:100%;'>
+<input type='hidden' value='<?php echo $this->ad_id; ?>' name='ad_id' />
+<?php echo $this->formLabel($form->get('ad_title')); ?>
+<?php
+echo $this->formElement($form->get('ad_title'));
+echo $this->formElement($form->get('ad_user_id'));
+echo $this->formElementErrors($form->get('ad_title'));
+
+?>
+</div>
+
+<div id='row_2'>
+<div class='option_one_box'>
+<?php echo $this->formLabel($form->get('brand_name')); ?>
+
+<?php
+echo $this->formElement($form->get('brand_name'));
+echo $this->formElementErrors($form->get('brand_name'));
+?>
+</div>
+
+<div class='option_one_box'>
+<?php echo $this->formLabel($form->get('ad_model_id'));
+?>
+
+<?php
+if(empty($this->model_id)){
+	echo $this->formElement($form->get('ad_model_id'));
+	echo $this->formElementErrors($form->get('ad_model_id'));
+} elseif (!empty($this->model_id)){
+?>
+	<select class='form-control' style='padding:2px;height:26px;' name='ad_model_id' id='ad_model_id'>
+	<option value='<?php echo $this->model_id; ?>'><?php echo $this->model_name;?></option></select>
+
+<?php
+}
+?>
+</div>
+
+<div class='option_one_box'>
+<?php echo $this->formLabel($form->get('ad_production_year'));
+?>
+
+<?php
+echo $this->formElement($form->get('ad_production_year'));
+echo $this->formElementErrors($form->get('ad_production_year'));
+?>
+</div>
+
+<div class='option_one_box'>
+<?php echo $this->formLabel($form->get('ad_exterior_type'));
+?>
+
+<?php
+echo $this->formElement($form->get('ad_exterior_type'));
+echo $this->formElementErrors($form->get('ad_exterior_type'));
+?>
+</div>
+
+<div class='option_one_box'>
+<?php echo $this->formLabel($form->get('ad_price'));
+?>
+
+<?php
+echo $this->formElement($form->get('ad_price'));
+echo $this->formElementErrors($form->get('ad_price'));
+?>
+</div>
+
+</div>
+
+<div id='row_3'>
+
+<div class='option_one_box'>
+<?php echo $this->formLabel($form->get('ad_gearbox'));
+?>
+
+<?php
+echo $this->formElement($form->get('ad_gearbox'));
+echo $this->formElementErrors($form->get('ad_gearbox'));
+?>
+</div>
+
+
+<div class='option_one_box'>
+<?php echo $this->formLabel($form->get('ad_fuel'));
+?>
+
+<?php
+echo $this->formElement($form->get('ad_fuel'));
+echo $this->formElementErrors($form->get('ad_fuel'));
+?>
+</div>
+
+<div class='option_one_box'>
+<?php echo $this->formLabel($form->get('ad_doors_nr'));
+?>
+
+<?php
+echo $this->formElement($form->get('ad_doors_nr'));
+echo $this->formElementErrors($form->get('ad_doors_nr'));
+?>
+</div>
+
+<div class='option_one_box'>
+<?php echo $this->formLabel($form->get('ad_car_color'));
+?>
+
+<?php
+echo $this->formElement($form->get('ad_car_color'));
+echo $this->formElementErrors($form->get('ad_car_color'));
+?>
+</div>
+
+<div class='option_one_box'>
+<?php echo $this->formLabel($form->get('ad_km'));
+?>
+
+<?php
+echo $this->formElement($form->get('ad_km'));
+echo $this->formElementErrors($form->get('ad_km'));
+?>
+</div>
+
+
+</div>
+
+<div id='row_4'>
+
+<div class='option_one_box'>
+<?php echo $this->formLabel($form->get('ad_engine_size'));
+?>
+
+<?php
+echo $this->formElement($form->get('ad_engine_size'));
+echo $this->formElementErrors($form->get('ad_engine_size'));
+?>
+</div>
+
+<div class='option_one_box'>
+<?php echo $this->formLabel($form->get('ad_engine_power'));
+?>
+
+<?php
+echo $this->formElement($form->get('ad_engine_power'));
+echo $this->formElementErrors($form->get('ad_engine_power'));
+?>
+</div>
+
+
+<div class='option_one_box'>
+<?php echo $this->formLabel($form->get('ad_condition'));
+?>
+
+<?php
+echo $this->formElement($form->get('ad_condition'));
+echo $this->formElementErrors($form->get('ad_condition'));
+?>
+</div>
+
+</div>
+
+
+<div id='row_5' style='width:100%;float:left;'>
+<p><legend><small>dodatkowe wyposażenie:</small></legend></p>
+<div class='option_one_box'>
+<?php echo $this->formElement($form->get('extra_clima'));?> klimatyzacja
+</div>
+
+<div class='option_one_box'>
+<?php echo $this->formElement($form->get('extra_abs'));?> abs
+</div>
+
+<div class='option_one_box'>
+<?php echo $this->formElement($form->get('extra_asr'));?> asr 
+</div>
+
+<div class='option_one_box'>
+<?php echo $this->formElement($form->get('extra_eds'));?> eds
+</div>
+
+<div class='option_one_box'>
+<?php echo $this->formElement($form->get('extra_esp'));?> esp
+</div>
+</div>
+
+<div id='row_6' style='width:100%;float:left;'>
+<div class='option_one_box'>
+<?php echo $this->formElement($form->get('extra_alufelgi'));?> alufelgi
+</div>
+
+<div class='option_one_box'>
+<?php echo $this->formElement($form->get('extra_diff'));?> blokada dyferencjału
+</div>
+
+<div class='option_one_box'>
+<?php echo $this->formElement($form->get('extra_gearbox_block'));?> blokada skrzyni biegów
+</div>
+
+<div class='option_one_box'>
+<?php echo $this->formElement($form->get('extra_autoalarm'));?> autoalarm
+</div>
+
+<div class='option_one_box'>
+<?php echo $this->formElement($form->get('extra_central_lock'));?> centralny zamek
+</div>
+
+</div>
+
+<div id='row_7' style='width:100%;float:left;'>
+<div class='option_one_box'>
+<?php echo $this->formElement($form->get('extra_rain_ind'));?> czujnik deszczu
+</div>
+
+<div class='option_one_box'>
+<?php echo $this->formElement($form->get('extra_4x4'));?> napęd 4x4
+</div>
+
+<div class='option_one_box'>
+<?php echo $this->formElement($form->get('extra_electric_mirrors'));?> elektryczne lusterka
+</div>
+
+<div class='option_one_box'>
+<?php echo $this->formElement($form->get('extra_electric_windows'));?> elektryczne szyby
+</div>
+
+<div class='option_one_box'>
+<?php echo $this->formElement($form->get('extra_hook'));?> hak
+</div>
+
+</div>
+
+<div id='row_8' style='width:100%;float:left;'>
+<div class='option_one_box'>
+<?php echo $this->formElement($form->get('extra_immobiliser'));?> immobiliser
+</div>
+
+<div class='option_one_box'>
+<?php echo $this->formElement($form->get('extra_gas_instalation'));?> instalacja gazowa
+</div>
+
+<div class='option_one_box'>
+<?php echo $this->formElement($form->get('extra_xenons'));?> xenony
+</div>
+
+<div class='option_one_box'>
+<?php echo $this->formElement($form->get('extra_heat_seats'));?> podgrzewane fotele
+</div>
+
+<div class='option_one_box'>
+<?php echo $this->formElement($form->get('extra_radio'));?> radio
+</div>
+
+</div>
+
+<div id='row_9' style='width:100%;float:left;'>
+<div class='option_one_box'>
+<?php echo $this->formElement($form->get('extra_leather_seats'));?> skórzane siedzenia
+</div>
+
+<div class='option_one_box'>
+<?php echo $this->formElement($form->get('extra_gps_nav'));?> nawigacja gps
+</div>
+
+<div class='option_one_box'>
+<?php echo $this->formElement($form->get('extra_fog_lights'));?> światła przeciwmgielne
+</div>
+
+<div class='option_one_box'>
+<?php echo $this->formElement($form->get('extra_tempomat'));?> tempomat
+</div>
+
+<div class='option_one_box'>
+<?php echo $this->formElement($form->get('extra_wheel_helper'));?> wspomaganie kierownicy
+</div>
+
+</div>
+
+<div id='row_10' style='width:100%;float:left;'>
+<p><legend><small>opis:</small></legend></p>
+
+<div class='option_one_box'>
+<?php
+echo $this->formElement($form->get('description_content'));
+echo $this->formElementErrors($form->get('description_content'));
+?>
+</div>
+
+</div>
+
+<div id='row_11' style='width:100%;float:left;'>
+<p><legend><small>dane kontaktowe:</small></legend></p>
+
+
+<div class='option_one_box'>
+<?php echo $this->formLabel($form->get('ad_phone_nr')); ?>
+<?php
+echo $this->formElement($form->get('ad_phone_nr'));
+echo $this->formElementErrors($form->get('ad_phone_nr'));
+?>
+</div>
+
+
+<div class='option_one_box'>
+<?php echo $this->formLabel($form->get('ad_first_name')); ?>
+<?php
+echo $this->formElement($form->get('ad_first_name'));
+echo $this->formElementErrors($form->get('ad_first_name'));
+?>
+</div>
+
+
+</div>
+
+
+<div id='row_12' style='width:100%;float:left;'>
+<p><legend><small>załaduj zdjęcia:</small></legend></p>
+
+	<div class='option_form_main_image'>
+
+
+<table class="table">
+<tr>
+<th>zdjęcie</th>
+<th>podgląd</th>
+<th>zamień na</th>
+<th>usuń</th>
+</tr>
+<tr>
+	
+<td>
+zdjęcie główne
+</td>
+<td>
+<?php if(!empty($this->ad_main_img)){
+echo "<img src='/images/data/$this->ad_main_img' class='edit_preview' />";
+}
+?>
+</td>
+	<td>
+	
+<?php
+echo $this->formElement($form->get('ad_main_img'));
+echo $this->formElementErrors($form->get('ad_main_img'));
+?>
+</td>
+<td>
+<?php if(!empty($this->ad_main_img)){ ?>
+<input type='checkbox' value='1' name='delete_ad_main_img' />
+<?php } ?>
+</td>
+</tr>
+	<tr>
+	
+<td>
+zdjęcie 2
+</td>
+<td>
+<?php if(!empty($image->image_2)){
+echo "<img src='/images/data/$image->image_2' class='edit_preview' />";
+}
+?>
+</td>
+	<td>
+	
+<?php
+echo $this->formElement($form->get('image_2'));
+echo $this->formElementErrors($form->get('image_2'));
+?>
+</td>
+
+<td>
+<?php if(!empty($image->image_2)){ ?>
+<input type='checkbox' value='1' name='delete_image_2' />
+<?php } ?>
+
+</td>
+</tr>
+<tr>
+
+<td>
+zdjęcie 3
+</td>
+<td>
+<?php if(!empty($image->image_3))
+echo "<img src='/images/data/$image->image_3' class='edit_preview' />";
+?>
+</td>
+<td>
+<?php
+echo $this->formElement($form->get('image_3'));
+echo $this->formElementErrors($form->get('image_3'));
+?>
+</td>
+
+<td>
+<?php if(!empty($image->image_3)){ ?>
+
+<input type='checkbox' value='1' name='delete_image_3' />
+<?php } ?>
+
+</td>
+</tr>
+<tr>
+
+<td>
+zdjęcie 4
+</td>
+<td>
+<?php if(!empty($image->image_4))
+echo "<img src='/images/data/$image->image_4' class='edit_preview' />";
+?>
+</td>
+<td>
+<?php
+echo $this->formElement($form->get('image_4'));
+echo $this->formElementErrors($form->get('image_4'));
+?>
+</td>
+
+<td>
+<?php if(!empty($image->image_4)){ ?>
+
+<input type='checkbox' value='1' name='delete_image_4' />
+<?php } ?>
+
+</td>
+</tr>
+<tr>
+
+<td>
+zdjęcie 5
+</td>
+<td>
+<?php if(!empty($image->image_5))
+echo "<img src='/images/data/$image->image_5' class='edit_preview' />";
+?>
+</td>
+<td>
+
+<?php
+echo $this->formElement($form->get('image_5'));
+echo $this->formElementErrors($form->get('image_5'));
+?>
+</td>
+
+<td>
+<?php if(!empty($image->image_5)){ ?>
+
+<input type='checkbox' value='1' name='delete_image_5' />
+<?php } ?>
+
+</td>
+</tr>
+<tr>
+
+<td>
+zdjęcie 6
+</td>
+<td>
+<?php if(!empty($image->image_6))
+echo "<img src='/images/data/$image->image_6' class='edit_preview' />";
+?>
+</td>
+<td>
+<?php
+echo $this->formElement($form->get('image_6'));
+echo $this->formElementErrors($form->get('image_6'));
+?>
+</td>
+
+<td>
+<?php if(!empty($image->image_6)){ ?>
+<input type='checkbox' value='1' name='delete_image_6' />
+<?php } ?>
+
+</td>
+</tr>
+<tr>
+
+<td>
+zdjęcie 7
+</td>
+<td>
+<?php if(!empty($image->image_7))
+echo "<img src='/images/data/$image->image_7' class='edit_preview' />";
+?>
+</td>
+<td>
+<?php
+echo $this->formElement($form->get('image_7'));
+echo $this->formElementErrors($form->get('image_7'));
+?>
+</td>
+
+<td>
+<?php if(!empty($image->image_7)){ ?>
+
+<input type='checkbox' value='1' name='delete_image_7' />
+<?php } ?>
+
+</td>
+</tr>
+<tr>
+
+<td>
+zdjęcie 8
+</td>
+<td>
+<?php if(!empty($image->image_8))
+echo "<img src='/images/data/$image->image_8' class='edit_preview' />";
+?>
+</td>
+<td>
+<?php
+echo $this->formElement($form->get('image_8'));
+echo $this->formElementErrors($form->get('image_8'));
+?>
+</td>
+
+<td>
+<?php if(!empty($image->image_8)){ ?>
+<input type='checkbox' value='1' name='delete_image_8' />
+<?php } ?>
+
+</td>
+</tr>
+<tr>
+<td>
+zdjęcie 9
+</td>
+<td>
+
+<?php if(!empty($image->image_9))
+echo "<img src='/images/data/$image->image_9' class='edit_preview' />";
+?>
+</td>
+<td>
+
+<?php
+echo $this->formElement($form->get('image_9'));
+echo $this->formElementErrors($form->get('image_9'));
+?>
+</td>
+
+<td>
+<?php if(!empty($image->image_9)){ ?>
+
+<input type='checkbox' value='1' name='delete_image_9' />
+
+<?php } ?>
+</td>
+</tr>
+</table>
+
+
+</div>
+
+
+<div>
+<?php
+echo $this->formElement($form->get('submit'));
+echo $this->formElementErrors($form->get('submit'));
+?>
+<?php echo $this->form()->closeTag() ?>
+</section>
+
+
+
+
+
+</div>
+
+<!--- form end -->	
+	
+<!-- end div: adds-style-->	
+</div>

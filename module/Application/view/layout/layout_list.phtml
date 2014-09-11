@@ -1,0 +1,453 @@
+  <?php
+$children = $this->viewModel()->getCurrent()->getChildren();
+$child = $children[0];
+?>
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<link href='http://fonts.googleapis.com/css?family=Signika:600,400,300&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title><?php echo isset($child->brand) ? $child->brand : NULL, isset($child->model) ? " ".$child->model : NULL; ?> - ogłoszenia motoryzacyjne - scarto</title>
+  <meta name="description" content="Bezpłatne ogłoszenia motoryzacyjne." >
+      <link href="/css/bootstrap.css" rel="stylesheet">
+    <script type="text/javascript" src="/js/jquery.js"></script> 
+    <script type="text/javascript" src="/js/bootstrap.js"></script> 
+    <script type="text/javascript" src="/js/typeahead.js"></script>   
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/icon2.ico" type="image/x-icon">
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="/css/style1.css" rel="stylesheet">
+<script type="text/javascript" src="/js/bootstrap-multiselect.js"></script>
+<link rel="stylesheet" href="/css/bootstrap-multiselect.css" type="text/css"/>
+	<script src="/js/bootstrap-tab.js"></script>
+	<script src="/js/bootstrap-collapse.js"></script>
+    <script src="/js/imgLiquid-min.js"></script>
+	<script type="text/javascript">
+ $(function() {
+$(".image").click(function() {
+var image = $(this).attr("rel");
+$('#image').hide();
+$('#image').fadeIn('slow');
+$('#image').html('<img src="' + image + '"/>');
+return false;
+	});
+});
+</script>
+<script>
+$(function() {
+    $(".imgLiquidFill").imgLiquid({
+        fill: true,
+        horizontalAlign: "center",
+        verticalAlign: "top"
+    });    
+    $(".imgLiquidNoFill").imgLiquid({
+        fill: false,
+        horizontalAlign: "center",
+        verticalAlign: "50%"
+    });
+});
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-41054268-1', 'scarto.pl');
+  ga('send', 'pageview');
+
+</script>
+
+
+<script>
+$(document).ready(function() {
+
+$('input.searchboxcss').typeahead({
+  name: 'searchbox',
+  remote: 'http://scarto.pl/suggest.php?query=%QUERY'
+
+});
+$('.typeahead.input-sm').siblings('input.tt-hint').addClass('hint-small');
+$('.typeahead.input-lg').siblings('input.tt-hint').addClass('hint-large');
+})
+</script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+$('.multiselect').multiselect();
+});
+</script>	
+ 
+ 
+</head>
+<body>
+<script language="javascript" type="text/javascript" src="/js/filter_price_from.js"></script>
+<script language="javascript" type="text/javascript" src="/js/filter_price_to.js"></script>
+
+    <div class="navbar-wrapper" style="height:45px;background-color:#fff;">
+    <div class="nav_top">
+		<div style="float:left;padding:0px;color:#fff;font-size:25px;font-family: 'Signika', Arial, serif; font-weight: 400;">
+		<a href="/" style='text-decoration:none;'>scarto.pl<br />
+		<p style='line-height:0.1;margin-bottom:0px;margin-top:0px;padding-top:0px;font-size:14px;color:#7A7A7A;'>
+			ogłoszenia motoryzacyjne
+		</p></a>
+		<!----<img src='img/logo.png' />--->
+		
+		</div>
+		<div style='padding-top:10px;margin-left:5%;float:left;'>
+		<form role="form" action="/ogloszenia/szukaj" method="post">
+			<div style='margin-top:0px;padding-top:0px;height:30px;'> 
+			<input type="text" class="searchboxcss" name="searchbox" id="searchbox" 
+		    placeholder="szukaj">
+			<button type="submit" class="btn btn-default search_btn"><img src="/img/searchicon.png" style='height:20px;' />
+			</button>
+		  	</div>
+		  
+	  
+		  </form>
+		</div>
+		<div style='float:right;'>
+					<ul class="nav nav-pills" style='margin-top:8px;margin-bottom:5px;'>
+			<!---<li class="active">-->
+			<li class='active'><a href="/ogloszenia/dodaj" style='padding:8px 10px;'>dodaj ogłoszenie</a></li>
+			  
+			<?php 
+			
+			$val = $this->logStatus();
+			
+			if($val==1){
+			?>
+			<li><a tabindex="-1" href="/users" style='padding:8px 10px;'>konto</a></li>
+			<li><a tabindex="-1" href="/users/logout/index" style='padding:8px 10px;'>wyloguj</a></li>
+			<?php } elseif($val==0) { ?>
+			<li><a tabindex="-1" href="/users/login/index" style='padding:8px 10px;'>logowanie</a></li>	
+			<li><a tabindex="-1" href="/users/register/index" style='padding:8px 10px;'>rejestracja</a></li>
+			<?php }
+			?>
+    
+    
+		</ul>
+
+		</div>
+		</div>
+	</div>
+  
+    </div>	
+
+
+  	<!--- START MENU LEFT -->
+
+	<script>
+	var Tablica = [];
+	var price_from = 0;
+	price_from = document.getElementById('price_from').value;
+	if(typeof price_from != 'undefined'){
+	Tablica['price_from'] = price_from.value;
+	}
+	Tablica['price_to'] = document.getElementById('price_to').value;
+	Tablica['year_from'] = document.getElementById('year_from').value;
+	Tablica['year_to'] = document.getElementById('year_to').value;
+	Tablica['engine_size_from'] = document.getElementById('engine_size_from').value;
+	Tablica['engine_size_to'] = document.getElementById('engine_size_to').value;
+	Tablica['engine_power_from'] = document.getElementById('engine_power_from').value;
+	Tablica['engine_power_to'] = document.getElementById('engine_power_to').value;
+	Tablica['km_to'] = document.getElementById('km_to').value;
+	Tablica['fuel_type'] = document.getElementById('fuel_type').value;
+	Tablica['exterior_type'] = document.getElementById('exterior_type').value;
+	//Tablica['filter_brand'] = document.getElementById('filter_brand').value;
+	
+
+
+	</script>
+			<script>
+
+	function changePriceFrom(str){		
+			var input_price_from = document.getElementById('price_from');
+			input_price_from.value = str; 
+			Tablica['price_from'] = str;
+	}
+
+	function changePriceTo(str){		
+			var input_price_to = document.getElementById('price_to');
+			input_price_to.value = str; 
+			Tablica['price_to'] = str;
+	}
+
+	function changeYearFrom(str){		
+			var input_year_from = document.getElementById('year_from');
+			input_year_from.value = str; 
+			Tablica['year_from'] = str;
+	}
+
+	function changeYearTo(str){		
+			var input_year_to = document.getElementById('year_to');
+			input_year_to.value = str; 
+			Tablica['year_to'] = str;
+	}	
+	
+	function changeSizeFrom(str){		
+			var input_size_from = document.getElementById('engine_size_from');
+			input_size_from.value = str; 
+			Tablica['engine_size_from'] = str;
+	}
+	
+	function changeSizeTo(str){		
+			var input_size_to = document.getElementById('engine_size_to');
+			input_size_to.value = str; 
+			Tablica['engine_size_to'] = str;
+	}
+	
+	
+	function changePowerFrom(str){		
+			var input_power_from = document.getElementById('engine_power_from');
+			input_power_from.value = str; 
+			Tablica['engine_power_from'] = str;
+	}
+	
+	function changePowerTo(str){		
+			var input_power_to = document.getElementById('engine_power_to');
+			input_power_to.value = str; 
+			Tablica['engine_power_to'] = str;
+	}
+	
+	function changeKmTo(str){		
+			var input_km_to = document.getElementById('km_to');
+			input_km_to.value = str; 
+			Tablica['km_to'] = str;
+	}
+
+	function changeFuelType(str){		
+			var input_fuel_type = document.getElementById('fuel_type');
+			input_fuel_type.value = str; 
+			Tablica['fuel_type'] = str;
+	}
+
+	
+	function changeBrand(){		
+			var input_brand = document.getElementById('filter_brand');
+			Tablica['brand'] = input_brand.value;
+			var input_model = document.getElementById('filter_model');
+			Tablica['model'] = input_model.value;
+
+	}
+			</script>
+<script>			
+function selectedFuelType() {
+    // Find the select box in the DOM
+    var sel   = document.getElementById('fuel_type') || false,
+        url   = '',
+        query = [];
+    
+    if (!sel) {
+        return false;
+    }
+    
+    // Go through the option elements and find out which have been selected
+    for (var i = 0, m = sel.length; i < m; i++) {
+        if (sel[i].selected) {
+            query.push(sel[i].value);
+        }
+    }
+	
+	Tablica['fuel_type'] = query;
+	    
+}
+
+function selectedExteriorType() {
+    // Find the select box in the DOM
+    var sel   = document.getElementById('exterior_type') || false,
+        url   = '',
+        query = [];
+    
+    if (!sel) {
+        return false;
+    }
+    
+    // Go through the option elements and find out which have been selected
+    for (var i = 0, m = sel.length; i < m; i++) {
+        if (sel[i].selected) {
+            query.push(sel[i].value);
+        }
+    }
+	
+	Tablica['exterior_type'] = query; 
+}
+</script>			
+			<script>
+/*			function prepareArray(){
+var Tablica = [];
+//	document.writeln(Tablica[1]);
+
+	Tablica['price_from'] = price_from.value;
+	//Tablica['price_from'] = '22';
+	Tablica['price_to'] = document.getElementById('price_to').value;
+	return Tablica;
+//document.writeln(Tablica['price_from']);
+}*/
+			</script>
+			
+    <div class="container marketing">
+	
+	<div style='width:160px;height:100%;float:left;margin-top:30px;padding:0px;'>
+	
+	<div style="height:400px;background-color:#fff;padding:10px;font-family: 'Signika', Arial, serif; font-weight: 400;margin-bottom:10px;">	
+	<h2 style='margin-top:0px;padding-top:0px;'>Parametry</h2>
+	 
+		<form>
+
+<?php		
+echo "<input type='hidden' value='".$child->brand."' name='filter_brand' id='filter_brand' />";
+
+if(!empty($child->model)){
+echo "<input type='hidden' value='".$child->model."' name='filter_model' id='filter_model' />";
+} else {
+echo "<input type='hidden' value='' name='filter_model' id='filter_model' />";
+}
+ ?>
+
+		<div id='price'>
+		<div style='float:left;margin-right:5px;'>	
+		cena:
+		
+		</div>	
+		<div style='float:left;'>
+	
+		<input type='text' id='price_from' name='price_from' class="form-control" style='width:60px;padding:3px;height:25px;float:left;margin-right:10px;' placeholder='od' onChange="changePriceFrom(this.value);sendValues(Tablica);" />
+		<input type='text' id='price_to' name='price_to' class="form-control" style='width:60px;padding:3px;height:25px;float:left;' placeholder='do' onChange="changePriceTo(this.value);changeBrand();sendValues(Tablica);" />
+		
+		</div>
+		</div>	
+		
+		<div id='year'>
+		<div style='float:left;margin-top:5px;margin-right:5px;'>	
+		rok produkcji:
+		</div>	
+		<div style='float:left;'>
+			<input type='text' id='year_from' name='year_from' class="form-control" style='width:60px;padding:3px;height:25px;float:left;margin-right:10px;' placeholder='od' onChange="changeYearFrom(this.value);sendValues(Tablica);" />
+			<input type='text' id='year_to' name='year_to' class="form-control" style='width:60px;padding:3px;height:25px;float:left;' placeholder='do' onChange="changeYearTo(this.value);changeBrand();sendValues(Tablica);" />
+		</div>
+		</div>
+	
+		<div id='engine_power'>
+		<div style='float:left;margin-top:5px;margin-right:5px;'>	
+		moc silnika:
+		</div>	
+		<div style='float:left;'>
+			<input type='text' id='engine_power_from' name='engine_power_from' class="form-control" style='width:60px;padding:3px;height:25px;float:left;margin-right:10px;' placeholder='od' onChange="changePowerFrom(this.value);sendValues(Tablica);"/>
+			<input type='text' id='engine_power_to' name='engine_power_to' class="form-control" style='width:60px;padding:3px;height:25px;float:left;' placeholder='do' onChange="changePowerTo(this.value);changeBrand();sendValues(Tablica);" />
+		</div>
+		</div>
+
+
+		<div id='engine_size'>
+		<div style='float:left;margin-top:5px;margin-right:5px;'>	
+		pojemność silnika:
+		</div>	
+		<div style='float:left;'>
+			<input type='text' id='engine_size_from' name='engine_size_from' class="form-control" style='width:60px;padding:3px;height:25px;float:left;margin-right:10px;' placeholder='od' onChange="changeSizeFrom(this.value);sendValues(Tablica);"/>
+			<input type='text' id='engine_size_to' name='engine_size_to' name='engine_size_to' class="form-control" style='width:60px;padding:3px;height:25px;float:left;' placeholder='do' onChange="changeSizeTo(this.value);changeBrand();sendValues(Tablica);" />
+		</div>
+		</div>
+
+		
+		<div id='km'>
+		<div style='float:left;margin-top:5px;margin-right:5px;'>	
+		przebieg do:
+		</div>	
+		<div style='float:left;'>
+			<input type='text' id='km_to' name='km_to' class="form-control" style='width:100px;padding:3px;height:25px;float:left;margin-right:10px;' placeholder='do' onChange="changeKmTo(this.value);changeBrand();sendValues(Tablica);" />
+		</div>
+		</div>
+
+		<div id='fuel'>
+		<div style='float:left;margin-top:5px;margin-right:5px;'>	
+		rodzaj paliwa:
+		</div>		
+		<div style='float:left;'>
+		<select class="multiselect" id="fuel_type" name="fuel_type[]" style='padding:2px 2px;' multiple="multiple" onChange="selectedFuelType();changeBrand();sendValues(Tablica);">
+		<option value="diesel">diesel</option>
+		<option value="benzyna">benzyna</option>
+		<option value="gaz">benzyna+gaz</option>
+		</select>
+		</div>
+		</div>
+		
+		
+		<div id='exterior'>
+		<div style='float:left;margin-top:5px;margin-right:5px;'>	
+		rodzaj nadwozia:
+		</div>		
+		<div style='float:left;'>
+		<select class="multiselect" id="exterior_type" name="exterior_type[]" style='padding:2px 2px;' multiple="multiple" onChange="selectedExteriorType();changeBrand();sendValues(Tablica);">
+		<option value="kabriolet">kabriolet</option>
+		<option value="sedan">sedan</option>
+		<option value="sportowy">sportowy</option>
+		<option value="kombi">kombi</option>
+		<option value="hatchback">hatchback</option>
+		<option value="pickup">pickup</option>
+		<option value="terenowy">terenowy</option>
+		<option value="van">van</option>
+		<option value="suv">suv</option>
+		<option value="inny">inny</option>
+		</select>
+		</div>
+		</div>
+ 
+		</form>
+	</div>
+	
+	<div style="background-color:#fff;padding:10px;font-family: 'Signika', Arial, serif; font-weight: 400;">	
+	
+
+    <h2 style="margin-top:0px;font-family: 'Signika', Arial, serif; font-weight: 400;color:#7A7A7A;padding-top:5px;padding-bottom:4px;">
+	<span class="glyphicon glyphicon-folder-open" style="margin-right:5px;"> </span> menu</h2> 
+<a href='/'>...</a><br />	
+
+ 
+ <ul class="nav">
+
+ <?php 
+foreach($child->menu_models as $mm)
+{
+	echo "<li class=''><a href='/".$child->brand."/".$mm->model_name."'>".$mm->model_name."</a></li>";
+}
+ ?>
+  </ul>
+  
+
+    </div>   
+	
+		</div>
+	
+	
+	<div id='right-side' style='float:right;width:970px;margin-top:30px;'>	
+            <?php echo $this->content; ?>
+    
+	</div>
+
+	
+    </div><!-- /.container -->
+
+
+
+  
+      
+           <div class="navbar-wrapper" style="width:100%;height:110px;background-color:#000;margin-top:25px;" id="bottomsite">
+           
+			  <div class="nav_top">
+             <p><strong>Dowiedz się więcej:</strong>
+             <ul style="list-style-type: none;">			
+			 <li><a href="/ogloszenia/about" style="color:#ccc;font-size:10px;">O serwisie</a></li>
+             <li><a href="/ogloszenia/regulamin" style="color:#ccc;font-size:10px;">Regulamin</a></li>
+                          <li><a href="mailto:kontakt@scarto.pl" style="color:#ccc;font-size:10px;">Kontakt</a></li>
+             </ul>
+             Copyright © 2014 scarto.pl | Korzystanie z serwisu oznacza akceptację <a href="/ogloszenia/regulamin" style="color:#ccc;font-size:10px;">regulaminu</a>.
+             </div>
+    
+         </div>
+         
+
+</body>
+</html>

@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<link href='http://fonts.googleapis.com/css?family=Signika:600,400,300&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Ogłoszenia motoryzacyjne scarto.pl - tylko niemieckie samochody używane</title>
+  <meta name="description" content="Ogłoszenia motoryzacyjne niemieckich samochodów używanych." >
+      <link href="/css/bootstrap.css" rel="stylesheet">
+    <script type="text/javascript" src="/js/jquery.js"></script> 
+    <script type="text/javascript" src="/js/bootstrap.js"></script> 
+    <script type="text/javascript" src="/js/typeahead.js"></script>   
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/icon2.ico" type="image/x-icon">
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="/css/style1.css" rel="stylesheet">
+	<script src="/js/bootstrap-tab.js"></script>
+	<script src="/js/bootstrap-collapse.js"></script>
+    <script src="/js/imgLiquid-min.js"></script>
+ <script type="text/javascript">
+ $(function() {
+$(".image").click(function() {
+var image = $(this).attr("rel");
+$('#image').hide();
+$('#image').fadeIn('slow');
+$('#image').html('<img src="' + image + '"/>');
+return false;
+	});
+});
+</script>
+<script>
+$(function() {
+    $(".imgLiquidFill").imgLiquid({
+        fill: true,
+        horizontalAlign: "center",
+        verticalAlign: "top"
+    });    
+    $(".imgLiquidNoFill").imgLiquid({
+        fill: false,
+        horizontalAlign: "center",
+        verticalAlign: "50%"
+    });
+});
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-41054268-1', 'scarto.pl');
+  ga('send', 'pageview');
+
+</script>
+
+<script>
+$(document).ready(function() {
+
+$('input.searchboxcss').typeahead({
+  name: 'searchbox',
+  remote: 'http://scarto.pl/suggest.php?query=%QUERY'
+
+});
+})
+</script>
+</head>
+<body>
+
+    <div class="navbar-wrapper" style="height:45px;background-color:#fff;">
+    <div class="nav_top">
+		<div style="float:left;padding:0px;color:#fff;font-size:25px;font-family: 'Signika', Arial, serif; font-weight: 400;">
+		<a href="/" style='text-decoration:none;'>scarto.pl<br />
+		<h1 style='line-height:0.1;margin-bottom:0px;margin-top:0px;padding-top:0px;font-size:14px;color:#7A7A7A;'>
+			ogłoszenia motoryzacyjne
+		</h1></a>
+		<!----<img src='img/logo.png' />--->
+		
+		</div>
+		
+		<div style='padding-top:10px;margin-left:5%;float:left;'>
+		<form role="form" action="/ogloszenia/szukaj" method="post">
+			<div style='margin-top:0px;padding-top:0px;height:30px;'> 
+			<input type="text" class="searchboxcss" name="searchbox" id="searchbox" 
+		    placeholder="szukaj">
+			<button type="submit" class="btn btn-default search_btn"><img src="/img/searchicon.png" style='height:20px;' />
+			</button>
+		  	</div>
+		  
+	  
+		  </form>
+		</div>
+		<div style='float:right;'>
+					<ul class="nav nav-pills" style='margin-top:8px;margin-bottom:5px;'>
+			<!---<li class="active">-->
+			<li class='active'><a href="/ogloszenia/dodaj" style='padding:8px 10px;'>dodaj ogloszenie</a></li>
+			  
+			<?php
+			$val = $this->logStatus();
+			
+			if($val==1){
+			?>
+			<li><a tabindex="-1" href="/users" style='padding:8px 10px;'>konto</a></li>
+			<li><a tabindex="-1" href="/users/logout/index" style='padding:8px 10px;'>wyloguj</a></li>
+			<?php } elseif($val==0) { ?>
+			<li><a tabindex="-1" href="/users/login/index" style='padding:8px 10px;'>logowanie</a></li>	
+			<li><a tabindex="-1" href="/users/register/index" style='padding:8px 10px;'>rejestracja</a></li>
+			<?php }
+			
+			?>
+    
+    
+		</ul>
+
+		</div>
+		</div>
+	</div>
+
+    </div>	
+
+
+  	<!--- START MENU LEFT -->
+
+
+    <div class="container marketing main_top">
+	
+	    <div class="navbar-wrapper mainpage_bg">      
+	  <div class="container">
+		  <div class="form-group" style='margin-top:10px;float:left;'>
+			<div style="background-color:#fff;opacity:0.8;padding:10px;font-family: 'Signika', Arial, serif; font-weight: 400;">	
+	
+  <?php
+$children = $this->viewModel()->getCurrent()->getChildren();
+$child = $children[0];
+?>
+    <h2 style="margin-top:0px;font-family: 'Signika', Arial, serif; font-weight: 400;color:#7A7A7A;padding-top:5px;padding-bottom:4px;">
+	<span class="glyphicon glyphicon-folder-open" style="margin-right:5px;"> </span> marki</h2>   
+  <ul class="nav">
+  <?php
+  if(isset($child->menu_brands) and !empty($child->menu_brands)){
+    foreach($child->menu_brands as $brand){
+      echo "<li class=''><a href='/".$brand->brand_name."'>".$brand->brand_name."</a></li>";
+    }
+	}
+?>
+
+  </ul>
+  
+
+    </div>   
+	
+		  </div>
+		  </div>
+		  
+      </div>
+	
+	 
+		</div>
+	
+	
+	<div id='right-side' style='width:1170px;margin-left:auto;margin-right:auto;margin-top:0px;'>	
+            <?php echo $this->content; ?>
+    
+	<!---start tabs	--->
+		<div style="width:1170px;float:left;background-color:#fff;padding:12px;margin-top:0px;margin-bottom:0px;">
+
+<ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+        <li class="active"><a href="#ostronie" data-toggle="tab">o stronie</a></li>
+        <li><a href="#modele" data-toggle="tab">na skróty</a></li>
+        <li><a href="#segmenty" data-toggle="tab">samochody używane wg segmentów</a></li>
+        <li><a href="#popularne" data-toggle="tab">popularne modele</a></li>
+        <li><a href="#poradnik" data-toggle="tab">poradnik kupującego</a></li>
+        </ul>
+    <div id="my-tab-content" class="tab-content">
+        <div class="tab-pane active" id="ostronie">
+            <div style='font-size:11px;text-align:justify;'>
+			
+			<p>
+            <h2 style='font-size:14px;'>Samochody używane na scarto.pl</h2>
+
+<img src='/img/front/bmw-front.png' alt='garaz' style='width:455px;float:right;margin-left:10px;border: 1px solid #000;' class='img-polaroid' />Scarto.pl to strona, gdzie można przeglądać i dodawać ogłoszenia niemieckich marek samochodów. Powód? To te auta cieszą się największą popularnością w Polsce, nie bez powodu. Wiele, nawet starszych, modeli aut niemieckich cechuje się dużą niezawodnością. Sam serwis też jest tani - gdy zabieramy do mechanika Volkswagena czy Opla to najczęściej naprawa nie przysporzy większego problemu, bo po prostu mechanicy dobrze znają niemieckie auta i usterki, które je trapią. 
+Ogłoszenia motoryzacyjne na scarto.pl pozwolą łatwo i szybko znaleźć wymarzony samochód, a także sprawnie go sprzedać.
+</p>
+<p>
+Duży nacisk położony jest na wygodę użytkowania. Rejestracja nie jest konieczna, bo konto jest zakładane automatycznie podczas dodawania ogłoszenia. Potrzebujesz jedynie zdjęcie swojego auta (minimum jedno) oraz adres poczty elektronicznej, na który dostaniesz szczegóły odnośnie swojego ogłoszenia. 
+Samo darmowe ogłoszenie sprzedaży samochodu dodasz już w kilka minut w trzech prostych krokach.
+</p>
+<p>
+<h2 style='font-size:12px;'>
+Skąd Seat i Skoda w serwisie?  
+</h2>
+Dobrze wiadomo, że marki jak Seat czy Skoda należą do grupy Volkswagena i w bardzo dużym stopniu współdziela podzespoły (od płyt podłogowych zaczynając, na silnikach kończąc). Jako że w Polsce popularne są również marki z grupy VW, to postanowiliśmy dodać również je. </p>
+			
+			
+			
+			
+		
+		
+</p>	</div>
+        </div>
+        <div class="tab-pane" id="modele">
+            <div style='font-size:11px;'>
+			<p>Modele cieszące się największą popularnością:</p>
+			<ul>
+				<li><a href="http://www.scarto.pl/osobowe/lista/volkswagen/golf">Volkswagen Golf</a> </li>
+			<li><a href="http://www.scarto.pl/osobowe/lista/volkswagen/passat">Volkswagen Passat</a> </li>
+			<li><a href="http://www.scarto.pl/osobowe/lista/audi/a3">Audi A3</a> </li>
+			<li><a href="http://www.scarto.pl/osobowe/lista/audi/a4">Audi A4</a> </li>
+			<li><a href="http://www.scarto.pl/osobowe/lista/skoda/octavia">Skoda Octavia</a> </li>
+			<li><a href="http://www.scarto.pl/osobowe/lista/bmw/320">BMW 320</a> </li>
+			<li><a href="http://www.scarto.pl/osobowe/lista/audi/a6">Audi A6</a> </li>
+			<li><a href="http://www.scarto.pl/osobowe/lista/opel/vectra">Opel Vectra</a> </li>
+			</ul>
+			</div>
+        </div>
+        
+        <div class="tab-pane" id="segmenty">
+         <div style="float:left;width:630px;font-size:12px;text-align:justify;">
+<h2>Samochody używane - ciekawy wybór z poszczególnych segmentów</h2>
+<p>Rynek używanych aut w Polsce jest naprawdę bogaty i nie każdy musi jeździć Volkswagenem Passatem lub Oplem Astrą. Niektóre auta zdobyły wyższe uznanie wśród kupujących, przez co ich ceny zostały wywindowane do abstrakcyjnych wartości. Najlepszym dowodem jest <b>Fiat 500</b>. To małe miejskie autko oparto na prostych i stosunkowo tanich w produkcji rozwiązaniach jednak jego cena zarówno w salonie jak i na rynku wtórnym jest wyjątkowo wysoka. Głównie wpływ na to mają emocje jakie wzbudza. Fiat 500 odwołuje się swoim wyglądem do legendarnego modelu 500 z 1957 roku i trzeba przyznać, że sylwetka oraz detale wnętrza są miłe dla oka. Ten maluch naprawdę pozytywnie wyróżnia się spośród konkurencji. Bliźniaczy Ford Ka II generacji mimo, że korzysta z tej samej techniki oraz ma nieco lepiej zestrojone zawieszenie, nie zyskał takiej przychylności. Jeśli porównamy Ka  i 500 z tych samych roczników, tym samym przebiegiem, podobnym wyposażeniem i identycznym silnikiem to Ford praktycznie zawsze będzie tańszy.</p>
+<p>Ten przykład można dać sporo do myślenia przy zakupie kolejnego auta. Poniżej znajduje się lista kilku modeli, których cena jest atrakcyjna i nie odznaczają się podwyższoną awaryjnością.</p>
+<h3>Segment A</h3>
+<p>Poszukując prostego auta mającego poruszać się wyłącznie po centrum dużego miasta warto zwrócić uwagę na tzw.: trojaczki z Kolina. To trzy auta <b>Citroen C1</b>, <b>Peugeot 107</b> oraz <b>Toyota Aygo</b>, które produkowane są w tej samej czeskiej fabryce. Cała trójka mierzy ok. 3,4 m. długości, może być wyposażona w benzynowy silnik 1.0 o mocy 68KM produkcji Toyoty z łańcuchem rozrządu (polecam) lub francuskiego diesla 1.4 o mocy 54KM. Wersje nadwoziowe 3 lub 5-drzwiowe. Dostępne są dwie skrzynie: klasyczna 5-biegowa manualna oraz zautomatyzowana – niestety powolna i awaryjna. Co do wyposażenia – możliwe było zamówienie podstawowych udogodnień jak np. klimatyzacja manualna. </p>
+<h3>Segment B </h3>
+<p>Segment w którym najlepiej na naszym rynku radzi sobie <b>Skoda Fabia</b>. Niestety wiara w wysoką jakość produktów spod skrzydeł grupy volkswagena sprawia, że i ten samochód osiąga ceny nieadekwatne do wartości. Zdecydowanie ciekawszym autem jest <b>Opel Corsa</b>. Modele produkowane od 2000 roku to dojrzałe, udane konstrukcje. Nie trudno o egzemplarz z dobrym wyposażeniem. Paleta silników jest bogata. Z jednostek wysokoprężnych polecam diesla o pojemności 1.7. Wersje bez wtrysku common rail (di oraz dti) spalą nawet najgorszą ropę bez zająknięcia a ewentualne naprawy będą śmiesznie tanie w porównaniu z nowoczesnymi konstrukcjami. Późniejsze wersje CDTi charakteryzują się bardzo dobrymi osiągami i niskim spalaniem. Z gamy benzyniaków można polecić każdy motor, poza 1.0, który jest zwyczajnie za słaby. W Corsie D produkowanej od 2006 roku lepiej pominąć też osiemdziesięciu konny silnik 1.2.</p>
+<h3>Segment C </h3>
+<p>Z tym segmentem kojarzy się głównie <b>Volkswagen Golf</b> oraz jego pochodne m.in. <b>Seat Leon</b> oraz <b>Skoda Octavia</b>. W przypadku tej ostatniej ceny używanych potrafią być wyższe niż bliźniaczych konstrukcji Seata i VW. To zasługa obszerniejszego wnętrza, bagażnika i tańszego serwisu.  W tym zestawieniu szukamy jednak aut stosunkowo tanich i nieprzysparzających większych problemów w czasie eksploatacji. Sposobem na zakup taniego i bezawaryjnego kompaktu mógłby być Ford Focus II. Niestety podstawowym problemem jest ogromna ilość wyeksploatowanych egzemplarzy przez co znalezienie perełki graniczy z cudem.</p>
+<p>Za te same pieniądze łatwiej kupić zadbanego <b>Fiata Bravo II.</b> Jeśli zdecydujemy się na podstawowego benzyniaka 1.4 możemy liczyć na spokojną eksploatację licząc się ze spalaniem ok 7l/100km. Jeśli ktoś liczy na lepsze osiągi i niższe spalanie to polecam znalezienie Fiata z dieslem 1.9 (prostszą wersję z ośmiozaworową głowicą – moc 120KM). To sprawdzona i dobrze znana mechanikom jednostka. Identyczne silniki można znaleźć pod maskami nie tylko innych włoskich aut ale i wielu modeli Opla, Saaba, Suzuki a nawet w Cadillacu BLS. To chyba dobra rekomendacja. </p>
+<p>Bravo było dla Fiata ogromnym skokiem ku lepszemu. Zarówno pod względem stylistycznym jak i  jakościowym. Samochód prowadzi się nieco mniej dynamicznie od Focusa, za to zawieszenie jest trwalsze. Większość egzemplarzy na naszym rynku jest dobrze wyposażona a do tego łatwo o zadbany egzemplarz z polskiego salonu z udokumentowanym przebiegiem. </p>
+<h3>Segment D   </h3>
+<p>Opinia o poprzedniku może zrujnować karierę następcy. Najlepszym przykładem jest <b>Renault Laguna III</b>. Poprzedniczka nie zapisała się najlepiej w pamięci kierowców, mimo wielu zalet takich jak: wysoki poziom bezpieczeństwa, komfort, bogate wyposażenie i nietuzinkowy wygląd. Powodem były liczne awarie. Psuło się wszystko – w szczególności osprzęt silnika i rozbudowana elektronika. Laguna produkowana od 2007 roku zachowała wszystkie pozytywne cechy i pozbyła się większości negatywnych. To poprawny samochód, który poziomem awaryjności nie odbiega od średniej wśród konkurencji a dodatkowo kusi atrakcyjnymi cenami zarówno w salonie (duże rabaty) jak i na rynku wtórnym. Gwarancją bezproblemowego użytkowania francuskiego auta jest wybór możliwie prostej wersji wyposażeniowej oraz podstawowego silnika 1.6. Niestety jak to zwykle bywa w przypadku najmniejszych dostępnych motorów – jest powolny. Jeśli pogodzimy się z typowymi usterkami jakie nękają nowoczesne diesle to bez zastanawiania się należy wybrać wersję 2.0 dCi (1.5 i 3.0 to z reguły skarbonki). </p>
+<h3>Segment E</h3>
+<p>Wśród aut klasy wyższej ciężko znaleźć pojazd tani, a z powodu nagromadzenia nowoczesnych rozwiązań – również bezawaryjny. Praktycznie każda konstrukcja skazana jest na kosztowne remonty po przejechaniu określonej ilości kilometrów. Jeśli jednak nieco zmienimy kryteria na: niedrogi i stosunkowo bezawaryjny to można skusić się na jedną z dwóch poniższych propozycji.</p>
+<p><b>Audi A6 (C6)</b> – to samochód który oferował mnóstwo nowinek (czytaj: rzeczy które się zepsują) na szczęście zwykle za dopłatą. Nie wyeksploatowany do granic egzemplarz z jednostką V6 o pojemności 2.4 to będzie najlepszym wyborem. To starszy konstrukcyjnie silnik benzynowy o mocy 177, który w porównaniu z pozostałymi jednostkami z palety nie powinien zrujnować właściciela. Silnik w trasie spala nawet 7l/100km. W ruchu miejskim – bez problemu 2 razy tyle. Dla zainteresowanych – motor dzielnie znosi zasilanie gazem LPG. </p>
+<p><b>Saab 9-5</b> – produkowany przez 13 lat szwedzki czołg wzbudza skrajne emocje. To jeden z tych samochodów, które można pokochać lub znienawidzić. Jeśli ktoś poczuje to pierwsze powinien się zdecydować na jednostkę 1.9 TiD – to motor wspomniany już przy okazji opisu Fiata Bravo. Może nie pasuje do charakteru auta tak dobrze jak turbo doładowane benzynowe 2.3, ale przynajmniej eksploatacja nie będzie przesadnie droga. Na plus – wysoki poziom bezpieczeństwa. Minus – samochód zaprojektowano w połowie lat 90. Na szczęście konstrukcję ciągle modernizowano. </p>
+
+			
+			</div>
+<div id="samochody_uzywane_images" style="float:right;width:265px;margin-top:30px;">
+			<img src='/img/front/Toyota-Aygo.jpg' alt='samochody używane - toyota aygo' style='width:255px;float:right;margin-left:10px;margin-bottom:30px;' class='img-polaroid' />
+			<img src='/img/front/opel-corsa.jpeg' alt='samochody używane - opel corsa' style='width:255px;float:right;margin-left:10px;margin-bottom:30px;' class='img-polaroid' />
+			<img src='/img/front/seat-leon.jpg' alt='samochody używane - seat leon' style='width:255px;float:right;margin-left:10px;margin-bottom:30px;' class='img-polaroid' />
+			<img src='/img/front/renault-laguna.JPG' alt='samochody używane - renault laguna' style='width:255px;float:right;margin-left:10px;margin-bottom:30px;' class='img-polaroid' />
+			<img src='/img/front/audi-a6.jpg' alt='samochody używane - audi a6' style='width:255px;float:right;margin-left:10px;margin-bottom:30px;' class='img-polaroid' />
+			
+			</div>
+			
+        </div>
+        
+<div class="tab-pane" id="popularne">
+<div style='font-size:12px;text-align:justify;'>
+<h2>Używane Audi A3 (2003-2012)</h2>
+<p>Audi A3 II generacji dla jednych jest skutecznym narzędziem do pokonywania kilometrów dla innych pozostaje tylko obiektem westchnień. Jedni i drudzy wiedzą, że to jeden z najlepszych samochodów kompaktowych na rynku, którego charakter zależy tylko od silnika znajdującego się pod maską…</p>
+
+<h3>Silniki</h3>
+
+<p><img src='/img/front/audi-a3.jpg' alt='garaz' style='width:455px;float:right;margin-left:10px;' class='img-polaroid' />Od nich wypada zacząć. To przede wszystkim dzięki szerokiej palecie jednostek napędowych A3 zawdzięcza swój sukces. Kupujący mieli ogromny wybór: od prostego 1.6 8v, przez 1.6 i 2.0 FSI z wtryskiem bezpośrednim, doładowanych 1.4 TFSI, 1.8 TFSI oraz 2.0 TFSI (w topowej odmianie S3) po monstrualne 3.2 V6. Oferta diesli składała się z trzech motorów: słynnego 1.9TDI, nowocześniejszego 1.6TDI oraz 2.0 TDI, którego warto rozważać tylko w wersji 170KM.  </p>
+
+<p>Każdy z tych motorów ma swoje wady i zalety. Godne polecenia są jednostki: 
+<ul>
+<li> 1.6 8V ze względu na prostą konstrukcję oraz możliwość założenia taniej instalacji gazowej, </li>
+<li> 1.9 TDI – zalet chyba nie trzeba przedstawiać. Małe spalanie, niska awaryjność i niezłe osiągi. </li>
+</ul>
+Pozostałe motory mogą być problematyczne. FSI słyną z odkładającego się nagaru na zaworach, co powoduje ubytki mocy (w skrajnych wypadkach doprowadzi do pęknięcia głowicy) oraz brakiem możliwości zamontowania sensownej instalacji LPG. TFSI potrafią połączyć umiarkowane spalanie z niesamowitymi osiągami. Niestety ich eksploatacja to loteria. Nieszczelności w okolicach turbiny, rozciągające się łańcuchy rozrządu, pękające głowice. Kupując samochód z którymś z wymienionych silników nie warto kierować się ceną.</p> 
+
+<h3>Wnętrze</h3>
+
+<p>Wnętrze – to kolejny element za, który Audi jest tak wysoko cenione. „Intuicyjne i ergonomiczne. Bezsprzecznie najlepsze materiały w klasie.” Takie słowa najczęściej padają przy opisie miejsca pracy kierowcy. Jest elegancko i przejrzyście. Jakość materiałów użytych do wykończenia A3 jest najlepsza w segmencie. Ponieważ mamy do czynienia z klasą Premium wyposażenie powinno być bogate. Niestety jest to regułą. Klienci wybierając Audi z podstawowymi silnikami, rzadko dokupowali ciekawe gadżety. Podstawowe opcje jednak znalazły się w standardzie – elektrycznie regulowane szyby  i lusterka czy klimatyzacja.</p>
+
+<h3>Podwozie</h3>
+
+<p>Na zakończenie podwozie. Zawieszenie auta składa się z kolumn McPhersona z przodu oraz wielowahaczowe z tyłu (dwa wahacze poprzeczne, jeden wzdłużny). Mimo skomplikowania, dobrze znosi nasze drogi i jest świetnym kompromisem między komfortem a sztywnością. </p><p>
+Sworznie wahaczy przednich są przykręcane – w przypadku uszkodzenia, nie trzeba wymieniać całego elementu. Szukając części warto poświęcić trochę czasu na znalezienie tańszej oferty. Oryginalne elementy bywają drogie – szczególnie w ASO Audi. Wystarczy jednak poszukać odpowiednika wśród bogatej oferty zamienników. </p>
+ 
+<h3>Zakup Audi A3 - na co zwracać uwagę</h3>
+<p>
+<ul>
+<li> zmorą są tanie egzemplarze z ogromnymi przebiegami lub po poważnych wypadkach na szybko przygotowane do sprzedaży, </li>
+<li> w stosunku do poprzednika jest mniej problemów z korozją podwozia, mimo tego warto sprawdzić jak trzymają się elementy metalowe,</li>
+<li> uwaga na 2.0 TDI z pompowtryskiwaczami, które delikatnie mówiąc nie mają najlepszych opinii (awarie ww. wtrysków, pękające głowice, awarie pomp olejowych, zatarcia)</li>
+<li> co do zasady elektronika jest trwała mimo tego należy sprawdzić czy każde urządzenie pokładowe jest sprawne i czy nie wyświetlają się żadne błędy.</li>  </p>
+</ul>
+<h3>Podsumowanie</h3>
+
+<p>Jeśli  potrzebujesz samochodu pokroju VW Golfa i stać Cię na to żeby  kupić bądź co bądź droższe Audi to zrób to. Nie pożałujesz ani jednej złotówki. </p>
+
+<h2>Używane Skody</h2>
+<p>Nowe reklamy Skody zaczynają się od chwalenia rekordowych wyników sprzedaży samochodów tej marki w Polsce na przestrzeni ostatnich lat. Czy faktycznie Polacy kochają czeskie auta? Skoda nie jest raczej producentem samochodów na widok, których serce bije szybciej. Jeśli rodzina kupi sobie Octavię czy Fabię nie wzbudzi zazdrości wśród sąsiadów. Politykowi, który jedzie rządową Skodą Superb, nikt nie wytknie poruszania się w zbyt drogim aucie – mimo, że najdroższe odmiany kosztują prawie tyle co podstawowe Audi A6. Na czym więc polega sekret marki, która do niedawna produkowała niezbyt udane pojazdy?</p>
+Skoda to marka, która przeszła w ostatnich dwudziestu latach ogromne zmiany, obecnie produkująca samochody umiarkowanie ładne, ale za to praktyczne. Zgodnie z hasłem reklamowym Simply clever. Sloganem jednak mogło by być „Więcej za mniej”. Np. Skoda Octavia III i Volkswagen Golf VII to dwa zbudowane z tych samych podzespołów auta oferowane za nieco mniej niż 60 tys. zł. W zestawieniu Octavia jest liderem sprzedaży – prawie o klasę większa, zbliżająca się gabarytami do Passata ma obszerniejsze wnętrze oraz większy bagażnik. Do tego ceny dodatkowych elementów wyposażenia są niższe. Więcej samochodu za mniejsze pieniądze.    </p>
+<p>W kategorii nowych samochodów Skoda wygrywa. Jednak nie każdy chce lub może wejść do salonu i kupić nowe auto za cenę z katalogu. Żeby stać się posiadaczem takiego auta za mniejsze pieniądze trzeba rozejrzeć się na rynku używanych. Poniżej zostaną opisane trzy najciekawsze, z punktu widzenia kupującego, używane Skody.   </p>
+<h3>Fabia II</h3>
+<p><img src='/img/front/skoda-fabia2.jpg' alt='samochody używane skoda fabia2' style='width:455px;float:right;margin-left:10px;' class='img-polaroid' />Decydując się dziś na jeden z najmniejszych modeli można odrzucić Fabię I generacji. Była mizernie wykonana, a właściciele po zakończeniu gwarnacji najczęściej mocno oszczędzali na eksploatacji, co szybko odbiło się na stanie technicznym. Pod każdym względem lepszym wyborem będzie Volkswagen Polo IV. </p>
+<p>Druga generacja Fabii to dojrzała konstrukcja. Wnętrze jest lepiej spasowane i wykonane z o niebo lepszych materiałów. Deska rozdzielcza i zegary w wersjach po liftingu wyglądają naprawdę dobrze. Dominuje czerń i odcienie szarości, ale zdarzają się egzemplarze z kolorową tapicerką i jasnymi plastikami. Zawieszenie jest komfortowe i znacznie trwalsze niż w poprzedniczce. Mała Skoda dobrze się prowadzi – wrażenia są podobne do tych z jazdy Volkswagenem Polo, z tą różnicą, że wspomaganie w Czeszce jest nieco mocniejsze (układ kierowniczy jest wyczuwalnie mniej bezpośredni).  </p>
+<p>Wybór silników jest tradycyjnie bogaty. Zakres mocy: od 70 po imponujące w miejskim aucie 180 KM. Najsłabsza jednostka 1.2 12V ma 3 cylindry – pracuje głośno i wcale nie jest ekonomiczna. W jej wypadku nie ma sensu mówić o przyspieszeniu do setki, bo ciężko będzie znaleźć odpowiednio długi odcinek drogi, żeby udało się na nim tą prędkość osiągnąć. Jednostki 1.4 16V i 1.6 8V to stare sprawdzone konstrukcje. Nie palą mało, nie mają oszałamiających osiągów ale ich eksploatacja będzie spokojna i przewidywalna. Jednostka 1.2 TSi wydaje się ideałem -  cicha, ekonomiczna i elastyczna. Niestety potrafi nadszarpnąć budżet nieplanowaną naprawą – warto ją rozważyć jeśli kupujemy pewny samochód z małym przebiegiem.</p> 
+<p>Diesle to specjalność grupy VW. Każda z trzech dostępnych jednostek ma swoje małe wady i ogromne zalety. 1.4 TDI - tani 3 cylindrowy maluch o prostej konstrukcji, 1.9 TDI w najlepszym wydaniu – 105KM oraz jego następca 1.6 TDI o tej samej mocy, którego największą wadą są jeszcze wysokie ceny. Zaleta – średnie spalanie 4,2l/100km. </p>
+<h3>Octavia II      </h3>
+<p><img src='/img/front/skoda-octavia2.jpg' alt='samochody używane skoda octavia2' style='width:455px;float:right;margin-left:10px;' class='img-polaroid' />Zatrzymaj się przy ulicy w centrum większego miasta i rozejrzyj dookoła. Na 100% zobaczysz Volkswagena Passata i Skodę Octavię. 
+Kiedyś można było obserwować boom na Fordy Mondeo. Przedstawiciele handlowi oraz właściciele firm zaczęli je masowo kupować ponieważ były tańsze i lepiej wyposażone od Passatów. Obecnie trend zmierzył ku Czeskiej firmie. Skoda Octavia II po liftingu to jeden z najchętniej wybieranych pojazdów w Polsce. Wizerunek producenta tanich nieciekawych aut odszedł w niepamięć. Starannie wykonane wnętrze, duża ilość opcji dodatkowego wyposażenia, sprawdzone rozwiązania oraz wisienka na tym smakowitym torcie – wielowahaczowe zawieszenie, sprawiające, że Skoda prowadzi się równie dobrze jak okryte sławą Fordy. Dopełnieniem była niższa cena oraz atrakcyjne finansowanie przez VW Bank Polska.      </p>
+<p>Na naszym rynku najłatwiej o 3 wersje – 1.6 8V, 1.9 TDI oraz 2.0 TDI. Najbezpieczniejszy zakup to podstawowe wersje silnikowe od prywatnego pierwszego właściciela. TDI są obarczone ryzykiem uszkodzenia wtrysków, sprężarek czy problemów z filtrem DPF. Podwyższone ryzyko związane jest również ze skrzynią DSG. Ten dwusprzęgłowy automat sprawia, że jazda staje się przyjemnością a spalanie spada. Miło jest do czasu awarii z którą poradzą sobie tylko wykwalifikowane serwisy.
+Trwałość auta i prostota jego konstrukcji jest gwarancją taniej eksploatacji. Zawieszenie mimo, że rozbudowane, dobrze radzi sobie z naszymi drogami. Nie ma też doniesień o nagminnych problemach z elektryką lub elektroniką.  </p>
+<p>Tak jak w przypadku Fabii warto zainteresować się wersjami po liftingu. Jakość wykonania wnętrza oraz dbałość o detale pozwala poczuć się w Octavii jak w porządnej, drogiej limuzynie.   </p>
+
+<h3>Superb II</h3>
+<p><img src='/img/front/skoda-superb.jpg' alt='samochody używane skoda superb' style='width:455px;float:right;margin-left:10px;' class='img-polaroid' />Superb I generacji nie zdobył uznania polskiego klienta, za to był cenną lekcją dla Skody. Samochód pretendował do klasy w, której nie było miejsca dla producenta tanich pojazdów. Wysokość sprzedaży mogła by poprawić pojemna wersja kombi, jednak w obawie przed odebraniem klientów Passatowi lub Audi A4 projekt porzucono. 
+W 2008 roku na rynek weszła druga generacja, będąca owocem wniosków wyciągniętych na podstawie poprzednika. Tańszy podstawowy motor o małej pojemności (1.4 TSi), system twindoor (dla przypomnienia klapa bagażnika unosi się sama jak w sedanie lub z szybą, jak w liftbacku) oraz cena na poziomie średnio wyposażonego VW Golfa. Sukces był kwestią czasu.        </p>
+<p>Superb to samochód o dwóch twarzach. Patrząc na niego widzisz dużą dostojną limuzynę z eleganckim pełnym chromów wnętrzem i bogatym wyposażeniem. Kiedy poznasz go bliżej zauważasz, że w rzeczywistości to po prostu duży hatchback, którego można utrzymać za podobne pieniądze jakie będą potrzebne na wspomnianego Golfa.     </p>
+Do wyboru praktycznie same doładowane jednostki TSI lub TDI. Jedyny wolnossący silnik to V6 o pojemności 3.6 połączona seryjnie z napędem 4x4 i skrzynią DSG. Jeśli nawet ktoś wybaczy wysokie spalanie, to nie sposób zrozumieć czemu pojemność baku jest tak mała, że zasięg auta na jednym tankowaniu nie przekracza 400km. Najlepszym wyborem będzie 1.8 TSi (dobry stosunek mocy do osiągów – do tego jest najmniej awaryjny spośród doładowanych benzyniaków). Diesle 1.6, 1.9 i 2.0 TDI o mocach 105-170KM. Eksploatacja przebiega wg zasady: im starszy i mniejszy – tym tańszy w obsłudze. Trwałość całości nie budzi większych zastrzeżeń. Oczywiście z racji na większą ilość elektroniki, coś może zawieść. Problemy jednak dotyczą zwykle elementów wyposażenia np. czujniki parkowania, elektryczne siłowniki klapy bagażnika (dotyczy kombi) itp.
+ </p>
+<p>Nie ma w ofercie Skody samochodu, który sprzedaje się źle. Nawet umiarkowana sprzedaż Roomstera nie spowodowała rezygnacji firmy z produkcji tego modelu – ponieważ i tak przynosi konkretne zyski. Ciekawostką w gamie jest Yeti. Pierwszy SUV producenta całkiem dobrze radzi sobie w tabeli sprzedaży. A najmniejsze Citigo? Razem z bliźniaczym VW up! deklasuje faworyta segmentu czyli Fiata Pandę. </p>
+
+
+<h2>BMW Serii 3 [e36] 1990-2000</h2>
+<p>BMW serii 3 dało przykład innym firmom z branży motoryzacyjnej, że sportowe emocje można połączyć z funkcjonalnym nadwoziem. Trójka o nazwie kodowej e36 występowała jako klasyczny sedan, kombi, coupe, cabrio oraz compact. Zadaniem tej ostatniej wersji było wywalczenie dla BMW kawałka rynku samochodów kompaktowych. </p>
+Pierwsze auta zjechały z taśm montażowych 24 lata temu. Znalezienie dziś egzemplarza z początku produkcji, bezwypadkowego i niewymagającego inwestycji graniczy z cudem. Oczywiście zdarzają się perełki z opisami „dla kolekcjonera”, ale najczęściej ich ceny wywoławcze osiągają kosmiczne wartości – szukający dobrze utrzymanego klasyka chętniej poszukują poprzednika - e30.  </p>
+<p><img src='/img/front/bmw-e36.jpg' alt='samochody używane bmw e-36' style='width:455px;float:right;margin-left:10px;' class='img-polaroid' />Głównym problemem większości egzemplarzy są ich właściciele, których stać było tylko na zakup stosunkowo taniego auta, ale nie jego eksploatację. BMW to marka Premium i ma to odbicie w cenach części. Są oczywiście liczne zamienniki, ale w większości na rynku znajdziemy marnej jakości chińskie wyroby, których jakość pozostawia wiele do życzenia. Druga kwestia to sposób eksploatacji. E36 słynie z wytrzymałości na brutalne traktowanie. Nie mniej jednak nie jest niezniszczalne. Wciskanie gazu do podłogi kiedy silnik jest zimny to podstawowy problem (temperatura cieczy na poziomie 90st.C nie oznacza, że olej w silniku jest już wystarczająco rozgrzany).    </p>
+<p>Jakiego e36 szukać? To zależy od oczekiwań. BMW może być doskonałym samochodem na co dzień lub weekendową zabawką. Najważniejsze jest pewne źródło zakupu oraz możliwie najlepszy stan techniczny. Wybór silnika najlepiej ograniczyć do jednostek benzynowych o mocy od 115KM – słabsze jednostki nie radzą sobie ze sprawnym napędzaniem auta. Ciekawy jest 1.8is 140KM zapewnia niezłe osiągi a spalanie nie przekracza 10l. Jednostki R6 niezależnie od pojemności spalają podobne ilości paliwa, więc mając do wyboru większy motor nie należy się obawiać wiru w baku. </p>
+<p>Zadbane diesle (TDS) praktycznie na rynku wtórnym nie istnieją.  Na szczególną uwagę zasługuje wersja M3 przygotowana przez oddział BMW Motorsport GmbH. Oferowane były dwa benzynowe silniki sześciocylindrowe. Najpierw 3.0 (286KM), potem 3.2(321KM) wyposażony w system zmiennych faz rozrządu Vanos. Każdy z nich sprawia, że nawet dziś M3 jest na drodze jednym z szybszych aut. </p>
+<p>Mając na uwadze wiek trzeba pamiętać, że każdy dodatkowy element wyposażenia będzie miejscem ewentualnej awarii. Na co zwrócić uwagę przy zakupie: </p>
+<p>
+<ul>
+<li>	Rdza – nawet bezwypadkowe egzemplarze z początków produkcji mogą mieć wykwity korozji. Jeśli auto dłuższy czas jeździ po naszych drogach, zimą posypywanych solą, wizyta na podnośniku i dokładne sprawdzenie podwozia jest nieodzowne.  </li>
+<li>	Elektryka – sprawdź czy działają wszystkie szyby, centralny zamek itp. Naprawa nie jest droga, ale niesprawny element jest dobrym argumentem do obniżenia ceny. </li>
+<li>	Układ kierowniczy – jeśli do wymiany są tylko końcówki drążków to naprawa wyniesie kilkadziesiąt złotych, jeśli niesprawna jest przekładnia koszty mogą przekroczyć nawet tysiąc PLN  </li>
+<li>	Dyferencjał – wycieków oleju trzeba szukać nie tylko na silniku i skrzyni, ale również na dyferencjale. Usterki przeniesienia napędu są kosztowne w naprawie.</li> 
+<li>	Wał napędowy – Duża moc i szybkie ruszanie wpływa negatywnie na przeguby wału napędowego. Przy większych przebiegach hałasować będzie łożysko w jego podporze.</li>
+<li>	Skrzynie automatyczne – nie są tak trwałe jak przekładnie Mercedesa z tamtych lat. Jeśli poprzedni właściciel nie wymieniał regularnie oleju z pewnością dojdzie do awarii.</li>
+</ul>
+   </p>
+
+			</div>
+        </div>
+        
+                
+<div class="tab-pane" id="poradnik">
+<div style='font-size:12px;text-align:justify;'>
+<h2>Poradnik dla kupujących samochody używane</h2>
+<p>   
+   Zakup auta używanego w dzisiejszych czasach nie jest łatwym zadaniem. Obecnie klient ma do wyboru wiele marek samochodowych, które chcąc zyskać jego sympatię oferując szereg różnych wersji silnikowych oraz wersji wyposażenia wnętrza pojazdu – wszystko po to, aby użytkowanie pojazdu było zadowalające. Co prawda, jako koncern samochodowy, większa uwaga skupiana jest na nowych modelach, które dopiero co wychodzą na rynek. Pamięć klientów jest dobra i potrafią oni pamiętać usterki w ich poprzednich pojazdach dlatego rynek aut używanych jest poniekąd odzwierciedleniem rozwoju marki, czy uczy się ona na własnych błędach i czy rozwija samochody. Przykładem jest koncern VW, który na przełomie lat 80tych udowodnił jak niezawodne auta potrafi produkować, co przełożyło się na jego niezmiennie wysoką popularność na rynku wtórnym. 
+</p>   
+<p>Chcąc kupić auto używane musimy zastanowić się przez chwilę na kilkoma istotnymi kwestiami:</p>
+<h3>1) w jakim celu i w jaki sposób będziemy wykorzystywać nowy samochód?</h3> 
+<p>Czy samochód będzie nam służył jedynie do dojazdów do pracy, która oddalona jest od naszego miejsca zamieszkania o 10km. Jeżeli tak to w tym przypadku możemy śmiało przekreślić samochody z silnikiem diesla, który jest rozwiązaniem dla tych, którzy mają zamiar pokonywać dłuższe trasy. </p>
+<h3>2) czy będziemy jeździć tym samochodem sami, czy może z rodziną lub będziemy kogoś przewozili?</h3>
+<p><img src='/img/front/samochod-uzywany-kombi.jpg' alt='samochody używane typu kombi' style='width:255px;float:right;margin-left:10px;' class='img-polaroid' />Proste pytanie jednak wiele osób nie zdaje sobie sprawy, że komfort pasażerów jest także ważny. Szukając auta dla siebie możemy zawęzić nasze poszukiwania do samochodów 2-drzwiowych, np. hatchback. Chcąc nabyć auto dla rodziny powinniśmy uwzględnić takie aspekty pojazdu jak wielkość bagażnika, ilość miejsca na tylnej kanapie zarówno na nogi jak i nad głową, w razie gdybyśmy przewozili wysokich pasażerów. Daje to nam wskazówkę, aby ukierunkować nasze poszukiwania na modele o typie nadwozia kombi lub sedan. </p>
+<h3>3) rodzaj paliwa: benzyna czy diesel</h3>
+<p>Wracamy tutaj do punktu pierwszego, gdzie musimy ocenić czy będziemy pokonywać samochodem dłuższe trasy czy krótsze. Jeżeli będziemy podróżowali często wybór powinien paść na silnik diesla, który będąc oszczędnym, zapewnia lepszą dynamikę na wysokich biegach, a w dodatku ma znacznie większą żywotność niż jednostki benzynowe. Innym aspektem jest nasze upodobanie co do rodzaju silnika. Są tacy, którzy po prostu nie lubią tego lub drugiego rodzaju. Ile ludzi tyle opinii jednak jeżeli lubimy benzyny to na próżno szukać nam silnika diesla.</p> 
+<h3>4) suma jako możemy przeznaczyć na zakup pojazdu</h3> 
+<p>Punkt ostatnim jest chyba najważniejszym ze wszystkich bowiem tutaj nie możemy bujać w obłokach, a musimy stąpając twardo po ziemi określić na co nasz stać. Poniżej przedstawione zostały typy pojazdów na jakie warto zwrócić uwagę w zależności od progu cenowego. Zanim jednak zaczniecie je zgłębiać pamiętajcie o bardzo ważnym aspekcie. Chcąc określić sumę jako przeznaczacie na zakup auta powinniście dodać do niej średnio od 2 do 3 tys. zł. (suma ta może być zarówno niższa jak i wyższa) Dlaczego tak? Otóż po zakupie spotkacie się z szeregiem opłat jakie należy zrobić zanim auto będzie całkowicie wasze. Podatek od kupna auta, opłata za nowy dowód z tablicami, a do tego dochodzą jeszcze naprawy. Po zakupie auta używanego obowiązkowo należy wymienić olej samochodowy, wszystkie filtry, pasek rozrządu. Bardzo często się zdarza, że właściciel umyślnie nie wymieniał pewnych części bo miał w planach sprzedaż auta. Stąd zdarzyć się może potrzeba wymiany klocków hamulcowych, a nierzadko tarcz hamulcowych. Kupując starszego diesla opłaty rosną bowiem niedopatrzenia poprzedniego właściciela wychodzą na przeglądzie. Nie ma co wierzyć w bajki opowiadane przez sprzedające „wszystko zostało wymienione, rozrząd, klocki, olej, nic tylko wsiadać i jechać”. Nikt nie poświęca pieniędzy na takie czynności przed zakupem bo wie, że włożone fundusze nie zostaną odzyskane.</p> 
+
+<p>Poniżej prezentujemy przykłady aut jakie można zakupić w zależności od przedziału cenowego. Powiemy wam, na co zwrócić uwagę przy ich zakupie, jakich silników się wystrzegać.</p> 
+<p>Wspomniane powyżej w punkty i czynności powinniśmy przeprowadzić na spokojnie w domu, nie śpiesząc się, aby podjąć najlepszą z możliwych decyzji. Kiedy już takowa zapadnie możemy rozpocząć szukanie auta, które nas interesuje. Większość ludzi popełnia kilka podstawowych błędów, które mogą zaważyć na przyszłości naszego zakupu. Pierwszym z nich jest kierowanie się emocjami, a nie rozumem. Długo oszczędzone pieniądze pozwalają nam w końcu na realizację naszych marzeń lub planów jakimi jest nowy samochód w garażu. Dlatego jak tylko zobaczymy ładnie wyglądające auto podświadomie chcemy je jak najszybciej nabyć, „przecież wygląda tak ładnie, co może być popsute w tak ślicznym samochodziku?” Niestety, jak pokazują realia, awarii może być wiele, nierzadko naprawa wszystkich może przekroczyć sumę całego samochodu. Jeżeli nie wierzycie porozmawiajcie z właścicielami VW Passatów B6 2.0 TDI z początku produkcji, niejeden po zakupie auta używanego, które reklamowane było przez właściciela jako „igła” musiał zainwestować nawet 10 tys. złotych, aby naprawić ukryte wady. Każdą ofertę przeglądajmy powoli z maksymalnym skupieniem. Nie zrażajmy się jeśli sprzedający umieścił wyczerpujący opis, przeczytajmy go od deski do deski, bardzo często zajdziemy tam przebieg użytkowania pojazdu, jego historie, także tą wypadkową. Nie przekreślajmy także samochodów, które miały małe takie jak obtarcia, niewielkie wgniecenia. Jeśli zostały one dobrze naprawione nie wpłyną one na stan karoserii w przyszłości. Zwróćmy także uwagę jak właściciel o tym opowiada, czy mówi ze szczegółami, czy może się śpieszy jak by chciał pominąć ten temat. Uważajmy na ogłoszenia powypadkowych pojazdów. Nawet jeśli są tańsze niż inne ich stan oraz naprawa pozostawiają wiele do życzenia.</p> 
+<p>Upewnijmy się czy dane ogłoszenie spełnia nasze wymagania. Na pozór wydaje się to błaha rada, ale przeglądając 30ste, albo 50te ogłoszenie zmęczenie może dać się we znaki i spowodować, że przegapimy prosty fakt, np. silnik diesla, gdy interesują nas tylko benzyny. </p>
+<p>Nie wierzmy także we wszystko, co mówi właściciel. Pamiętajcie – jego celem jest sprzedaż auta, czy później będziecie z niego zadowoleni nie jest jego zmartwieniem. Określenia „nic nie stuka, nic nie puka” można włożyć między bajki. Uczciwy sprzedawca powie wam szczerze jak na spowiedzi, co się działo z samochodem, czy nie było żadnych przykrych niespodzianek, co według niego może wymagać naprawy, albo wymiany. Niestety taki uczciwych sprzedawców jest jak na lekarstwo.</p> 
+<p>To samo tyczy się przebiegu samochodu. Plagą na dzisiejszym rynku aut używanych jest cofanie licznika km przejechanych przez pojazd. Nie wierzmy w zapewnienia producentów, że nie da się tego zmienić, nawet skomplikowane mechanizmy mercedesa czy bmw nie stanowią problemu dla odpowiedniego informatyka, lub elektryka samochodowego. To samo tyczy się aut sprowadzonych zza naszej zachodniej granicy. Gdyby VW Passat miał przebieg 180 tys. km to by był użytkowany przez niemieckiego obywatela jeszcze długo bo ten wie z pewnością, że tego typu silnik pozwoli mu jeszcze na bezawaryjną jazdę przez ponad 150 tys. km. Owszem zdarzają się prawdziwe przebiegi jednak są to pojedyncze aukcje. </p>
+<h2>Jak wizualnie ustalić czy samochód ma przebieg taki, jaki podaje właściciel? </h2>
+<p>1) <b>praca silnika</b> – czy nie dochodzą jakieś niepokojące dźwięki podczas jego pracy</p>
+<p>2) <b>ufajmy jedynie brudnym silnikom</b> – może to dziwić, ale sprzedawcy chcąc upiększyć pojazd myją jego silnik, co może i wygląda estetyczniej, ale równie dobrze, może zakrywać wycieki oleju, co świadczy o potrzebie naprawy usterki lub znacznie wyeksploatowaniu silnika</p>
+<p>3) <b>wygląd wnętrza</b>: otarcia na kierownicy, otarcia na lewarku zmiany biegów, stan foteli, czy nie są wytarte, z dziurami co sugeruje wysokie przebiegi, stan klamek bocznych we wnętrzu pojazdu, czy te wszystkie elementy są tak samo zużyte, często się zdarza, że sprzedawca wymieni lewarek zmiany biegów i obszyje kierownice bo uwidaczniały one wysoki przebieg, jednak nie wymieni już takich elementów jak: plastiki we wnętrzu, wewnętrzne klamki w drzwiach, pokrętła od nawiewów, stan tapicerki. Jeżeli są one zużyte bardziej nie inne części możemy podejrzewać, że sprzedawca mógł oszukać nas w kwestii rzeczywistego przebiegu auta.  </p>
+<p>Czego warto szukać w poszczególnym przedziale cenowym? Czego warto szukać, a co należy omijać szerokim łukiem? Poniższy poradnik powinien rozwiać niektóre z waszych wątpliwości, a także pomóc w wyborze szukanego pojazdu. </p>
+
+<h2>Auta do 5 tys złotych</h2>
+<p>Wbrew pozorom za niewielkie pieniądze możemy znaleźć całkiem dobre auto. Oczywiście jeśli pogodzimy się z faktem, że nie będzie ono całkowicie nowe, jak z salonu. Niestety, cena robi swoje. Jednak wiele osób pochopnie decyduje się na zakup droższego pojazdu łudząc się, jego niskimi kosztami utrzymania. Pomijane mało spotykane modele mogą okazać się trafem w 10tke. Niektóre z podanych niżej samochodów nie mają dobrej opinie, niestety niesłusznie. Ich mała popularność świadczy o naszych uprzedzeniach do danej marki lub wszechobecnych w narodzie polskim – stereotypach.  </p>
+
+<h3>Daewoo Lanos</h3>
+<p><img src='/img/front/samochod-uzywany-lanos.jpg' alt='samochody używane daewoo lanos' style='width:255px;float:right;margin-left:10px;' class='img-polaroid' />Wbrew wszelkim pozorom Lanos nie jest złym samochodem. Wielu jego właścicieli kupiło go w polskim salonie i jeździ nim do dzisiaj, nie rzadko pokonując przebieg ponad 250 tys. km. Jakie wady trapiąkoreańczyka: pojawiająca się korozja, wycieki oleju silnikowego, szwankująca elektryka. Jednak każda naprawa nie jest karą dla portfela – mechanicy znają dobrze budowę Lanosa, części zamienne są tanie, nie wydamy więc za wiele. Mało kto wie, że silniki montowane w Daewoo, w szczególności 1.5 i 1.6 są naprawdę niezawodne. Świadczą o tym duże przebiegi jakie nieraz te auta pokonują. Jeżeli potrzebujecie czegoś taniego, np. do dojazdów do miasta, pracy, jest to auto na pewno godne uwagi </p>
+<h3>Daewoo Nubira</h3>
+<p>Przy Nubirze, możemy powiedzieć podobne słowa jak o Lanosie, w tym przypadku dostępne są dwie wersje silnikowe 1.6 i 2.0. Silnik o większej pojemności może pochwalić się przyśpieszeniem od 0-100km/h w 9 sek. Polecamy jednak słabszy silnik. Przy oglądaniu pojazdu warto zwrócić uwagę na amortyzatory, niekiedy ulegają one szybszemu zużyciu na naszych drogach. Wbrew pozorom to bardzo trwałe samochody, całkiem duży apetyt na paliwo, sięgający czasem i 12 litrów może zostać ograniczonyzmaontowaniem instalacji LPG, która idealnie współpracują ze wszystkimi silnikami benzynowymi Daewoo. </p>
+<h3>Fiat Seicento</h3> 
+<p>Młodszy brat Cinquecento, który to swój początek wziął od znanego polskiego fiata 126p. Seicento wygląda młodziej, a także ma silniki, które nie „kaszlą”, tak jak jego potomek. Do wyboru mamy dwie jednostki: 0,9 i 1,1. Polecamy mocniejszą wersję, zapewnia lepszą dynamikę. Jeżeli jednak nie zależy wam na szybkości wybrać możecie słabszy silnik. Wbrew pozorom żaden z nich nie sprawia większych problemów. Są to proste konstrukcje, które w dodatku łatwo i tanio można naprawić. Wady? Zdarzają się wypadające bębenki zamków, szczególnie w bagażniku, odpadające emblematy oraz przepalające się części tłumika. Delikatne są też reflektory przednie, w których uszkodzić można plastyki i zatrzaski. Bądźcie ostrożni podczas wymiany żarówki, a nic się nie stanie.</p> 
+
+<h3>Fiat Sienna</h3>
+<p>Kolejny fiat na naszej liście, Dlaczego warto wybrać Sienne? Być może nie przykuwa uwagę sylwetką, ale ma silnik benzynowy o pojemności 1.6, który należy do bardzo udanych. W dodatku wszelkie usterki można szybko naprawić za niewielkie pieniądze. Zamienników jest wiele, a ich ceny nie obciążą naszego budżetu. Sienna to naprawdę dobre auto, które może odstraszać słabym wykończeniem wnętrza, Służy jednak ono dobrze swoim właścicielom. Mała popularność tego auta sprawiła, że ceny na rynku aut używanych są naprawdę niskie. Już za 3,5 tys. zł możemy kupić zadbany egzemplarz. </p>
+<h3>Opel Astra</h3>
+<p><img src='/img/front/samochod-uzywany-opel-astra.jpg' alt='samochody używane opel astra' style='width:255px;float:right;margin-left:10px;' class='img-polaroid' />Przeświadczenie o awaryjności Opli i rdzewiejących zawieszeniach spowodowały, że Ople z lat 90tych są bardzo tanie, a ilość ofert wręcz zaskakuje. Polecanym silnikiem jest 1.4 benzyna – najtrwalszy oraz najmniej awaryjny. Fakt, model ten trapią pojawiające się ogniska korozji jednak na rynku aut używanych wciąż można znaleźć egzemplarze utrzymane w bardzo dobrym stanie. Auto polecane dla studenta.</p>
+<h3>Nissan Micra mk2</h3> 
+<p>Druga generacja mikry być może nie przykuwa swą sylwetką jednak zapewniamy was, w środku jest niesamowicie przestronne i podróż w czwórkę z niewielkimi bagażami nie będzie stanowić problemu. Oczywiście bagażnik nie należy do przestronnych, jednak samochód ten jest przeznaczony do miasta i krótkich tras. Wśród silników mamy do wyboru 1.0 60 KM, 1.0 16V 54KM, 1.3 16V 75KM, 1.4 82KM, 1.5 diesel 57KM. Nie stwarzają one problemów, jednak najbardziej godnym polecenia jest 1.4, zapewnia najlepszą dynamikę wśród benzyn. Warto szukać Nissana Micry kupionego w polskim salonie.</p> 
+<h3>Suzuki Swift</h3> 
+<p>Niepozorny, kanciasty, być może odstrasza na początku swoim wyglądem, ale odwdzięcza się bezawaryjną eksploatacją. Silniki dostępne to: 1.0 i (56KM), 1.0  (53KM), 1.3 (68KM), 1.3 GTi (101KM), 1.3 i (71KM), 1.6 i (92KM), 1.6 (95KM), 1.6 i (75KM). Najmocniejsza wersja GTi miała napęd na 4 koła jednak znalezienie wersji w dobrym stanie i przystępnej cenie jest prawie niemożliwe. Każdy silnik jest godny polecenia, są to proste konstrukcje, które cechują się bezproblemową eksploatacją. Jeżeli znajdziecie mocniejszy silnik, nie wahajcie się, parę koni mechanicznych więcej nie zabraknie. </p>
+
+<p>To są tylko niektóre propozycje jakie warto kupić za niewielkie pieniądze. Na rynku aut używanych można znaleźć o wiele więcej ciekawych modeli. Jeżeli szukacie czegoś droższego i macie kapitał na taki zakup oto kilka ciekawych propozycji.</p>
+
+<h3>Skoda Octavia mk1 </h3>
+<p><img src='/img/front/samochod-uzywany-skoda-octavia.jpg' alt='samochody używane skoda octavia mk1' style='width:255px;float:right;margin-left:10px;' class='img-polaroid' />Pierwsza generacja modelu Octavia jest tak popularna na polskich drogach niczym Golf. Można by napisać całą recenzję na temat tego samochodu, jednak skrócimy to: Skoda Octaviamk 1 to naprawdę dobre auto, świadczyć może o tym fakt, że produkowana była od 1996 roku do 2010. Pomimo wprowadzenia modelu Octavia 2 jej poprzedniczka była oferowana w jednej wersji o nazwie Tour. Sprzedaż szła tak dobrze, że wprowadzenie trzeciej generacji nie uśmierciło pierwowzoru i była ona dalej sprzedawana. Dlaczego jest godna uwagi? Ogromny bagażnik, nieco mniej miejsca z tyłu jest to przestronne auto, dobre zabezpieczenie antykorozyjne, konstrukcja oparta na volkswagenowskiej technologii co wiąże się z łatwością ewentualnych napraw. Jakie silniki warto wybrać? Wśród benzyn warto szukać 1.6 lub 2.0, są one bardzo prostymi konstrukcjami, plus świetnie znoszą instalację LPG. 1.8 też nie przysparza wielu problemów jednak nieco odstaje od pozostałych dwóch silników. Wśród diesli jedynym trafnym wyborem jest nieśmiertelne 1.9 TDI, jeżeli tylko auto będzie miało udokumentowany przebieg. Producent zapewnia, że ten silnik przejedzie 300 tys. km bez żadnej awarii, aczkolwiek nie jest niczym szczególnym przejechanie tym autem nawet i 600 tys. km. </p>
+<h3>Subaru Outback</h3>
+<p>Cena subaru może odstraszać, ale jeżeli macie jakieś wątpliwości zapytajcie się właścicieli, co myślą o swoich samochodach. Większość odpowie: „tylko subaru”. Jeżeli ten model lub jakikolwiek inny jest dobrze traktowany (regularna wymiana oleju na dobry, markowy, wymiana filtrów) odwdzięcza się długą i bezproblemową eksploatacją. Wśród silników warto szukać benzynowych. Miłym zaskoczeniem są możliwości terenowe jakimi może pochwalić się subaru. Potrafi zapuścić się w teren, gdzie inne auta pseudo- terenowe typu audi a4 allroad nie jest w stanie pojechać. Dlaczego więc jest to wciąż mało popularne auto na naszych drogach? Cena samego pojazdu i części zamiennych odstrasza potencjalnych klientów. W dodatku mała popularność powoduje, że część mechaników zacznie wyrywać sobie włosy z głowy chcąc usunąć jakąś usterkę. Jeżeli jednak wam to nie przeszkadza, polecamy.</p> 
+<h3>Honda HRV </h3>
+<p>Produkowana od 1999 roku do 2006 roku, bardzo ciekawy model i miły dla oka. Jeżeli szukacie SUVA jest to propozycja dla was. Dostępne dwa silniki 1.6 o mocy 105 KM i 120 KM nie sprawiają większych problemów, pod warunkiem, że ich poprzedni właściciele dobrze o nie dbali. Nawet jeżeli nie to jednostki napędowe hondy są wręcz „idioto odporne”. Minusy HRV to: bagażnik, który nie jest tak duży jak można by się tego spodziewać, pojawiająca się korozja na progach (weźcie to pod uwagę podczas oględzin auta), wysokie spalanie.</p> 
+<h3>VW Passat B5</h3>
+<p><img src='/img/front/samochod-uzywany-vw-passat-b5.jpg' alt='samochody używane vw passat b5' style='width:255px;float:right;margin-left:10px;' class='img-polaroid' />Dlaczego B5, a nie nowy model B6? Wbrew pozorom nowy model produkowany w latach 2005 – 2010 podważył teorię o bezawaryjności volkswagena. Okazał się bardzo awaryjny, a jego naprawy niesamowicie drogie, czasami sięgające 12 tys. złotych. Klienci nie byli zadowoleni bo wszystkie usterki pojawiały się w zbliżonych przebiegach, akurat tuż po utracie gwarancji, co świadczy o celów zaprojektowaniu auta, tak, aby było maszynką do zarabiana pieniędzy. Jeżeli jednak chcecie wersje B6 szukajcie modeli z ostatnich dwóch lat produkcji z silnikami 1.9 TDI, jednak wciąż jest to ryzykowny zakup. Godnymi polecenia są starsze Passaty B5, które były produkowane od 1996 do 2005 roku. W większości przypadków będą one miały naprawdę wysokie przebiegi jednak wciąż można znaleźć zadbane egzemplarze. Jeżeli nie chcecie wspomnianego B6 to co powiecie na wcześniejszy model z ostatnich lat produkcji, np. 2004 albo 2005? Jest to bezpieczny wybór. Diesle 1.9 TDI są w stanie przejechać nawet 600 tys. km.</p> 
+<h3>Fiat Bravo II </h3>
+<p>Fiat godny polecenia? Tak, albowiem jest to już trzeci fiat w naszym zestawieniu. Wbrew wszelkim pozorom Bravo drugiej generacji może konkurować z golfem lub audi a3, a jego dodatkowym atutem jest cena, która jest znacznie niższa niż u konkurentów. Jeżeli chcecie bezproblemowej eksploatacji wybierzcie wersje benzynową 1.4 przy niewielkim spalaniu około 7 litrów na 100 km. Wśród diesli szukajcie 1.9 JTD, ale słabszej wersji 120KM. Dostępna jest jeszcze wersja mocniejsza, 150 KM, która zapewnia naprawdę dobre osiągi jednak jej słabszy odpowiednik to sprawdzona konstrukcja, która znana jest każdemu polskiemu mechanikowi. Identyczne silniki można znaleźć pod maskami nie tylko innych włoskich aut, ale i wśród modeli Opla, Saaba, Suzuki a nawet w Cadillacu BLS. Jeżeli zastanawiacie się na alternatywą dla golfa to jest strzał w 10tkę, nawet jeżeli wasz sąsiad, kolega z pracy, szwagier myśli inaczej. Łatwiej znaleźć zadbany egzemplarz Bravo II niż Golfa, trafiają się oferty aut kupionych w polskim salonie z bardzo dobrym wyposażeniem. To naprawdę ciekawe i bardzo dobre auto. </p>
+<h3>VW Golf </h3>
+<p>Może i model Bravo II przedstawił Golfa w złym świetle jednak jest to także dobre auto, jeżeli stać nas na kupno używanego egzemplarza. Dlaczego zakładamy, że będziemy musieli wydać więcej? Na rynku jest mnóstwo ofert jednak większość z nich to sprowadzone golfy, które mają wręcz kosmiczne przebiegi. Nie ważne która generacja Golfa będzie was interesowała, dobrze zadbany model będzie służył wam przez kolejne lata. Naszym zdaniem nie warto szukać modeli mk3 z lat 1993 – 1998, ponieważ większość z nich swoje lata ma już dawno za sobą. Owszem zdarzają się zadbane jednostki jednak ich ceny nie czynią zakupu opłacalnym. Golf mk3 jest dobrym pomysłem dla studenta lub dla osoby szukającej pojazdu służącego do dojazdu do pracy lub poruszania się po mieście. Czwarta generacja to propozycja dla tych, którzy nie dysponują gotówką, aby kupić nowszy model. Czy warto szukać modelu z lat 1998- 2004. Naszym zdaniem tak, unikajcie jedynie jednostek benzynowych 1.4, są źle zaprojektowane i zużywają dużo oleju. Dobrym rozwiązaniem są silniki jakie przytoczyliśmy apropo Skody Octavi: benzyna 1.6 lub 2.0, co do diesla nieśmiertelny 1.9 TDI jeżeli mamy potwierdzony przebieg, a stan auta nie świadczy o tym, że licznik był „przekręcany”. Co więc można powiedzieć o kolejnych generacjach? Interesują wyglądem, a w dodatku są dobrze wykonane. Wśród diesli unikajmy jednostki 2.0 TDI jest ona niesamowicie awaryjna. Nowsze diesle niestety nie grzeszą wytrzymałością, szukajmy benzyn. </p>
+<h2>Podsumowanie</h2>
+<p>Mamy nadzieję, że pomogliśmy trochę w poszukiwaniu nowego auta. Powyższe propozycje są nie tyle co rozwiązaniami, ale także przykładem na co zwracać uwagę podczas zakupu. Pamiętajmy, aby podejść do kwestii zakupu ze stoickim spokojem oraz, aby „mierzyć siły na zamiary”, nikt przecież nie kupuje auta po to, aby stało w garażu cały czas. Kupujemy je, aby cieszyło nas swoim użytkowaniem i pokonywało wraz z nami tysiące kolejnych kilometrów dając radość oraz pozytywne emocje.</p> 
+ 
+ 
+</div>      
+      
+      
+        </div>
+        
+                                  
+    </div>
+
+	
+	</div>
+
+
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        $('#tabs').tab();
+    });
+</script>    
+
+	<!---end tabs--->
+	</div>
+
+	
+    </div><!-- /.container -->
+
+
+
+  
+      
+           <div class="navbar-wrapper" style="width:100%;height:110px;background-color:#000;margin-top:0px;" id="bottomsite">
+            <div class="nav_top">
+			
+             <p><strong>Dowiedz się więcej:</strong>
+             <ul style="list-style-type: none;">			
+             <li><a href="/ogloszenia/about" style="color:#ccc;font-size:10px;">O serwisie</a></li>
+             <li><a href="/ogloszenia/regulamin" style="color:#ccc;font-size:10px;">Regulamin</a></li>
+             <li><a href="mailto:kontakt@scarto.pl" style="color:#ccc;font-size:10px;">Kontakt</a></li>
+             </ul>
+             Copyright © 2014 scarto.pl | Korzystanie z serwisu oznacza akceptację <a href="/ogloszenia/regulamin" style="color:#ccc;font-size:10px;">regulaminu</a>.
+             </div>
+    
+         </div>
+         
+
+</body>
+</html>

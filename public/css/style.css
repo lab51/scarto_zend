@@ -1,0 +1,185 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+body { 
+    display: block;
+    margin: 0px;
+    padding: 0px;
+    background-color: #ffffff;
+    min-height: 100%;
+    /*background-image: url('http://localhost/scarto/pub/img/debut_light.png');
+    background-repeat: repeat;
+    font-family: Trebuchet MS,Arial,sans-serif,Tahoma;*/
+}
+
+#bottomsite {
+    height: 300px;
+    background-color: #000;
+    font-family: 'Lucida Sans Unicode','Lucida Grande','Lucida Sans',Garuda,Arial,Helvetica;
+    font-size: 10px;
+    color: #fff;
+    width: 988px;
+    margin-left: auto; 
+    margin-right: auto;
+    border-left: 1px solid #ccccff;
+    border-right: 1px solid #ccccff;
+    position: relative;
+    margin-top: 0px; /* negative value of footer height */
+    height: 300px;
+    clear:both;
+}
+
+.wrapper {
+  margin: 0 auto;
+/*  max-width: 1208px;
+  min-width: 988px;*/
+  max-width: 988px;
+  min-width: 988px;
+  padding: 0 4px;
+}
+
+.header {
+    height:100px;
+    padding-top:33px;
+}
+
+.menu-left {
+    width:180px;
+    float:left;
+    font-size:11px;
+    line-height:11px;
+    padding-right:10px;;
+}
+
+.right-part {
+    float:left;
+}
+
+/*info box on right page when adding ad */
+.form-on-left {
+    width:700px;
+    float:left;
+}
+
+.main-page-search {
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+    background-image: url('http://localhost/scarto/pub/img/bg5.png');
+	background-repeat: no-repeat;
+    width:988px;
+	height:290px;    
+	padding: 10px;
+}
+
+.main-page-search-slim {
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+    background-image: url('http://localhost/scarto/pub/img/bg1.png');
+	background-repeat: no-repeat;
+    width:988px;
+	height:250px;    
+	padding: 0px;
+}
+
+.offer-list-img {
+    margin-left: 10px;
+    float: left;
+    width:330px;
+    height:250px;
+}
+
+.offer-list-desc {
+    padding-left: 15px;
+    float: right;
+    width: 400px;
+    margin-top: 0px;
+}
+
+.one-offer-list-img {
+    padding: 5px;
+    float: left;
+    width:600px;
+}
+
+.one-offer-list-desc {
+    padding: 10px;
+    width: 700px;
+}
+
+
+.one-offer-list-tech {
+    padding: 10px;
+    width: 350px;
+    float: right;
+}
+  
+.gray-td {
+    color: #969595;
+    font-weight: bold;
+}
+
+.input-main {
+	background-color:#E3E1E2;
+	width:135px;
+	height:25px;
+	font-size:11px;
+}
+
+.input-add {
+        height:22px;
+        width:150px;
+        font-size:12px;
+        margin-bottom:0px;
+        padding: 2px 2px;
+}
+
+.input-add-txt {
+        width:140px;
+        line-height:24px;
+        font-size:12px;
+        padding:2px 2px;
+        margin-bottom:2px;
+}
+
+.menur {
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 5px;  
+  width:320px;
+}
+
+
+/* css-method */
+
+
+.shadowx {
+ opacity: 1.0;
+ transition: all 0.5s ease 0s;
+ float: left;
+}
+
+.shadowx:hover {
+  opacity: 0.90;
+  -webkit-opacity: 0.90;
+  -moz-opacity: 0.90;
+} 
+
+.boxunderimg {
+    text-align: right;
+    padding-right: 5px;
+    color: #616161;
+    background-color: #E0E0E0;
+    border-bottom: #969696 1px solid;
+    border-left: #969696 1px solid;
+    border-right: #969696 1px solid;
+}

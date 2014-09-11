@@ -1,0 +1,11 @@
+<?php $this->layout('layout/layout_single_ad.phtml'); ?>
+<img src='/img/404.jpg' style='align:center;' />
+<?php if (isset($this->reason) && $this->reason): ?>
+
+<?php
+       $reasonMessage = $this->translate('Strony nie znaleziono (samochodu tez).');
+?>
+
+<p><?php echo $reasonMessage ?></p>
+
+<?php endif ?>

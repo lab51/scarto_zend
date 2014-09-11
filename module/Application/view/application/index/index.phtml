@@ -1,0 +1,133 @@
+<script language="javascript" type="text/javascript" src="/js/getmodels-homepage.js"></script>
+<script language="javascript" type="text/javascript" src="/js/get_number_of_ads.js"></script>
+<script language="javascript" type="text/javascript">
+function pobierzDane(value) {
+getModels(value);
+getNr();
+}
+</script>
+
+ 
+
+<div style='margin-left:0px;padding-left:0px;margin-top:0px;'>
+    <!--- pod wyszukiwaniem -->
+<div id='main_home' style="margin-left:0px;">
+
+	    <div style="width:100%;float:left;margin-left:0px;background-color:#fff;padding-left:12px;padding-bottom:12px;border-radius:0px;">
+	    	
+	    	<div style="margin-bottom:0px;font-weight:bold;width:100%;">
+			<div style='width:100%;border-bottom:1px solid #E6E6E6;padding:2px;margin:0px;margin-bottom:10px;'>
+			<h2 style="margin-bottom:0px;margin-top:12px;font-size:16px;font-family: 'Signika', Arial, serif; font-weight: 400;color:#7A7A7A;">
+			<span class="glyphicon glyphicon-thumbs-up"></span>
+			ogłoszenie dnia</h2></div>
+		 </div>
+			<div class="imgLiquidFill imgLiquid" style='width:400px;height:250px;float:left;border:1px solid #B3B3B3;'>		
+                <a href="<?php echo '/ogloszenia/index/'.$main_ad->ad_id; ?>"><img src="/images/data/<?php echo $main_ad->ad_main_img; ?>" style="width:390px;" class="img-thumbnail" /></a>
+    	    </div>
+			<div style='float:left;margin-left:25px;width:705px;'>
+				    	<p><a href="<?php echo '/ogloszenia/index/'.$main_ad->ad_id; ?>" style="color:#363636;font-size:16px;font-family: 'Signika', Arial, serif; font-weight: 400;">
+						<?php echo $main_ad->ad_title; ?></a></p>
+			<table class="table table-condensed" style="font-size:11px;">
+			  <tr>
+                  <td class="gray-td">rok produkcji:</td>
+                  <td><?php echo $main_ad->ad_production_year; ?></td>
+               <td class="gray-td">przebieg (km):</td> 
+                  <td><?php echo $main_ad->ad_km; ?></td>
+               </tr>    
+               <tr>
+                  <td class="gray-td">moc silnika (KM):</td> 
+                  <td><?php echo $main_ad->ad_engine_power; ?></td>
+                  <td class="gray-td">pojemność:</td>
+                  <td><?php echo $main_ad->ad_engine_size; ?></td>
+               </tr>
+               <tr>
+                  <td class="gray-td">kolor</td>  
+                  <td><?php echo $main_ad->ad_car_color; ?></td>
+                  <td class="gray-td">skrzynia biegów:</td>    
+                  <td><?php echo $main_ad->ad_gearbox; ?></td>
+            <tr>
+                  <td class="gray-td">rodzaj paliwa:</td>   
+                  <td><?php echo $main_ad->ad_fuel; ?></td>
+               <td class="gray-td">typ:</td>    
+               <td>sedan</td>
+               </tr>
+		    </table>
+			
+			<p><strong></strong> <font style="font-size:26px;font-weight:bold;color:#B30B13;">
+			<span class="glyphicon glyphicon-tag" style='font-size:18px;color:#B8B8B8;'></span>
+			<?php echo number_format($main_ad->ad_price,0, "", " "); ?></font> <font style='color:#575757;font-weight:bold;'>zł</font></p>
+   
+			</div>
+    	
+	</div>
+    
+    
+    	<div style="width:100%;float:left;margin-left:0px;margin-top:0px;background-color:#fff;padding-left:12px;border-radius:0px;">
+    	   <div style="margin-bottom:10px;margin-left:0px;font-weight:bold;">
+		   <div style='width:100%;border-bottom:1px solid #E6E6E6;padding:2px;margin:0px;margin-bottom:0px;'>
+         <h2 style="margin-bottom:0px;margin-top:12px;font-size:16px;font-family: 'Signika', Arial, serif; font-weight: 400;color:#7A7A7A;">
+		 <span class="glyphicon glyphicon-ok" ></span> warto sprawdzić ogłoszenia</h2>
+			</div>
+        <!---<img src="/img/title_warto_sprawdzic.png" style='height:25px;margin-left:15px;' />-->
+        </div>
+<table style="width:100%;font-size:11px;margin-left:0px;" class="table">
+<?php 
+$another_counter = 0;
+foreach($ogloszenia as $ad){
+    if($another_counter==0 or $another_counter==3 or $another_counter ==6){
+        echo '<tr>';
+    }
+        ?>	
+		<td style="width:370px;height:310px;padding:0px;border-top:0px;">
+			<div class="imgLiquidFill imgLiquid" style='width:360px;height:200px;border:1px solid #B3B3B3;'>		
+	<a href="<?php echo '/ogloszenia/index/'.$ad->ad_id; ?>">
+                        <img class='thumbnail' src="/images/data/<?php echo $ad->ad_main_img; ?>" style="float:left;margin-right:5px;" />
+            </a>
+			<p style='margin-top:5px;'><strong>
+			<a href="<?php echo '/ogloszenia/index/'.$ad->ad_id; ?>" style="color:#363636;font-size:12px;font-family: 'Signika', Arial, serif; font-weight: 400;">
+			<?php echo (strlen($ad->ad_title) > 50) ? substr($ad->ad_title,0,42).'...' : $ad->ad_title; ?></a></strong></p>			
+			
+			<div style='border-left:1px solid #c5c5c5;padding-left:10px;'>
+			<strong> <font style="font-size:18px;font-weight:bold;color:#B30B13;">
+				<span class="glyphicon glyphicon-tag" style='font-size:14px;color:#B8B8B8;'></span> <?php echo number_format($ad->ad_price,0, "", " "); ?></font> <font style='color:#575757;font-weight:bold;'>zł</font></strong><br />
+			<?php echo $ad->ad_fuel; ?> <font style='color:#B30B13;'>/</font> <?php echo $ad->ad_engine_size; ?> cm3 <font style='color:#B30B13;'>/</font> 
+			 <?php echo $ad->ad_production_year; ?> r. <br />
+			<font style='color:#7A7A7A;'><strong>tagi:</strong> ogłoszenia, samochody używane </font><br />
+			</div>
+			
+			</div>                
+</td>
+<?php 
+
+$another_counter++;
+        if($another_counter==3 or $another_counter==6 or $another_counter==8){
+        echo '</tr>';
+    }
+    } ?>
+		
+</table>
+
+    	</div>
+		
+	
+	    
+    		
+</div>	
+<!--- KONIEC - pod wyszukiwaniem -->
+
+
+
+
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        $('#tabs').tab();
+    });
+</script>    
+		
+			
+</div> <!-- koniec main-page-sewarch -->
+
+	
+
+
+
